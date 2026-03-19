@@ -1,0 +1,97 @@
+prestige_design_system_tokens:
+  description: "Design tokens base para todos os 5 archetypes — valores OKLCH"
+  version: "1.0.0"
+
+  archetypes:
+    luxury:
+      bg_page: "oklch(10% 0.02 260)"
+      bg_surface: "oklch(14% 0.025 258)"
+      bg_card: "oklch(20% 0.03 256)"
+      brand_primary: "oklch(72% 0.12 76)"     # Prestige Gold
+      brand_secondary: "oklch(98.5% 0.006 85)" # Ivory
+      text_primary: "oklch(98.5% 0.006 85)"
+      text_secondary: "oklch(82% 0.015 80)"
+      border_subtle: "oklch(28% 0.04 255)"
+      border_brand: "oklch(72% 0.12 76)"
+      shadow_hue: "10% 0.05 258"
+      font_display: "Playfair Display"
+      font_body: "DM Sans"
+      radius_default: "4px"
+      radius_card: "8px"
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+      duration_base: "700ms"
+
+    bold:
+      bg_page: "oklch(8% 0.01 255)"
+      bg_surface: "oklch(15% 0.015 250)"
+      bg_card: "oklch(22% 0.02 248)"
+      brand_primary: "oklch(66% 0.24 140)"    # Electric Green
+      brand_secondary: "oklch(97% 0.005 255)"  # Almost white
+      text_primary: "oklch(97% 0.005 255)"
+      text_secondary: "oklch(72% 0.015 250)"
+      border_subtle: "oklch(32% 0.025 246)"
+      border_brand: "oklch(66% 0.24 140)"
+      shadow_hue: "8% 0.01 255"
+      font_display: "Space Grotesk"
+      font_body: "Inter"
+      radius_default: "8px"
+      radius_card: "12px"
+      easing: "cubic-bezier(0.34, 1.32, 0.64, 1)"
+      duration_base: "200ms"
+
+    human:
+      bg_page: "oklch(98% 0.008 60)"
+      bg_surface: "oklch(95% 0.015 62)"
+      bg_card: "oklch(100% 0 0)"
+      brand_primary: "oklch(60% 0.15 36)"    # Terracotta
+      brand_secondary: "oklch(50% 0.10 153)" # Sage
+      text_primary: "oklch(20% 0.02 52)"
+      text_secondary: "oklch(28% 0.025 55)"
+      border_subtle: "oklch(90% 0.022 64)"
+      border_brand: "oklch(60% 0.15 36)"
+      shadow_hue: "20% 0.02 52"
+      font_display: "Lora"
+      font_body: "Plus Jakarta Sans"
+      radius_default: "16px"
+      radius_card: "24px"
+      easing: "cubic-bezier(0.37, 0, 0.63, 1)"
+      duration_base: "500ms"
+
+    technical:
+      bg_page: "oklch(97% 0.005 248)"
+      bg_surface: "oklch(93% 0.008 246)"
+      bg_card: "oklch(100% 0 0)"
+      brand_primary: "oklch(58% 0.19 230)"   # Technical Blue
+      brand_secondary: "oklch(14% 0.055 248)" # Deep Navy
+      text_primary: "oklch(20% 0.025 248)"
+      text_secondary: "oklch(38% 0.018 246)"
+      border_subtle: "oklch(87% 0.012 244)"
+      border_brand: "oklch(58% 0.19 230)"
+      shadow_hue: "20% 0.025 248"
+      font_display: "IBM Plex Sans"
+      font_body: "IBM Plex Sans"
+      font_mono: "JetBrains Mono"
+      radius_default: "6px"
+      radius_card: "8px"
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)"
+      duration_base: "200ms"
+
+    playful:
+      bg_page: "oklch(100% 0 0)"
+      bg_surface: "oklch(98% 0.008 300)"
+      bg_card: "oklch(100% 0 0)"
+      brand_primary: "oklch(62% 0.22 305)"   # Purple
+      brand_secondary: "oklch(70% 0.22 355)" # Pink
+      brand_accent: "oklch(82% 0.18 90)"     # Yellow
+      text_primary: "oklch(16% 0.025 300)"
+      text_secondary: "oklch(38% 0.02 298)"
+      border_subtle: "oklch(90% 0.015 300)"
+      border_brand: "oklch(62% 0.22 305)"
+      shadow_hue: "16% 0.025 300"
+      font_display: "Nunito"
+      font_body: "Poppins"
+      radius_default: "32px"
+      radius_card: "24px"
+      radius_button: "9999px"
+      easing: "cubic-bezier(0.34, 1.32, 0.64, 1)"
+      duration_base: "300ms"

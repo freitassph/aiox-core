@@ -1,0 +1,65 @@
+name: pedro-lp-medica
+version: "2.0.0"
+description: >-
+  Squad de landing page médica S+++ — "Clinical Luxury". Design baseado em Brad Frost Atomic
+  Design, totalmente em conformidade com CFM Resolução 2.336/2023 e LGPD Art. 11.
+  Alta conversão para médicos e clínicas. Stack: Next.js 15+ · Tailwind v4 · TypeScript 5.
+  Orquestrado por Luna — ponto de entrada único para qualquer projeto médico.
+leader: lp-medica-orchestrator
+
+agents:
+  - lp-medica-orchestrator
+  - medical-prd-architect
+  - medical-design-system
+  - medical-atomic-design-architect
+  - medical-ui-artisan
+  - medical-copywriter
+  - medical-content-curator
+  - cfm-compliance-sentinel
+  - medical-seo-specialist
+  - medical-integration-engineer
+  - medical-qa-auditor
+  - medical-cro-optimizer
+  - medical-deployment-agent
+
+tasks:
+  - medical-briefing-task
+  - medical-design-tokens-task
+  - medical-atomic-components-task
+  - medical-copy-framework-task
+  - medical-build-landing-task
+  - medical-seo-strategy-task
+  - medical-compliance-audit-task
+
+workflows:
+  - medical-landing-primary
+  - medical-design-sprint
+  - medical-quick-launch
+
+checklists:
+  - design-quality-s-tier-checklist
+  - cfm-2336-2023-checklist
+  - lgpd-health-data-checklist
+  - launch-readiness-checklist
+  - accessibility-wcag21-medical-checklist
+
+templates:
+  - landing-page-sections-template
+  - medical-briefing-template
+  - copy-framework-by-specialty-template
+  - design-tokens-template
+
+data:
+  - design-tokens-clinical-luxury
+  - medical-specialties-map
+  - cfm-resolucao-2336-2023-reference
+
+standards:
+  - "CFM Resolução 2.336/2023"
+  - "LGPD Lei 13.709/2018 (Art. 11 dados sensíveis)"
+  - "CONAR Healthcare Guidelines"
+  - "WCAG 2.1 AA"
+  - "Brad Frost Atomic Design System"
+  - "Core Web Vitals (LCP < 2.5s, CLS < 0.1, INP < 200ms)"
+  - "Schema.org MedicalBusiness/Physician"
+  - "Google E-E-A-T for YMYL Healthcare"

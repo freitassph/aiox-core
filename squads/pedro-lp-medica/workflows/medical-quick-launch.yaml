@@ -1,0 +1,78 @@
+workflow:
+  id: medical-quick-launch
+  name: "Medical Quick Launch — 7 Dias Fast Track"
+  description: "Lançamento rápido de landing page médica usando template pré-construído. Adequado para médico autônomo com urgência de presença digital."
+  version: 1.0.0
+
+  constraints:
+    max_duration: "7 dias úteis"
+    target: "médico autônomo, 1 especialidade, CTA principal: WhatsApp/telefone"
+    design_tier: "S++ (ligeiramente abaixo de S+++ por velocidade, sem comprometer compliance)"
+
+  phases:
+    - id: day-1
+      name: "Dia 1: Briefing Express"
+      steps:
+        - agent: medical-prd-architect
+          description: "Briefing em 1h (blocos 1-5 do medical-briefing-task)"
+          time_box: "2 horas"
+        - agent: cfm-compliance-sentinel
+          description: "Risk map rápido para a especialidade"
+          time_box: "1 hora"
+
+    - id: day-2
+      name: "Dia 2: Design Tokens + Copy Hero"
+      steps:
+        - agent: medical-design-system
+          description: "Tokens express — paleta + tipografia (customização mínima)"
+          time_box: "3 horas"
+        - agent: medical-copywriter
+          description: "Copy prioritária: hero + sobre + 3 serviços principais + CTA"
+          time_box: "3 horas"
+
+    - id: day-3-4
+      name: "Dias 3-4: Implementação"
+      steps:
+        - agent: medical-ui-artisan
+          description: "Implementação com template SingleDoctorLanding (seções 1-7)"
+          time_box: "2 dias"
+        - agent: medical-integration-engineer
+          description: "WhatsApp link, GA4, LGPD CMP básico"
+          time_box: "paralelo com implementação"
+
+    - id: day-5
+      name: "Dia 5: Compliance + QA"
+      steps:
+        - agent: cfm-compliance-sentinel
+          description: "Audit express — focar em Blockers apenas"
+          checklist: cfm-2336-2023-checklist.md
+        - agent: medical-qa-auditor
+          description: "QA técnico express + mobile check"
+
+    - id: day-6
+      name: "Dia 6: SEO Mínimo + Correções"
+      steps:
+        - agent: medical-seo-specialist
+          description: "Meta tags + Schema.org + GSC + GMN básico"
+        - agent: medical-ui-artisan
+          description: "Correções QA"
+
+    - id: day-7
+      name: "Dia 7: Launch"
+      steps:
+        - agent: medical-deployment-agent
+          description: "Deploy produção + domínio + monitoramento"
+          checklist: launch-readiness-checklist.md
+
+  deliverables:
+    - "Landing page publicada em produção"
+    - "Compliance Clearance básica"
+    - "Google Analytics + Google Search Console configurados"
+    - "WhatsApp CTA funcional"
+    - "Schema.org válido"
+
+  not_included:
+    - "Blog / conteúdo educativo (V2)"
+    - "Formulário de agendamento completo (V2)"
+    - "Storybook de componentes"
+    - "Testes E2E completos"

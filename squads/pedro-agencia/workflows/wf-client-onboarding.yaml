@@ -1,0 +1,170 @@
+name: wf-client-onboarding
+description: "Onboarding completo de novo cliente — da assinatura ao primeiro relatório"
+version: "1.0"
+squad: pedro-agencia
+
+trigger:
+  event: contract-signed
+  auto_start: true
+
+steps:
+  - id: kickoff-meeting
+    agent: pa-empire
+    action: "Conduzir kickoff call: apresentar time, alinhar expectativas, coletar briefing completo"
+    outputs:
+      - project-brief
+      - goals-document
+      - success-metrics
+      - team-assignments
+      - communication-protocol
+
+  - id: strategic-diagnosis
+    agent: pa-sage
+    depends_on: kickoff-meeting
+    action: "Diagnóstico estratégico completo do negócio do cliente: modelo, mercado, competitors"
+    parallel_with: [brand-audit, analytics-baseline]
+    outputs:
+      - business-diagnosis
+      - unit-economics-baseline
+      - strategic-priorities
+      - growth-opportunities
+
+  - id: brand-audit
+    agent: pa-oracle
+    depends_on: kickoff-meeting
+    action: "Auditoria completa de marca: posicionamento, identidade, percepção de mercado, gaps"
+    parallel_with: [strategic-diagnosis, analytics-baseline]
+    outputs:
+      - brand-audit-report
+      - positioning-gaps
+      - brand-strength-score
+      - improvement-priorities
+
+  - id: analytics-baseline
+    agent: pa-prism
+    depends_on: kickoff-meeting
+    action: "Configurar analytics completo e coletar baseline de todas as métricas do cliente"
+    parallel_with: [strategic-diagnosis, brand-audit]
+    outputs:
+      - analytics-setup-complete
+      - baseline-metrics-report
+      - measurement-plan
+      - kpi-dashboard-live
+
+  - id: digital-audit
+    agent: pa-vertex
+    depends_on: analytics-baseline
+    action: "Auditoria de presença digital: SEO técnico, conteúdo, links, performance web"
+    parallel_with: [paid-audit, social-audit]
+    outputs:
+      - seo-technical-audit
+      - content-audit
+      - backlink-analysis
+      - performance-score
+
+  - id: paid-audit
+    agent: pa-profit
+    depends_on: analytics-baseline
+    action: "Auditoria de campanhas pagas existentes: estrutura, creative, audiências, otimização"
+    parallel_with: [digital-audit, social-audit]
+    outputs:
+      - paid-media-audit
+      - wasted-spend-report
+      - quick-wins-list
+      - restructure-plan
+
+  - id: social-audit
+    agent: pa-pulse
+    depends_on: analytics-baseline
+    action: "Auditoria de social media: presença, engajamento, conteúdo, benchmark com competitors"
+    parallel_with: [digital-audit, paid-audit]
+    outputs:
+      - social-audit-report
+      - engagement-benchmarks
+      - content-gap-analysis
+      - social-quick-wins
+
+  - id: strategy-synthesis
+    agent: pa-empire
+    depends_on: [strategic-diagnosis, brand-audit, digital-audit, paid-audit, social-audit]
+    action: "Sintetizar todos os diagnósticos em Plano Estratégico de 90 dias aprovável"
+    outputs:
+      - strategic-plan-90d
+      - priority-roadmap
+      - budget-recommendation
+      - quick-wins-calendar
+
+  - id: strategy-presentation
+    agent: pa-empire
+    depends_on: strategy-synthesis
+    action: "Apresentar Plano Estratégico ao cliente e coletar aprovação formal"
+    outputs:
+      - strategy-approved
+      - adjustments-incorporated
+      - execution-kickoff-confirmed
+
+  - id: team-briefing
+    agent: pa-empire
+    depends_on: strategy-presentation
+    action: "Briefar todos os agentes com responsabilidades, prazos e prioridades iniciais"
+    outputs:
+      - agent-briefs
+      - delivery-schedule
+      - communication-channels
+
+  - id: content-strategy
+    agent: pa-chronicle
+    depends_on: team-briefing
+    action: "Criar estratégia de conteúdo e calendário editorial dos primeiros 90 dias"
+    parallel_with: [email-strategy, media-strategy]
+    outputs:
+      - content-strategy
+      - editorial-calendar-90d
+      - content-pillars
+
+  - id: email-strategy
+    agent: pa-inbox
+    depends_on: team-briefing
+    action: "Criar estratégia de email marketing: segmentação, automações, calendário de envios"
+    parallel_with: [content-strategy, media-strategy]
+    outputs:
+      - email-strategy
+      - automation-map
+      - email-calendar
+
+  - id: media-strategy
+    agent: pa-compass
+    depends_on: team-briefing
+    action: "Criar plano de mídia dos primeiros 90 dias com alocação de budget por canal"
+    parallel_with: [content-strategy, email-strategy]
+    outputs:
+      - media-plan-90d
+      - channel-allocation
+      - media-calendar
+
+  - id: success-plan
+    agent: pa-anchor
+    depends_on: [content-strategy, email-strategy, media-strategy]
+    action: "Criar Customer Success Plan com touchpoints, health score e plano de comunicação"
+    outputs:
+      - success-plan
+      - touchpoint-calendar
+      - health-score-framework
+      - escalation-protocol
+
+  - id: first-deliverables
+    agent: pa-empire
+    depends_on: success-plan
+    action: "Coordenar primeiras entregas concretas dentro da semana 2 de onboarding"
+    outputs:
+      - first-week-deliverables
+      - client-satisfaction-check
+      - onboarding-complete
+
+success_criteria:
+  - "Cliente aprovou Plano Estratégico em até 5 dias úteis"
+  - "Analytics configurado e baseline coletado antes do fim da semana 1"
+  - "All agents briefados com responsabilidades claras"
+  - "Success Plan compartilhado e calendário de touchpoints acordado"
+  - "Primeiras entregas concretas na semana 2"
+  - "Score de onboarding >= 9/10 do cliente"

@@ -1,0 +1,38 @@
+workflow:
+  id: audit-cycle
+  name: "Continuous Audit Cycle"
+  description: |
+    Ciclo de auditoria contínua para sistemas em produção.
+    Executar semanalmente ou após qualquer deploy significativo.
+    Verifica segurança, performance, comportamento do agente e alertas.
+  version: 1.0.0
+
+  trigger:
+    schedule: "weekly"
+    on_deploy: true
+
+  sequence:
+    - task: psa-audit-system
+      agent: psa-auditor
+      description: "Auditoria completa: código, segurança, performance, agente"
+      outputs: ["docs/audit-reports/audit-{date}.md"]
+
+    - task: qa-regression
+      agent: psa-qa
+      description: "Suite de testes de regressão completa"
+      depends_on: [psa-audit-system]
+      outputs: ["tests/results/regression-{date}.json"]
+
+    - task: delivery-status
+      agent: psa-maestro
+      description: "Resumo executivo semanal: métricas, issues, recomendações"
+      depends_on: [qa-regression]
+      outputs: ["docs/weekly-reports/report-{date}.md"]
+
+  escalation:
+    on_critical_finding:
+      notify: ["psa-maestro", "psa-backend"]
+      action: "STOP_DEPLOY"
+    on_agent_hallucination_spike:
+      notify: ["psa-ai-builder", "psa-maestro"]
+      action: "REVIEW_PROMPTS"

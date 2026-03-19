@@ -1,0 +1,83 @@
+name: pedro-sistema-agente
+version: 1.0.0
+description: "Squad elite de construção de sistemas completos — frontend Apple/Ferrari, backend bulletproof, agentes IA, deploy VPS. Qualidade $50M. Task-first. Auditoria constante."
+author: Pedro Henrique Menezes de Freitas
+license: MIT
+slashPrefix: psa
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - psa-maestro.md
+    - psa-architect.md
+    - psa-pm.md
+    - psa-ux-designer.md
+    - psa-frontend.md
+    - psa-backend.md
+    - psa-data-engineer.md
+    - psa-ai-builder.md
+    - psa-integrations.md
+    - psa-onboarding.md
+    - psa-devops.md
+    - psa-auditor.md
+    - psa-doc-writer.md
+    - psa-qa.md
+
+  tasks:
+    - psa-orchestrate-project.md
+    - psa-gather-requirements.md
+    - psa-design-system.md
+    - psa-build-frontend.md
+    - psa-build-backend.md
+    - psa-setup-database.md
+    - psa-build-ai-agents.md
+    - psa-setup-integrations.md
+    - psa-deploy-vps.md
+    - psa-audit-system.md
+
+  workflows:
+    - full-system-build.yaml
+    - ai-agent-build.yaml
+    - audit-cycle.yaml
+
+  checklists: []
+  templates: []
+  tools: []
+  scripts: []
+
+config:
+  coding-standards: ../../docs/framework/CODING-STANDARDS.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node:
+    - next
+    - typescript
+    - zod
+    - "@supabase/supabase-js"
+    - hono
+    - openai
+    - framer-motion
+    - tailwindcss
+    - "@tanstack/react-query"
+  python: []
+  squads: []
+
+tags:
+  - ai-agents
+  - full-stack
+  - frontend
+  - backend
+  - deploy
+  - whatsapp
+  - supabase
+  - vps
+  - rag
+  - design-premium
+  - tier-s-plus-plus-plus
+  - bulletproof
+  - audit

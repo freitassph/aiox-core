@@ -1,0 +1,294 @@
+squad:
+  id: pedro-agencia
+  name: "Pedro Agência Squad"
+  version: 1.0.0
+  description: |
+    A agência mais completa, poderosa e lendária que já foi criada como squad AIOX.
+    22 agentes, cada um sendo um mix dos maiores nomes da história em sua área.
+    Resolve absolutamente tudo que uma agência de $70B resolve: brand, criação, performance,
+    SEO, social, conteúdo, vídeo, PR, mídia, dados, growth, email, influência, vendas,
+    comunidade, product marketing e consultoria estratégica.
+    Cada entrega: Tier S+++. Cada resultado: irrepreensível.
+  tier: "S+++"
+  valuation: "$70B equivalent"
+  tags:
+    - agencia
+    - branding
+    - marketing
+    - performance
+    - criacao
+    - copywriting
+    - design
+    - seo
+    - social-media
+    - content
+    - video
+    - pr
+    - midia
+    - data
+    - growth
+    - email
+    - influencer
+    - sales
+    - community
+    - product-marketing
+    - strategy
+  author: "Pedro Henrique Menezes de Freitas"
+  license: MIT
+
+  leader: pa-empire
+
+  agents:
+    # Orquestração
+    - id: pa-empire
+      file: agents/pa-empire.md
+      role: "CEO & Master Orchestrator"
+      persona: "Empire"
+
+    # Brand & Estratégia
+    - id: pa-oracle
+      file: agents/pa-oracle.md
+      role: "Brand Strategist"
+      persona: "Oracle"
+    - id: pa-sage
+      file: agents/pa-sage.md
+      role: "Strategic Consultant"
+      persona: "Sage"
+
+    # Criação & Design
+    - id: pa-genesis
+      file: agents/pa-genesis.md
+      role: "Creative Director"
+      persona: "Genesis"
+    - id: pa-quill
+      file: agents/pa-quill.md
+      role: "Master Copywriter"
+      persona: "Quill"
+    - id: pa-canvas
+      file: agents/pa-canvas.md
+      role: "Art Director & Visual Designer"
+      persona: "Canvas"
+    - id: pa-nexus
+      file: agents/pa-nexus.md
+      role: "UX/UI Designer"
+      persona: "Nexus"
+    - id: pa-frame
+      file: agents/pa-frame.md
+      role: "Video Director & Motion Designer"
+      persona: "Frame"
+
+    # Performance & Growth
+    - id: pa-profit
+      file: agents/pa-profit.md
+      role: "Performance Marketing Specialist"
+      persona: "Profit"
+    - id: pa-rocket
+      file: agents/pa-rocket.md
+      role: "Growth Hacker"
+      persona: "Rocket"
+    - id: pa-vertex
+      file: agents/pa-vertex.md
+      role: "SEO Specialist"
+      persona: "Vertex"
+    - id: pa-inbox
+      file: agents/pa-inbox.md
+      role: "Email Marketing Specialist"
+      persona: "Inbox"
+
+    # Conteúdo & Social
+    - id: pa-pulse
+      file: agents/pa-pulse.md
+      role: "Social Media Strategist"
+      persona: "Pulse"
+    - id: pa-chronicle
+      file: agents/pa-chronicle.md
+      role: "Content Strategist"
+      persona: "Chronicle"
+
+    # PR & Mídia
+    - id: pa-aegis
+      file: agents/pa-aegis.md
+      role: "PR & Communications Specialist"
+      persona: "Aegis"
+    - id: pa-compass
+      file: agents/pa-compass.md
+      role: "Media Planner & Buyer"
+      persona: "Compass"
+    - id: pa-network
+      file: agents/pa-network.md
+      role: "Influencer & Partnership Strategist"
+      persona: "Network"
+
+    # Data & Analytics
+    - id: pa-prism
+      file: agents/pa-prism.md
+      role: "Data Analyst & Growth Analytics"
+      persona: "Prism"
+
+    # Vendas & Relacionamento
+    - id: pa-catalyst
+      file: agents/pa-catalyst.md
+      role: "Sales & Business Development"
+      persona: "Catalyst"
+    - id: pa-anchor
+      file: agents/pa-anchor.md
+      role: "Account Director & Client Success"
+      persona: "Anchor"
+    - id: pa-tribe
+      file: agents/pa-tribe.md
+      role: "Community Manager"
+      persona: "Tribe"
+
+    # Product Marketing
+    - id: pa-launch
+      file: agents/pa-launch.md
+      role: "Product Marketer"
+      persona: "Launch"
+
+  tasks:
+    # Orquestração
+    - id: pa-orchestrate-campaign
+      file: tasks/pa-orchestrate-campaign.md
+      agent: pa-empire
+    - id: pa-client-onboarding
+      file: tasks/pa-client-onboarding.md
+      agent: pa-empire
+
+    # Brand
+    - id: pa-brand-audit
+      file: tasks/pa-brand-audit.md
+      agent: pa-oracle
+    - id: pa-brand-identity
+      file: tasks/pa-brand-identity.md
+      agent: pa-oracle
+    - id: pa-business-strategy
+      file: tasks/pa-business-strategy.md
+      agent: pa-sage
+    - id: pa-competitive-analysis
+      file: tasks/pa-competitive-analysis.md
+      agent: pa-sage
+
+    # Criação
+    - id: pa-creative-brief
+      file: tasks/pa-creative-brief.md
+      agent: pa-genesis
+    - id: pa-campaign-concept
+      file: tasks/pa-campaign-concept.md
+      agent: pa-genesis
+    - id: pa-sales-copy
+      file: tasks/pa-sales-copy.md
+      agent: pa-quill
+    - id: pa-content-copy
+      file: tasks/pa-content-copy.md
+      agent: pa-quill
+    - id: pa-visual-identity
+      file: tasks/pa-visual-identity.md
+      agent: pa-canvas
+    - id: pa-ad-creatives
+      file: tasks/pa-ad-creatives.md
+      agent: pa-canvas
+    - id: pa-ux-audit
+      file: tasks/pa-ux-audit.md
+      agent: pa-nexus
+    - id: pa-landing-design
+      file: tasks/pa-landing-design.md
+      agent: pa-nexus
+    - id: pa-video-script
+      file: tasks/pa-video-script.md
+      agent: pa-frame
+    - id: pa-video-production
+      file: tasks/pa-video-production.md
+      agent: pa-frame
+
+    # Performance & Growth
+    - id: pa-paid-media-strategy
+      file: tasks/pa-paid-media-strategy.md
+      agent: pa-profit
+    - id: pa-ad-campaign-launch
+      file: tasks/pa-ad-campaign-launch.md
+      agent: pa-profit
+    - id: pa-growth-strategy
+      file: tasks/pa-growth-strategy.md
+      agent: pa-rocket
+    - id: pa-seo-audit
+      file: tasks/pa-seo-audit.md
+      agent: pa-vertex
+    - id: pa-seo-strategy
+      file: tasks/pa-seo-strategy.md
+      agent: pa-vertex
+    - id: pa-email-sequence
+      file: tasks/pa-email-sequence.md
+      agent: pa-inbox
+
+    # Conteúdo & Social
+    - id: pa-social-strategy
+      file: tasks/pa-social-strategy.md
+      agent: pa-pulse
+    - id: pa-content-calendar
+      file: tasks/pa-content-calendar.md
+      agent: pa-chronicle
+    - id: pa-content-strategy
+      file: tasks/pa-content-strategy.md
+      agent: pa-chronicle
+
+    # PR & Mídia
+    - id: pa-pr-strategy
+      file: tasks/pa-pr-strategy.md
+      agent: pa-aegis
+    - id: pa-media-plan
+      file: tasks/pa-media-plan.md
+      agent: pa-compass
+    - id: pa-influencer-strategy
+      file: tasks/pa-influencer-strategy.md
+      agent: pa-network
+
+    # Analytics & Vendas
+    - id: pa-analytics-audit
+      file: tasks/pa-analytics-audit.md
+      agent: pa-prism
+    - id: pa-sales-strategy
+      file: tasks/pa-sales-strategy.md
+      agent: pa-catalyst
+    - id: pa-community-strategy
+      file: tasks/pa-community-strategy.md
+      agent: pa-tribe
+    - id: pa-go-to-market
+      file: tasks/pa-go-to-market.md
+      agent: pa-launch
+
+  workflows:
+    - id: wf-full-campaign
+      file: workflows/wf-full-campaign.yaml
+      description: "Do brief ao ar — campanha completa de alta conversão"
+    - id: wf-brand-launch
+      file: workflows/wf-brand-launch.yaml
+      description: "Criação e lançamento completo de uma marca"
+    - id: wf-growth-sprint
+      file: workflows/wf-growth-sprint.yaml
+      description: "Sprint de 90 dias de crescimento acelerado"
+    - id: wf-client-onboarding
+      file: workflows/wf-client-onboarding.yaml
+      description: "Onboarding completo de novo cliente"
+    - id: wf-content-machine
+      file: workflows/wf-content-machine.yaml
+      description: "Máquina de produção de conteúdo mensal"
+
+  quality_standards:
+    brand_consistency: "100% — sem desvio de identidade"
+    copy_conversion_baseline: "> 3% landing / > 5% email"
+    ads_roas_target: "> 4x ROAS mínimo"
+    seo_position_target: "Top 3 para keywords primárias"
+    content_engagement_rate: "> 5% por plataforma"
+    pr_sentiment_score: "> 85% positivo"
+    client_nps_target: "> 70 NPS"
+    data_decision_coverage: "100% — zero decisão sem dado"
+    campaign_delivery: "100% on-time, on-brief, on-budget"
+
+  config:
+    agency_philosophy: config/agency-philosophy.md
+    client_manifesto: config/client-manifesto.md
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+  slashPrefix: pa

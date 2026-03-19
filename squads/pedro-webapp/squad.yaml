@@ -1,0 +1,164 @@
+squad:
+  id: pedro-webapp
+  name: "Pedro WebApp Squad"
+  version: 2.1.0
+  description: |
+    Squad elite para construção de qualquer webapp moderno: landing pages de alta conversão,
+    dashboards analíticos, SaaS apps completos com auth/billing/multi-tenancy.
+    Design nível Apple/Ferrari. Backend bulletproof. Deploy automático. Auditoria constante.
+    Qualidade $1B em cada entrega.
+  tier: "S+++"
+  tags: [webapp, landing-page, dashboard, saas, frontend, backend, nextjs, stripe, clerk]
+  author: pedro-sistema-agente
+
+  leader: pwb-maestro
+
+  agents:
+    # Orquestração
+    - id: pwb-maestro
+      file: agents/pwb-maestro.md
+      role: "Master Orchestrator"
+      persona: "Maestro"
+    # Especialistas Core
+    - id: pwb-architect
+      file: agents/pwb-architect.md
+      role: "System Architect"
+      persona: "Aria"
+    - id: pwb-pm
+      file: agents/pwb-pm.md
+      role: "Product Manager"
+      persona: "Morgan"
+    - id: pwb-ux-designer
+      file: agents/pwb-ux-designer.md
+      role: "UX Designer"
+      persona: "Nova"
+    # Frontend
+    - id: pwb-frontend
+      file: agents/pwb-frontend.md
+      role: "Frontend Engineer"
+      persona: "Pixel"
+    - id: pwb-landing
+      file: agents/pwb-landing.md
+      role: "Landing Page & CRO Specialist"
+      persona: "Convert"
+    - id: pwb-seo
+      file: agents/pwb-seo.md
+      role: "SEO & Performance Engineer"
+      persona: "Rank"
+    # Backend
+    - id: pwb-backend
+      file: agents/pwb-backend.md
+      role: "Backend Engineer"
+      persona: "Forge"
+    - id: pwb-data-engineer
+      file: agents/pwb-data-engineer.md
+      role: "Data Engineer"
+      persona: "Atlas"
+    # SaaS Features
+    - id: pwb-auth
+      file: agents/pwb-auth.md
+      role: "Auth & RBAC Engineer"
+      persona: "Shield"
+    - id: pwb-billing
+      file: agents/pwb-billing.md
+      role: "Billing & Subscriptions Engineer"
+      persona: "Revenue"
+    - id: pwb-email
+      file: agents/pwb-email.md
+      role: "Email & Notifications Engineer"
+      persona: "Inbox"
+    - id: pwb-analytics
+      file: agents/pwb-analytics.md
+      role: "Analytics & Growth Engineer"
+      persona: "Lens"
+    # Qualidade & Deploy
+    - id: pwb-devops
+      file: agents/pwb-devops.md
+      role: "DevOps Engineer"
+      persona: "Deploy"
+    - id: pwb-auditor
+      file: agents/pwb-auditor.md
+      role: "Auditor"
+      persona: "Sentinel"
+    - id: pwb-qa
+      file: agents/pwb-qa.md
+      role: "QA Engineer"
+      persona: "Verify"
+    - id: pwb-doc-writer
+      file: agents/pwb-doc-writer.md
+      role: "Documentation Writer"
+      persona: "Scribe"
+
+  tasks:
+    - id: pwb-orchestrate-project
+      file: tasks/pwb-orchestrate-project.md
+      agent: pwb-maestro
+    - id: pwb-gather-requirements
+      file: tasks/pwb-gather-requirements.md
+      agent: pwb-pm
+    - id: pwb-design-system
+      file: tasks/pwb-design-system.md
+      agent: pwb-ux-designer
+    - id: pwb-build-landing
+      file: tasks/pwb-build-landing.md
+      agent: pwb-landing
+    - id: pwb-build-frontend
+      file: tasks/pwb-build-frontend.md
+      agent: pwb-frontend
+    - id: pwb-build-backend
+      file: tasks/pwb-build-backend.md
+      agent: pwb-backend
+    - id: pwb-setup-database
+      file: tasks/pwb-setup-database.md
+      agent: pwb-data-engineer
+    - id: pwb-setup-auth
+      file: tasks/pwb-setup-auth.md
+      agent: pwb-auth
+    - id: pwb-setup-billing
+      file: tasks/pwb-setup-billing.md
+      agent: pwb-billing
+    - id: pwb-setup-email
+      file: tasks/pwb-setup-email.md
+      agent: pwb-email
+    - id: pwb-setup-analytics
+      file: tasks/pwb-setup-analytics.md
+      agent: pwb-analytics
+    - id: pwb-deploy-vps
+      file: tasks/pwb-deploy-vps.md
+      agent: pwb-devops
+    - id: pwb-audit-system
+      file: tasks/pwb-audit-system.md
+      agent: pwb-auditor
+
+  workflows:
+    - id: full-webapp-build
+      file: workflows/full-webapp-build.yaml
+      description: "Do brief ao deploy — webapp completo"
+    - id: saas-build
+      file: workflows/saas-build.yaml
+      description: "SaaS completo com auth + billing + analytics"
+    - id: landing-build
+      file: workflows/landing-build.yaml
+      description: "Landing page de alta conversão em 48h"
+    - id: audit-cycle
+      file: workflows/audit-cycle.yaml
+      description: "Auditoria contínua semanal"
+
+  quality_standards:
+    lighthouse_performance: 95
+    lighthouse_seo: 100
+    lighthouse_accessibility: 95
+    core_web_vitals:
+      lcp: "< 2.5s"
+      fid: "< 100ms"
+      cls: "< 0.1"
+    typescript: "strict — zero any"
+    test_coverage: "> 80%"
+    api_response_p95: "< 200ms"
+    conversion_rate_baseline: "> 3% landing"
+    security_critical_issues: 0
+
+  config:
+    tech_stack: config/tech-stack.md
+    coding_standards: config/coding-standards.md
+    source_tree: config/source-tree.md

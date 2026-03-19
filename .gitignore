@@ -59,6 +59,12 @@ squads/*
 !squads/_example/
 # Published squads (whitelisted for repository)
 !squads/claude-code-mastery/
+!squads/pedro-agencia/
+!squads/pedro-design/
+!squads/pedro-lp-geral/
+!squads/pedro-lp-medica/
+!squads/pedro-sistema-agente/
+!squads/pedro-webapp/
 keys/
 *.secret
 *.credentials

@@ -1,0 +1,25 @@
+manifest:
+  squad_id: pedro-webapp
+  version: 2.1.0
+  leader: pwb-maestro
+  agents:
+    - pwb-maestro
+    - pwb-architect
+    - pwb-pm
+    - pwb-ux-designer
+    - pwb-frontend
+    - pwb-landing
+    - pwb-seo
+    - pwb-backend
+    - pwb-data-engineer
+    - pwb-auth
+    - pwb-billing
+    - pwb-email
+    - pwb-analytics
+    - pwb-devops
+    - pwb-auditor
+    - pwb-qa
+    - pwb-doc-writer
+  total_agents: 17
+  total_tasks: 13
+  total_workflows: 4

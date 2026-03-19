@@ -1,0 +1,176 @@
+name: wf-brand-launch
+description: "Criação e lançamento completo de uma marca — do naming ao mercado"
+version: "1.0"
+squad: pedro-agencia
+
+trigger:
+  command: "*brand-launch"
+  event: brand-creation-brief
+
+steps:
+  - id: discovery
+    agent: pa-sage
+    action: "Diagnóstico de negócio: análise de mercado, concorrentes, oportunidades, unit economics"
+    outputs:
+      - market-research
+      - competitive-landscape
+      - opportunity-map
+      - business-model-canvas
+
+  - id: brand-strategy
+    agent: pa-oracle
+    depends_on: discovery
+    action: "Construir estratégia de marca completa: propósito, posicionamento, arquitetura, valores"
+    outputs:
+      - brand-purpose
+      - brand-positioning
+      - brand-architecture
+      - brand-values
+      - brand-promise
+
+  - id: naming
+    agent: pa-genesis
+    depends_on: brand-strategy
+    action: "Criar naming criativo: geração de opções, triagem, teste com audiência, validação legal"
+    parallel_with: [audience-research]
+    outputs:
+      - name-options
+      - approved-name
+      - domain-availability
+      - trademark-check
+
+  - id: audience-research
+    agent: pa-prism
+    depends_on: brand-strategy
+    action: "Pesquisa quantitativa e qualitativa de audiência: personas, jornada, insights"
+    parallel_with: [naming]
+    outputs:
+      - audience-personas
+      - customer-journey-map
+      - voice-of-customer-data
+
+  - id: visual-identity
+    agent: pa-canvas
+    depends_on: [naming, audience-research]
+    action: "Criar identidade visual completa: logo, cores, tipografia, sistema de marca, guia de uso"
+    parallel_with: [verbal-identity]
+    outputs:
+      - logo-final
+      - color-palette
+      - typography-system
+      - brand-elements
+      - brand-guidelines-pdf
+
+  - id: verbal-identity
+    agent: pa-quill
+    depends_on: [naming, audience-research]
+    action: "Criar identidade verbal: tom de voz, messaging framework, tagline, copy templates"
+    parallel_with: [visual-identity]
+    outputs:
+      - tone-of-voice-guide
+      - messaging-framework
+      - tagline
+      - brand-vocabulary
+      - copy-templates
+
+  - id: digital-presence
+    agent: pa-nexus
+    depends_on: [visual-identity, verbal-identity]
+    action: "Projetar e especificar presença digital: website, landing page, redes sociais"
+    parallel_with: [content-strategy]
+    outputs:
+      - website-design-spec
+      - landing-page-design
+      - social-media-templates
+      - digital-brand-guidelines
+
+  - id: content-strategy
+    agent: pa-chronicle
+    depends_on: [verbal-identity, audience-research]
+    action: "Estratégia de conteúdo para lançamento: editorial calendar, tipos de conteúdo, canais"
+    parallel_with: [digital-presence]
+    outputs:
+      - content-strategy-doc
+      - editorial-calendar-3m
+      - content-pillars
+      - launch-content-briefs
+
+  - id: go-to-market
+    agent: pa-launch
+    depends_on: [digital-presence, content-strategy]
+    action: "Plano de go-to-market completo: estratégia de lançamento, canais, timing, budget"
+    outputs:
+      - gtm-strategy
+      - launch-timeline
+      - channel-strategy
+      - budget-plan
+      - success-metrics
+
+  - id: media-plan
+    agent: pa-compass
+    depends_on: go-to-market
+    action: "Plano de mídia de lançamento: mix de canais pagos, orgânicos, earned media"
+    parallel_with: [pr-strategy]
+    outputs:
+      - media-plan-launch
+      - paid-budget-allocation
+      - earned-media-targets
+
+  - id: pr-strategy
+    agent: pa-aegis
+    depends_on: go-to-market
+    action: "Estratégia de PR de lançamento: narrativa de marca, press kit, outreach list"
+    parallel_with: [media-plan]
+    outputs:
+      - pr-narrative
+      - press-kit
+      - media-outreach-list
+      - launch-press-release
+
+  - id: launch-content-production
+    agent: pa-quill
+    depends_on: [go-to-market, content-strategy]
+    action: "Produzir todos os conteúdos de lançamento: posts, artigos, emails, ads"
+    parallel_with: [launch-visuals]
+    outputs:
+      - launch-copy-all-channels
+      - launch-email-sequence
+      - launch-ads-copy
+
+  - id: launch-visuals
+    agent: pa-canvas
+    depends_on: [go-to-market, content-strategy]
+    action: "Criar todos os assets visuais de lançamento: posts, ads, stories, banners"
+    parallel_with: [launch-content-production]
+    outputs:
+      - launch-visuals-all-formats
+      - ad-creatives
+      - social-launch-kit
+
+  - id: brand-launch-day
+    agent: pa-empire
+    depends_on: [launch-content-production, launch-visuals, media-plan, pr-strategy]
+    action: "Coordenar e executar o dia de lançamento em todos os canais simultaneamente"
+    outputs:
+      - launch-executed
+      - live-monitoring-dashboard
+      - launch-day-report
+
+  - id: post-launch-optimization
+    agent: pa-prism
+    depends_on: brand-launch-day
+    action: "Monitorar resultados pós-lançamento, identificar oportunidades e ajustar estratégia"
+    recurring: true
+    frequency: weekly
+    outputs:
+      - weekly-brand-performance
+      - optimization-recommendations
+      - brand-health-metrics
+
+success_criteria:
+  - "Identidade visual aprovada pelo cliente antes do lançamento"
+  - "Todos os assets produzidos e revisados 48h antes do go-live"
+  - "Cobertura de imprensa em ao menos 5 veículos no dia de lançamento"
+  - "Métricas de awareness D+7: alcance orgânico > 10k pessoas"
+  - "Brand guidelines entregue em PDF editável e versão web"
+  - "NPS de marca baseline coletado em D+30"

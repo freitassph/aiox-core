@@ -1,0 +1,60 @@
+workflow:
+  id: medical-design-sprint
+  name: "Medical Design Sprint — S+++ Tier em 5 Dias"
+  description: "Sprint focado em design system e componentes. Para quando o cliente precisa de rebrand ou redesign sem refazer tudo."
+  version: 1.0.0
+
+  phases:
+    - id: day-1-research
+      name: "Dia 1: Research & Identity"
+      steps:
+        - agent: medical-prd-architect
+          description: "Briefing express: identidade, público, referências visuais"
+        - agent: medical-design-system
+          description: "Análise de identidade existente + decisão de paleta base"
+
+    - id: day-2-tokens
+      name: "Dia 2: Design Tokens"
+      steps:
+        - agent: medical-design-system
+          task: medical-design-tokens-task.md
+          description: "Geração completa de tokens personalizados"
+        - agent: medical-ui-artisan
+          description: "Validação técnica dos tokens (contraste, implementabilidade)"
+
+    - id: day-3-atoms-molecules
+      name: "Dia 3: Átomos e Moléculas"
+      steps:
+        - agent: medical-atomic-design-architect
+          task: medical-atomic-components-task.md
+          description: "Spec de átomos prioritários: buttons, inputs, badges, typography"
+        - agent: medical-ui-artisan
+          description: "Implementação dos átomos em código"
+
+    - id: day-4-organisms
+      name: "Dia 4: Organismos"
+      steps:
+        - agent: medical-atomic-design-architect
+          description: "Spec dos organismos: Hero, DoctorProfile, BookingForm"
+        - agent: medical-ui-artisan
+          description: "Implementação dos organismos principais"
+        - agent: medical-design-system
+          description: "Review intermediário — aprovação das seções críticas"
+
+    - id: day-5-qa-delivery
+      name: "Dia 5: QA e Entrega"
+      steps:
+        - agent: medical-qa-auditor
+          description: "QA de design e acessibilidade"
+          checklist: design-quality-s-tier-checklist.md
+        - agent: medical-design-system
+          description: "Aprovação final S+++ tier"
+          checklist: design-quality-s-tier-checklist.md
+
+  deliverables:
+    - "styles/tokens.css — tokens completos"
+    - "components/atoms/ — implementados"
+    - "components/molecules/ — prioritários implementados"
+    - "components/organisms/Hero, DoctorProfile, BookingForm — implementados"
+    - "Design Quality S+++ Checklist — aprovada"
+    - "Storybook ou documentação de componentes"

@@ -1,0 +1,24 @@
+name: Pedro Sistema Agente
+description: >-
+  Squad elite de construção de sistemas completos end-to-end.
+  Capaz de construir qualquer sistema: secretárias IA, plataformas SaaS,
+  sistemas de clínica, e-commerce — qualquer coisa. Frontend nível Apple/Ferrari
+  ($50M design), backend bulletproof ($50M arquitetura), agentes IA com RAG completo,
+  integrações WhatsApp/Google Calendar/APIs externas, deploy VPS com auditoria constante.
+  Task-first. Zero tolerância a erros. Execução de excelência.
+leader: psa-maestro
+agents:
+  - psa-maestro
+  - psa-architect
+  - psa-pm
+  - psa-ux-designer
+  - psa-frontend
+  - psa-backend
+  - psa-data-engineer
+  - psa-ai-builder
+  - psa-integrations
+  - psa-onboarding
+  - psa-devops
+  - psa-auditor
+  - psa-doc-writer
+  - psa-qa

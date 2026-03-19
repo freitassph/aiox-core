@@ -1,0 +1,95 @@
+name: pedro-design
+version: 1.0.0
+description: "Squad elite de design em todas as dimensões — UI/UX premium Apple/Ferrari, geração de imagens IA tier S, direção de fotografia profissional, branding de $500M, motion design cirúrgico, design systems escaláveis, social media que converte. Os maiores gênios do design vivos e mortos em um único squad. Zero mediocridade tolerada."
+author: Pedro Henrique Menezes de Freitas
+license: MIT
+slashPrefix: pdg
+
+aiox:
+  minVersion: "2.1.0"
+  type: squad
+
+components:
+  agents:
+    - pdg-chief.md
+    - pdg-ux-designer.md
+    - pdg-visual-designer.md
+    - pdg-frontend-designer.md
+    - pdg-ai-image-director.md
+    - pdg-photo-director.md
+    - pdg-brand-identity.md
+    - pdg-social-media.md
+    - pdg-motion-designer.md
+    - pdg-design-system.md
+    - pdg-ux-writer.md
+    - pdg-auditor.md
+
+  tasks:
+    - pdg-orchestrate-design.md
+    - pdg-create-brand-identity.md
+    - pdg-design-ui-screen.md
+    - pdg-generate-ai-image.md
+    - pdg-create-social-pack.md
+    - pdg-build-design-system.md
+    - pdg-create-motion-spec.md
+    - pdg-audit-design.md
+
+  workflows:
+    - brand-identity-workflow.yaml
+    - ui-design-workflow.yaml
+    - ai-content-workflow.yaml
+
+  checklists:
+    - design-quality-checklist.md
+    - brand-identity-checklist.md
+
+  templates: []
+  tools: []
+  scripts: []
+
+config:
+  coding-standards: ../../docs/framework/CODING-STANDARDS.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/design-standards.md
+
+dependencies:
+  node:
+    - tailwindcss
+    - framer-motion
+    - "@radix-ui/react-*"
+    - lucide-react
+    - clsx
+    - class-variance-authority
+    - gsap
+    - lottie-react
+    - sharp
+    - "@vercel/og"
+    - openai
+    - replicate
+    - chromadb
+    - react-spring
+    - three
+    - "@react-three/fiber"
+  python: []
+  squads: []
+
+tags:
+  - design
+  - ui-ux
+  - ai-images
+  - branding
+  - motion-design
+  - design-systems
+  - photography
+  - social-media
+  - frontend-design
+  - tier-s-plus-plus-plus
+  - visual-design
+  - typography
+  - figma
+  - midjourney
+  - dalle
+  - stable-diffusion
+  - framer
+  - gsap
+  - lottie

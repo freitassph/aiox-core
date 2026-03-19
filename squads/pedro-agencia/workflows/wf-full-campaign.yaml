@@ -1,0 +1,213 @@
+name: wf-full-campaign
+description: "Do brief ao ar — campanha completa de alta conversão em todos os canais"
+version: "1.0"
+squad: pedro-agencia
+
+trigger:
+  command: "*orchestrate-campaign"
+  event: campaign-brief-received
+
+steps:
+  - id: brief-validation
+    agent: pa-empire
+    action: "Validar brief, definir KPIs, alocar budget e montar war room da campanha"
+    outputs:
+      - validated-brief
+      - kpi-matrix
+      - budget-allocation
+      - team-assignments
+
+  - id: positioning-review
+    agent: pa-oracle
+    depends_on: brief-validation
+    action: "Revisar posicionamento de marca, garantir fit com campanha, validar mensagem central"
+    parallel_with: [business-alignment]
+    outputs:
+      - brand-positioning-confirmed
+      - campaign-message-framework
+      - tone-of-voice-guide
+
+  - id: business-alignment
+    agent: pa-sage
+    depends_on: brief-validation
+    action: "Alinhar campanha com objetivos de negócio, validar unit economics e timing estratégico"
+    parallel_with: [positioning-review]
+    outputs:
+      - business-case
+      - success-metrics
+      - risk-assessment
+
+  - id: creative-direction
+    agent: pa-genesis
+    depends_on: [positioning-review, business-alignment]
+    action: "Desenvolver 3 direções criativas completas com moodboard, conceito e rationale"
+    outputs:
+      - creative-concepts
+      - approved-direction
+      - brand-guidelines-applied
+
+  - id: media-strategy
+    agent: pa-compass
+    depends_on: brief-validation
+    action: "Criar plano de mídia estratégico com mix de canais, alocação de budget e projeções"
+    parallel_with: [seo-strategy]
+    outputs:
+      - media-plan
+      - channel-mix
+      - budget-by-channel
+      - reach-frequency-projections
+
+  - id: seo-strategy
+    agent: pa-vertex
+    depends_on: brief-validation
+    action: "Definir estratégia SEO da campanha: keywords, pages, link building plan"
+    parallel_with: [media-strategy]
+    outputs:
+      - keyword-strategy
+      - seo-landing-pages-plan
+      - organic-traffic-projections
+
+  - id: copywriting
+    agent: pa-quill
+    depends_on: creative-direction
+    action: "Produzir copy completa para todos os canais: ads, email, social, landing page, PR"
+    parallel_with: [visual-design]
+    outputs:
+      - ads-copy-all-channels
+      - email-copy
+      - social-copy
+      - landing-page-copy
+      - pr-copy
+
+  - id: visual-design
+    agent: pa-canvas
+    depends_on: creative-direction
+    action: "Criar sistema visual completo: ads em todos os formatos, social, display, OOH"
+    parallel_with: [copywriting]
+    outputs:
+      - ad-creatives-all-formats
+      - social-visuals
+      - banner-system
+      - brand-assets
+
+  - id: landing-page
+    agent: pa-nexus
+    depends_on: [copywriting, visual-design]
+    action: "Projetar e estruturar landing page de alta conversão com UX otimizado"
+    parallel_with: [video-content]
+    outputs:
+      - landing-page-wireframe
+      - landing-page-spec
+      - conversion-flow-design
+
+  - id: video-content
+    agent: pa-frame
+    depends_on: creative-direction
+    action: "Produzir roteiros e direção de vídeos: hero video, depoimentos, ads em vídeo"
+    parallel_with: [landing-page]
+    outputs:
+      - video-scripts
+      - storyboards
+      - video-production-brief
+      - video-specs-by-platform
+
+  - id: tracking-setup
+    agent: pa-prism
+    depends_on: landing-page
+    action: "Configurar analytics completo: GA4, pixels, UTMs, dashboard de campanha em tempo real"
+    outputs:
+      - analytics-configured
+      - pixel-setup
+      - utm-structure
+      - campaign-dashboard
+
+  - id: email-automation
+    agent: pa-inbox
+    depends_on: [copywriting, tracking-setup]
+    action: "Montar sequência de email de lançamento com automação completa e segmentação"
+    parallel_with: [paid-media-launch, social-launch]
+    outputs:
+      - email-sequence-live
+      - automation-flows
+      - segmentation-rules
+
+  - id: paid-media-launch
+    agent: pa-profit
+    depends_on: [tracking-setup, media-strategy]
+    action: "Ativar e otimizar campanhas pagas em todos os canais com bid strategy e audiências"
+    parallel_with: [email-automation, social-launch]
+    outputs:
+      - campaigns-live-all-channels
+      - audiences-configured
+      - bid-strategies-set
+      - initial-performance-report
+
+  - id: social-launch
+    agent: pa-pulse
+    depends_on: [tracking-setup]
+    action: "Publicar e programar conteúdo orgânico, stories, reels e interações de lançamento"
+    parallel_with: [email-automation, paid-media-launch]
+    outputs:
+      - organic-content-live
+      - content-schedule
+      - engagement-protocol
+
+  - id: pr-launch
+    agent: pa-aegis
+    depends_on: brief-validation
+    action: "Executar estratégia de PR: press release, pitches, assessoria de imprensa e crises"
+    parallel_with: [influencer-activation]
+    outputs:
+      - press-coverage
+      - media-mentions
+      - pr-report
+
+  - id: influencer-activation
+    agent: pa-network
+    depends_on: creative-direction
+    action: "Ativar parceiros influenciadores com briefing, conteúdo e tracking de resultados"
+    parallel_with: [pr-launch]
+    outputs:
+      - influencer-content-live
+      - partnership-reports
+      - reach-metrics
+
+  - id: campaign-optimization
+    agent: pa-profit
+    depends_on: [paid-media-launch, email-automation, social-launch]
+    action: "Otimização contínua de performance: A/B tests, bid adjustments, reallocation"
+    recurring: true
+    frequency: daily
+    outputs:
+      - optimization-log
+      - budget-reallocations
+      - ab-test-results
+
+  - id: performance-reporting
+    agent: pa-prism
+    depends_on: [campaign-optimization]
+    action: "Relatórios diários de performance com insights, anomalias e recomendações"
+    recurring: true
+    frequency: daily
+    outputs:
+      - daily-performance-report
+      - anomaly-alerts
+      - pacing-report
+
+  - id: final-report
+    agent: pa-empire
+    depends_on: [performance-reporting]
+    action: "Compilar relatório final completo com resultados vs KPIs, ROI e recomendações"
+    outputs:
+      - final-campaign-report
+      - roi-analysis
+      - learnings-document
+      - next-campaign-recommendations
+
+success_criteria:
+  - "ROAS mínimo de 4x em canais de performance"
+  - "Todos os canais ativados no go-live day"
+  - "Dashboard live antes do primeiro dia de campanha"
+  - "CTR acima de benchmark do setor por canal"
+  - "Relatório final entregue em D+5 após encerramento"
+  - "NPS do cliente acima de 8 em todas as entregas"

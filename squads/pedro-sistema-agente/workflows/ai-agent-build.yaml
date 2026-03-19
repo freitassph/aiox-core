@@ -1,0 +1,37 @@
+workflow:
+  id: ai-agent-build
+  name: "AI Agent Build — Focused Pipeline"
+  description: |
+    Workflow focado na construção do núcleo de agentes IA:
+    RAG pipeline, tool calling, prompts, integração WhatsApp.
+    Use quando o frontend/backend já existe e você precisa adicionar capacidades IA.
+  version: 1.0.0
+
+  sequence:
+    - task: psa-setup-database
+      agent: psa-data-engineer
+      description: "Adiciona tabelas RAG: knowledge_bases, documents, embeddings (pgvector)"
+      outputs: ["supabase/migrations/xxx_rag_tables.sql"]
+
+    - task: psa-build-ai-agents
+      agent: psa-ai-builder
+      description: "RAG pipeline completo + agent service + tool calling"
+      depends_on: [psa-setup-database]
+      outputs: ["apps/api/src/services/agent-service.ts", "apps/api/src/services/rag-service.ts"]
+
+    - task: psa-setup-integrations
+      agent: psa-integrations
+      description: "WhatsApp webhook + Evolution API client"
+      depends_on: [psa-build-ai-agents]
+      outputs: ["apps/api/src/integrations/evolution-api.ts", "apps/api/src/routes/webhooks/"]
+
+    - task: setup-onboarding
+      agent: psa-onboarding
+      description: "Pipeline de ingestão de documentos + validação de qualidade RAG"
+      depends_on: [psa-build-ai-agents]
+      outputs: ["apps/api/src/services/knowledge-ingestion-service.ts"]
+
+    - task: psa-audit-system
+      agent: psa-auditor
+      description: "Auditoria focada no comportamento do agente e segurança das integrações"
+      depends_on: [psa-setup-integrations, setup-onboarding]

@@ -1,0 +1,143 @@
+name: Brand Identity Workflow
+description: Fluxo completo de criação de identidade visual — do discovery ao brandbook
+version: 1.0.0
+
+phases:
+  - id: discovery
+    name: Brand Discovery
+    agent: pdg-brand-identity
+    outputs:
+      - brand-discovery.md
+      - competitor-analysis.md
+    gate: discovery_complete
+
+  - id: strategy
+    name: Brand Strategy
+    agent: pdg-brand-identity
+    depends_on: discovery
+    outputs:
+      - brand-platform.md
+      - brand-personality.md
+    gate: strategy_approved
+
+  - id: visual_direction
+    name: Visual Direction
+    agent: pdg-visual-designer
+    depends_on: strategy
+    outputs:
+      - moodboard-a.fig
+      - moodboard-b.fig
+      - moodboard-c.fig
+    gate: direction_chosen
+
+  - id: logo_design
+    name: Logo Design
+    agent: pdg-brand-identity
+    depends_on: visual_direction
+    outputs:
+      - logo-concepts.fig
+      - logo-final.fig
+      - logo-files/
+    gate: logo_approved
+
+  - id: identity_system
+    name: Visual Identity System
+    agent: pdg-visual-designer
+    depends_on: logo_design
+    outputs:
+      - color-system.fig
+      - typography-system.fig
+      - iconography.fig
+    gate: system_approved
+
+  - id: ai_imagery
+    name: Brand Imagery (AI)
+    agent: pdg-ai-image-director
+    depends_on: visual_direction
+    outputs:
+      - brand-imagery/
+      - prompt-archive.md
+    gate: imagery_approved
+
+  - id: voice
+    name: Brand Voice & Copy
+    agent: pdg-ux-writer
+    depends_on: strategy
+    outputs:
+      - brand-voice-guide.md
+      - tagline-options.md
+    gate: voice_approved
+
+  - id: applications
+    name: Brand Applications
+    agent: pdg-brand-identity
+    depends_on:
+      - identity_system
+      - ai_imagery
+      - voice
+    outputs:
+      - business-card.fig
+      - social-profiles.fig
+      - email-signature.fig
+      - presentations-template.fig
+    gate: applications_complete
+
+  - id: brandbook
+    name: Brand Guidelines (Brandbook)
+    agent: pdg-brand-identity
+    depends_on: applications
+    outputs:
+      - brandbook.pdf
+      - brandbook.fig
+    gate: brandbook_complete
+
+  - id: audit
+    name: Quality Audit
+    agent: pdg-auditor
+    depends_on: brandbook
+    outputs:
+      - brand-audit-report.md
+    gate: audit_passed
+
+gates:
+  discovery_complete:
+    criteria:
+      - Brand discovery questions respondidas
+      - Competidores analisados
+      - Audiência definida
+
+  strategy_approved:
+    criteria:
+      - Purpose, Vision, Mission definidos
+      - Brand personality com 5 adjetivos
+      - Posicionamento diferenciado
+
+  direction_chosen:
+    criteria:
+      - 3 moodboards distintos criados
+      - Direção escolhida pelo usuário
+
+  logo_approved:
+    criteria:
+      - Funciona em 16px e 400px
+      - Funciona em P&B
+      - Funciona em fundos claro e escuro
+      - Diferente dos competidores
+      - Usuário aprovou
+
+  system_approved:
+    criteria:
+      - Sistema de cor completo (HEX, RGB, CMYK)
+      - Tipografia com escala completa
+      - Tokens definidos
+
+  applications_complete:
+    criteria:
+      - Mínimo 10 aplicações diferentes
+      - Todas consistentes com o sistema
+
+  brandbook_complete:
+    criteria:
+      - Todos os 8 capítulos do brandbook presentes
+      - Exemplos corretos × incorretos documentados
+      - Versão PDF exportada

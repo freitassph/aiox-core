@@ -41,7 +41,8 @@
     "docs/zh/",
     "docs/*.md",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "squads/"
   ],
   "scripts": {
     "format": "prettier --write \"**/*.md\"",
@@ -58,6 +59,7 @@
     "validate:structure": "node .aiox-core/infrastructure/scripts/source-tree-guardian/index.js",
     "validate:agents": "node .aiox-core/infrastructure/scripts/validate-agents.js",
     "sync:ide": "node .aiox-core/infrastructure/scripts/ide-sync/index.js sync",
+    "sync:squads": "node scripts/sync-squads-to-ide.js",
     "sync:ide:validate": "node .aiox-core/infrastructure/scripts/ide-sync/index.js validate",
     "sync:ide:check": "node .aiox-core/infrastructure/scripts/ide-sync/index.js validate --strict",
     "sync:ide:claude": "node .aiox-core/infrastructure/scripts/ide-sync/index.js sync --ide claude-code",

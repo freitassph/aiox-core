@@ -1,0 +1,118 @@
+name: UI Design Workflow
+description: Fluxo completo de design de interface — do brief ao handoff
+version: 1.0.0
+
+phases:
+  - id: brief
+    name: Brief & Discovery
+    agent: pdg-chief
+    outputs:
+      - design-brief.md
+      - moodboard.fig
+    gate: brief_complete
+
+  - id: ux
+    name: UX Research & Wireframes
+    agent: pdg-ux-designer
+    depends_on: brief
+    outputs:
+      - user-flows.fig
+      - wireframes-lo-fi.fig
+      - wireframes-hi-fi.fig
+    gate: flows_validated
+
+  - id: visual
+    name: Visual Design
+    agent: pdg-visual-designer
+    depends_on: ux
+    outputs:
+      - visual-direction.fig
+      - design-screens.fig
+      - design-tokens.json
+    gate: visual_approved
+
+  - id: copy
+    name: UX Writing
+    agent: pdg-ux-writer
+    depends_on: visual
+    outputs:
+      - ui-copy.md
+      - content-guide.md
+    gate: copy_approved
+
+  - id: motion
+    name: Motion Spec
+    agent: pdg-motion-designer
+    depends_on: visual
+    outputs:
+      - animation-spec.md
+      - prototype.fig
+    gate: motion_approved
+
+  - id: implementation
+    name: Frontend Implementation
+    agent: pdg-frontend-designer
+    depends_on:
+      - copy
+      - motion
+    outputs:
+      - components/
+      - pages/
+      - design-tokens.css
+    gate: implementation_complete
+
+  - id: audit
+    name: Quality Audit
+    agent: pdg-auditor
+    depends_on: implementation
+    outputs:
+      - audit-report.md
+    gate: audit_passed
+
+gates:
+  brief_complete:
+    criteria:
+      - Objetivo claro e mensurado
+      - Audiência definida
+      - Entregáveis listados
+      - Agentes necessários identificados
+
+  flows_validated:
+    criteria:
+      - Happy path documentado
+      - Todos os estados mapeados
+      - Mobile wireframes incluídos
+      - Validação com 3+ usuários (ou aprovação do usuário)
+
+  visual_approved:
+    criteria:
+      - 3 direções criativas apresentadas
+      - Direção selecionada aprovada
+      - Sistema de tokens definido
+      - Telas principais finalizadas
+
+  copy_approved:
+    criteria:
+      - Todos os labels, placeholders, erros escritos
+      - CTAs em voz ativa
+      - Tom alinhado com brand voice
+
+  motion_approved:
+    criteria:
+      - Micro-interactions definidas
+      - Page transitions especificadas
+      - Loading states animados
+
+  implementation_complete:
+    criteria:
+      - Todos os componentes implementados
+      - Design pixel-perfect em todos os breakpoints
+      - Todos os estados implementados
+      - Acessibilidade verificada
+
+  audit_passed:
+    criteria:
+      - Zero CRIT issues
+      - MAJ issues documentados com plano
+      - WCAG 2.1 AA compliance
+      - Performance Lighthouse > 90

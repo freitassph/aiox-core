@@ -1,0 +1,100 @@
+name: pedro-lp-medica
+version: 2.0.0
+description: "Squad especializado em landing pages e sites médicos de altíssima conversão — conformidade CFM/CONAR/LGPD, design Clinical Luxury S+++ (Atomic Design), copy humanizada e performance técnica impecável"
+author: synkra-aios
+license: MIT
+slashPrefix: pedro-lp-medica
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+meta:
+  domain: healthcare-digital-marketing
+  target: clínicas médicas, médicos autônomos, centros de saúde, hospitais ambulatoriais
+  orchestrator: lp-medica-orchestrator
+  standards:
+    - CFM Resolução 2.336/2023
+    - CONAR Guidelines Healthcare
+    - LGPD Lei 13.709/2018 (Art. 11 dados sensíveis)
+    - WCAG 2.1 AA
+    - Core Web Vitals (Green)
+    - Schema.org Healthcare Markup
+    - Brad Frost Atomic Design System
+    - Google E-E-A-T for YMYL Healthcare
+  design_system: Clinical Luxury — Atomic Design (Brad Frost methodology)
+  design_tier: S+++ (beyond Apple, adapted for medical trust)
+
+components:
+  agents:
+    # Orchestrator — ponto de entrada único
+    - lp-medica-orchestrator.md
+    # Strategy & Planning
+    - medical-prd-architect.md
+    # Compliance — SEMPRE no fluxo
+    - cfm-compliance-sentinel.md
+    # Design System S+++ Tier
+    - medical-design-system.md
+    - medical-atomic-design-architect.md
+    - medical-ui-artisan.md
+    # Content & Copy
+    - medical-copywriter.md
+    - medical-content-curator.md
+    - medical-seo-specialist.md
+    # Engineering
+    - medical-integration-engineer.md
+    # Optimization & Quality
+    - medical-cro-optimizer.md
+    - medical-qa-auditor.md
+    - medical-deployment-agent.md
+  tasks:
+    - medical-briefing-task.md
+    - medical-design-tokens-task.md
+    - medical-atomic-components-task.md
+    - medical-copy-framework-task.md
+    - medical-compliance-audit-task.md
+    - medical-seo-strategy-task.md
+    - medical-build-landing-task.md
+    - medical-landing-primary-task.md
+  workflows:
+    - medical-landing-primary.yaml
+    - medical-design-sprint.yaml
+    - medical-quick-launch.yaml
+  checklists:
+    - cfm-2336-2023-checklist.md
+    - lgpd-health-data-checklist.md
+    - design-quality-s-tier-checklist.md
+    - launch-readiness-checklist.md
+    - accessibility-wcag21-medical-checklist.md
+  templates:
+    - medical-briefing-template.md
+    - landing-page-sections-template.md
+    - copy-framework-by-specialty-template.md
+    - design-tokens-template.yaml
+  tools: []
+  scripts: []
+  data:
+    - cfm-resolucao-2336-2023-reference.md
+    - medical-specialties-map.yaml
+    - design-tokens-clinical-luxury.yaml
+
+config:
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+tags:
+  - pedro-lp-medica
+  - medical
+  - landing-page
+  - healthcare
+  - cfm-compliant
+  - lgpd
+  - atomic-design
+  - brad-frost
+  - clinical-luxury-design
+  - s-tier-design
+  - high-conversion
+  - wcag-2.1-aa
+  - schema-org-healthcare
+  - core-web-vitals

@@ -1,0 +1,152 @@
+workflow:
+  id: medical-landing-primary
+  name: "Medical Landing Page — Full Project Workflow"
+  description: "Workflow completo para criação de landing page médica S+++ tier com compliance CFM/LGPD"
+  version: 2.0.0
+
+  phases:
+    - id: phase-1-strategy
+      name: "Fase 1: Estratégia & Briefing"
+      parallel: false
+      steps:
+        - id: briefing
+          task: medical-briefing-task.md
+          agent: medical-prd-architect
+          description: "Coleta completa de informações do cliente médico"
+          output: briefing-document.md
+          retries: 1
+
+        - id: compliance-brief
+          task: medical-compliance-audit-task.md
+          agent: cfm-compliance-sentinel
+          description: "Mapeamento de riscos de compliance por especialidade"
+          depends_on: [briefing]
+          output: compliance-risk-map.md
+
+        - id: seo-strategy
+          task: medical-seo-strategy-task.md
+          agent: medical-seo-specialist
+          description: "Keyword research e estratégia de SEO local"
+          depends_on: [briefing]
+          output: seo-strategy.md
+
+    - id: phase-2-design
+      name: "Fase 2: Design System S+++ Tier"
+      parallel: false
+      steps:
+        - id: design-tokens
+          task: medical-design-tokens-task.md
+          agent: medical-design-system
+          description: "Geração de tokens de design personalizados"
+          depends_on: [briefing]
+          output: styles/tokens.css
+          quality_gate: design-quality-s-tier-checklist.md
+
+        - id: atomic-specs
+          task: medical-atomic-components-task.md
+          agent: medical-atomic-design-architect
+          description: "Especificação de todos os componentes atômicos necessários"
+          depends_on: [design-tokens]
+          output: component-specs.md
+
+        - id: ux-flow
+          agent: medical-ux-architect
+          description: "Patient journey + wireframes de alta fidelidade"
+          depends_on: [design-tokens, atomic-specs]
+          output: ux-flows.md
+
+    - id: phase-3-content
+      name: "Fase 3: Conteúdo & Copy"
+      parallel: true
+      steps:
+        - id: copy-production
+          task: medical-copy-framework-task.md
+          agent: medical-copywriter
+          description: "Produção de copy médica humanizada por seção"
+          depends_on: [briefing, compliance-risk-map.md]
+          output: copy-approved.md
+
+        - id: content-curation
+          agent: medical-content-curator
+          description: "Artigos educativos e FAQ baseados em evidência"
+          depends_on: [briefing, seo-strategy]
+          output: content-inventory.md
+
+        - id: copy-compliance-review
+          agent: cfm-compliance-sentinel
+          description: "Auditoria CFM/CONAR em toda copy produzida"
+          depends_on: [copy-production, content-curation]
+          output: compliance-clearance.md
+          checklist: cfm-2336-2023-checklist.md
+          blocking: true   # NADA implementa sem Compliance Clearance
+
+    - id: phase-4-build
+      name: "Fase 4: Implementação"
+      parallel: false
+      steps:
+        - id: build-landing
+          task: medical-build-landing-task.md
+          agent: medical-frontend-builder
+          description: "Implementação de todos os componentes e páginas"
+          depends_on: [atomic-specs, ux-flow, copy-compliance-review, design-tokens]
+          output: site implementado
+
+        - id: integrations
+          agent: medical-integration-engineer
+          description: "Integrações: agendamento, WhatsApp, GA4, LGPD CMP"
+          depends_on: [build-landing]
+          checklist: lgpd-health-data-checklist.md
+
+    - id: phase-5-qa
+      name: "Fase 5: Quality Assurance"
+      parallel: true
+      steps:
+        - id: design-qa
+          agent: medical-design-system
+          description: "Validação design S+++ tier contra spec"
+          depends_on: [build-landing]
+          checklist: design-quality-s-tier-checklist.md
+
+        - id: compliance-final
+          agent: cfm-compliance-sentinel
+          description: "Auditoria final de compliance no site implementado"
+          depends_on: [build-landing, integrations]
+          checklist: cfm-2336-2023-checklist.md
+          output: final-compliance-clearance.md
+
+        - id: technical-qa
+          agent: medical-qa-auditor
+          description: "QA técnico: performance, acessibilidade, cross-browser"
+          depends_on: [build-landing, integrations]
+          checklist: accessibility-wcag21-medical-checklist.md
+
+        - id: cro-review
+          agent: medical-cro-optimizer
+          description: "Review de pontos de conversão e otimização"
+          depends_on: [build-landing]
+
+    - id: phase-6-launch
+      name: "Fase 6: Launch"
+      parallel: false
+      steps:
+        - id: pre-launch-check
+          agent: medical-deployment-agent
+          description: "Verificação técnica pré-lançamento"
+          depends_on: [design-qa, compliance-final, technical-qa]
+          checklist: launch-readiness-checklist.md
+          blocking: true
+
+        - id: deploy-production
+          agent: medical-deployment-agent
+          description: "Deploy em produção + configuração de domínio e monitoramento"
+          depends_on: [pre-launch-check]
+          output: site em produção com URL final
+
+  kpis:
+    conversion_rate_organic: "> 4%"
+    conversion_rate_paid: "> 8%"
+    cfm_compliance: "100% — zero infrações"
+    lighthouse_mobile_performance: ">= 90"
+    lighthouse_accessibility: ">= 95"
+    core_web_vitals: "LCP < 2.5s | CLS < 0.1 | INP < 200ms"
+    online_booking_rate: "> 30% dos novos pacientes"

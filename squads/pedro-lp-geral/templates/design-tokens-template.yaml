@@ -1,0 +1,37 @@
+design_tokens:
+  project: "[NOME DO PROJETO]"
+  archetype: "[LUXURY | BOLD | HUMAN | TECHNICAL | PLAYFUL]"
+  version: "1.0.0"
+  generated_by: lp-prestige-design-system
+
+  colors:
+    brand_primary: "[oklch value]"
+    brand_secondary: "[oklch value]"
+    brand_accent: "[oklch value]"
+    bg_page: "[oklch value]"
+    bg_surface: "[oklch value]"
+    bg_card: "[oklch value]"
+    text_primary: "[oklch value]"
+    text_secondary: "[oklch value]"
+    text_tertiary: "[oklch value]"
+    border_subtle: "[oklch value]"
+    border_default: "[oklch value]"
+    border_brand: "[oklch value]"
+
+  typography:
+    font_display: "[font family]"
+    font_heading: "[font family]"
+    font_body: "[font family]"
+    font_mono: "[font family — para dados/código]"
+
+  motion:
+    easing_primary: "[cubic-bezier]"
+    easing_hover: "[cubic-bezier]"
+    duration_normal: "[ms]"
+    duration_slow: "[ms]"
+
+  border_radius:
+    default: "[px]"
+    card: "[px]"
+    button: "[px]"
+    input: "[px]"

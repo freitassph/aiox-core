@@ -1,0 +1,78 @@
+name: wf-onboarding-client
+description: "Workflow completo de onboarding de novo cliente da pedro-agencia"
+version: "1.0"
+squad: pedro-agencia
+
+steps:
+  - id: kickoff
+    agent: pa-empire
+    action: "Conduzir reunião de kickoff e alinhar objetivos"
+    task: pa-campaign-full
+    outputs:
+      - project-brief
+      - goals-document
+      - team-assignments
+
+  - id: strategic-audit
+    agent: pa-sage
+    depends_on: kickoff
+    action: "Diagnóstico estratégico do negócio do cliente"
+    parallel_with: [brand-audit]
+    outputs:
+      - business-diagnosis
+      - unit-economics
+      - strategic-priorities
+
+  - id: brand-audit
+    agent: pa-oracle
+    depends_on: kickoff
+    action: "Auditoria completa de marca e posicionamento"
+    parallel_with: [strategic-audit]
+    outputs:
+      - brand-audit-report
+      - positioning-gaps
+
+  - id: data-baseline
+    agent: pa-prism
+    depends_on: kickoff
+    action: "Configurar analytics e coletar baseline de métricas"
+    parallel_with: [strategic-audit, brand-audit]
+    outputs:
+      - analytics-setup
+      - baseline-metrics
+      - measurement-plan
+
+  - id: strategy-synthesis
+    agent: pa-empire
+    depends_on: [strategic-audit, brand-audit, data-baseline]
+    action: "Sintetizar diagnósticos em plano estratégico de 90 dias"
+    outputs:
+      - strategic-plan-90d
+      - priority-roadmap
+
+  - id: team-briefing
+    agent: pa-empire
+    depends_on: strategy-synthesis
+    action: "Briefar todos os agentes com suas responsabilidades"
+    outputs:
+      - agent-briefs
+      - delivery-schedule
+
+  - id: success-plan
+    agent: pa-anchor
+    depends_on: team-briefing
+    action: "Criar Success Plan e configurar touchpoints com o cliente"
+    outputs:
+      - success-plan
+      - touchpoint-calendar
+      - health-score-setup
+
+triggers:
+  - event: new-client-signed
+    auto_start: true
+
+success_criteria:
+  - "Cliente aprovou Strategic Plan em até 5 dias úteis"
+  - "Analytics configurado e baseline coletado"
+  - "Success Plan compartilhado com o cliente"
+  - "Primeiro relatório semanal entregue"

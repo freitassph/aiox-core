@@ -1,0 +1,102 @@
+name: AI Content Workflow
+description: Fluxo de produção de conteúdo visual com IA — imagens, social media, campanhas
+version: 1.0.0
+
+phases:
+  - id: brief
+    name: Creative Brief
+    agent: pdg-chief
+    outputs:
+      - creative-brief.md
+      - reference-board/
+    gate: brief_complete
+
+  - id: ai_generation
+    name: AI Image Generation
+    agent: pdg-ai-image-director
+    depends_on: brief
+    outputs:
+      - generated-images/
+      - prompt-archive.md
+    gate: images_selected
+
+  - id: photo_direction
+    name: Photography Art Direction
+    agent: pdg-photo-director
+    depends_on: brief
+    outputs:
+      - color-graded-images/
+      - shot-notes.md
+    gate: photos_approved
+
+  - id: social_design
+    name: Social Media Design
+    agent: pdg-social-media
+    depends_on:
+      - ai_generation
+      - photo_direction
+    outputs:
+      - instagram-posts/
+      - stories/
+      - linkedin-posts/
+      - youtube-thumbnails/
+    gate: social_approved
+
+  - id: copy
+    name: Copy & Captions
+    agent: pdg-ux-writer
+    depends_on: social_design
+    outputs:
+      - captions.md
+      - hashtags.md
+      - cta-variants.md
+    gate: copy_approved
+
+  - id: audit
+    name: Quality Audit
+    agent: pdg-auditor
+    depends_on:
+      - social_design
+      - copy
+    outputs:
+      - content-audit.md
+    gate: audit_passed
+
+gates:
+  brief_complete:
+    criteria:
+      - Objetivo da campanha definido
+      - Plataformas-alvo especificadas
+      - Tom e paleta definidos
+      - Formatos necessários listados
+
+  images_selected:
+    criteria:
+      - Mínimo 3-5 imagens aprovadas
+      - Prompts arquivados
+      - Upscale realizado nas selecionadas
+
+  photos_approved:
+    criteria:
+      - Color grading consistente aplicado
+      - Imagens em resolução adequada para uso
+
+  social_approved:
+    criteria:
+      - Dimensões corretas por plataforma
+      - Hierarquia visual clara
+      - Legibilidade em mobile verificada
+      - Consistência de brand
+
+  copy_approved:
+    criteria:
+      - Legendas com hook + valor + CTA
+      - Hashtags estratégicas incluídas
+      - Tom alinhado com brand voice
+
+  audit_passed:
+    criteria:
+      - Todas as dimensões corretas
+      - Textos legíveis em mobile (390px preview)
+      - Identidade visual consistente
+      - Nenhum elemento de copyright problemático

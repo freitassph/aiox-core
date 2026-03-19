@@ -1,0 +1,146 @@
+workflow:
+  id: full-system-build
+  name: "Full System Build — Brief to Production"
+  description: |
+    Workflow completo para construir qualquer sistema de agentes IA do zero até produção.
+    Recebe um brief em linguagem natural e entrega sistema funcional em VPS com:
+    frontend Apple/Ferrari, backend bulletproof, agentes IA com RAG, integrações (WhatsApp, Calendar),
+    deploy automatizado, monitoramento e auditoria contínua.
+  version: 1.0.0
+
+  phases:
+    - id: planning
+      name: "Fase 1 — Planejamento"
+      sequence:
+        - task: psa-orchestrate-project
+          agent: psa-maestro
+          description: "Analisa brief, cria blueprint, define fases"
+          outputs: ["docs/PROJECT.md", "docs/PHASE-STATUS.md"]
+
+        - task: psa-gather-requirements
+          agent: psa-pm
+          description: "Cria PRD completo, personas, user stories com ACs"
+          depends_on: [psa-orchestrate-project]
+          outputs: ["docs/PRD.md", "docs/personas.md", "docs/stories/"]
+
+    - id: design_architecture
+      name: "Fase 2 — Design & Arquitetura"
+      sequence:
+        - task: design-architecture
+          agent: psa-architect
+          description: "Define arquitetura de sistema, contrato de API, spec de integrações"
+          depends_on: [psa-gather-requirements]
+          outputs: ["docs/architecture.md", "docs/api-contract.md", "docs/integration-spec.md"]
+
+        - task: psa-design-system
+          agent: psa-ux-designer
+          description: "Cria design system premium: tokens, componentes, motion spec, HANDOFF"
+          depends_on: [psa-gather-requirements]
+          parallel: true  # Pode rodar em paralelo com psa-architect
+          outputs: ["apps/web/styles/design-tokens.css", "docs/design/HANDOFF.md"]
+
+    - id: data
+      name: "Fase 3 — Banco de Dados"
+      sequence:
+        - task: psa-setup-database
+          agent: psa-data-engineer
+          description: "Schema PostgreSQL, RLS, pgvector, Drizzle ORM, migrations"
+          depends_on: [design-architecture]
+          outputs: ["supabase/migrations/", "packages/database/schema/"]
+
+    - id: implementation
+      name: "Fase 4 — Implementação"
+      sequence:
+        - task: psa-build-backend
+          agent: psa-backend
+          description: "API Hono.js, Clean Architecture, testes, OpenAPI spec"
+          depends_on: [psa-setup-database]
+          outputs: ["apps/api/"]
+
+        - task: psa-build-frontend
+          agent: psa-frontend
+          description: "Next.js 15, shadcn/ui, Framer Motion, Lighthouse 100"
+          depends_on: [psa-design-system, psa-build-backend]
+          outputs: ["apps/web/"]
+
+        - task: psa-build-ai-agents
+          agent: psa-ai-builder
+          description: "RAG pipeline, tool calling, prompts, eval suite"
+          depends_on: [psa-build-backend]
+          outputs: ["apps/api/src/services/agent-service.ts", "apps/api/src/services/rag-service.ts"]
+
+        - task: psa-setup-integrations
+          agent: psa-integrations
+          description: "WhatsApp Evolution API, Google Calendar OAuth, APIs externas"
+          depends_on: [psa-build-backend]
+          parallel: true  # Pode rodar em paralelo com psa-build-ai-agents
+          outputs: ["apps/api/src/integrations/"]
+
+    - id: onboarding
+      name: "Fase 5 — Onboarding"
+      sequence:
+        - task: setup-onboarding
+          agent: psa-onboarding
+          description: "Wizard de onboarding, ingestão de documentos, validação RAG"
+          depends_on: [psa-build-frontend, psa-build-ai-agents]
+          outputs: ["apps/web/app/(onboarding)/", "apps/api/src/services/knowledge-ingestion-service.ts"]
+
+    - id: quality_deploy
+      name: "Fase 6 — Qualidade & Deploy"
+      sequence:
+        - task: psa-audit-system
+          agent: psa-auditor
+          description: "Auditoria completa: segurança, qualidade, performance, agente"
+          depends_on: [psa-build-frontend, psa-build-backend, psa-build-ai-agents]
+          gate: MUST_PASS  # Bloqueia deploy se falhar
+
+        - task: qa-gate
+          agent: psa-qa
+          description: "Testes completos: unit, E2E, load, security"
+          depends_on: [psa-audit-system]
+          gate: MUST_PASS
+
+        - task: psa-deploy-vps
+          agent: psa-devops
+          description: "VPS, Docker, Nginx, SSL, CI/CD, monitoramento"
+          depends_on: [qa-gate]
+          outputs: ["infrastructure/", ".github/workflows/", "docs/runbook.md"]
+
+    - id: documentation
+      name: "Fase 7 — Documentação Final"
+      sequence:
+        - task: write-documentation
+          agent: psa-doc-writer
+          description: "Docs completos: arquitetura, API, setup, runbook, guia do cliente"
+          depends_on: [psa-deploy-vps]
+          outputs: ["docs/"]
+
+        - task: delivery-report
+          agent: psa-maestro
+          description: "Relatório final de entrega com URLs, instruções, próximos passos"
+          depends_on: [write-documentation]
+          outputs: ["docs/DELIVERY.md"]
+
+  gates:
+    - id: planning-gate
+      after: planning
+      checks:
+        - "PRD.md existe e tem FRs com prioridade?"
+        - "Personas documentadas?"
+        - "Zero 'a definir' no PRD?"
+
+    - id: design-gate
+      after: design_architecture
+      checks:
+        - "architecture.md com diagrama Mermaid?"
+        - "HANDOFF.md com todos os componentes especificados?"
+        - "design-tokens.css com sistema de cores completo?"
+
+    - id: pre-deploy-gate
+      after: quality_deploy
+      checks:
+        - "Zero issues críticos no audit report?"
+        - "Todos os testes passando?"
+        - "Load test p95 < 2s?"
+        - "SSL válido?"
+        - "Health check respondendo?"
