@@ -1,0 +1,100 @@
+# Mockup Generation Workflow
+# Cria mockups profissionais para qualquer tipo de produto, dispositivo ou material de marca
+
+name: mockup-generation
+version: 1.0.0
+description: "Workflow de geração de mockups — de dispositivos a embalagens, de brand applications a wallpapers"
+squad: pedro-design
+
+metadata:
+  created: 2026-03-25
+  author: pdg-mockup-3d-artist (Dimension)
+  tags:
+    - mockup
+    - 3d
+    - product
+    - brand
+    - pedro-design
+
+triggers:
+  - type: manual
+    command: "*create-mockup"
+
+inputs:
+  - name: mockup_type
+    type: string
+    required: true
+    description: "device | brand | product | apparel | packaging | poster | scene | wallpaper"
+  - name: brief
+    type: string
+    required: true
+    description: "Descrição detalhada do mockup"
+  - name: design_assets
+    type: files
+    required: false
+    description: "Designs a serem aplicados no mockup"
+  - name: resolution
+    type: string
+    required: false
+    default: "4K"
+    description: "HD | 2K | 4K | 8K"
+  - name: variations
+    type: array
+    required: false
+    description: "Lista de variações a criar"
+
+steps:
+  - id: brief-analysis
+    name: "Brief Analysis"
+    agent: pdg-chief
+    action: task
+    task: pdg-orchestrate-design.md
+    inputs:
+      brief: "{{inputs.brief}}"
+      type: "mockup"
+
+  - id: design-prep
+    name: "Asset Preparation"
+    description: "Preparar assets de design para aplicação no mockup"
+    agent: pdg-visual-designer
+    action: conditional
+    condition: "{{inputs.design_assets != null}}"
+    depends_on:
+      - brief-analysis
+    on_error: continue
+
+  - id: mockup-creation
+    name: "Mockup Creation"
+    agent: pdg-mockup-3d-artist
+    action: task
+    task: pdg-create-mockup.md
+    depends_on:
+      - brief-analysis
+      - design-prep
+    inputs:
+      mockup_type: "{{inputs.mockup_type}}"
+      brief: "{{inputs.brief}}"
+      output_resolution: "{{inputs.resolution}}"
+      variations: "{{inputs.variations}}"
+
+  - id: quality-review
+    name: "Quality Review"
+    agent: pdg-auditor
+    action: task
+    task: pdg-audit-design.md
+    depends_on:
+      - mockup-creation
+    inputs:
+      scope: "visual"
+    on_error: continue
+
+outputs:
+  - name: mockup_files
+    from: "{{steps.mockup-creation.output.mockup_files}}"
+    description: "Todos os arquivos de mockup gerados"
+
+completion:
+  on_success:
+    message: "Mockup(s) gerado(s) com qualidade {{inputs.resolution}}."
+  on_failure:
+    message: "Falha na geração — verificar specs."

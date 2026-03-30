@@ -1,0 +1,79 @@
+/*
+  ==============================================================
+  ENDO360 - THE APEX INFINITY DESIGN TOKENS (Premium Tier)
+  ==============================================================
+  Gerado pelo agente: pdg-design-system (Atlas)
+  Orquestrado por: pdg-chief (Verso)
+  Uso: Copiar e colar na raiz do globals.css (Tailwind/Next.js)
+*/
+
+:root {
+  /* ==================
+     CORES (Dark Executive Palette)
+     ================== */
+  
+  /* Fundos & Superfícies */
+  --endo-obsidian: #0A0A0C;     /* Background principal: O abismo cirúrgico */
+  --endo-midnight: #111317;     /* Background secundário: Cards e modais */
+  --endo-charcoal: #1C1E23;     /* Bordas sutis e separators */
+  
+  /* Textos & Conteúdo */
+  --endo-platinum: #F8FAFC;     /* Títulos (Quase branco, alta reflexão) */
+  --endo-silver-dark: #94A3B8;  /* Textos secundários (Leitura fácil) */
+  --endo-slate-mute: #64748B;   /* Textos terciários, labels, legendas */
+
+  /* Acentos (The Gold Standard) */
+  --endo-aurum-primary: #D4AF37;   /* Cor de CTAs, ícones importantes */
+  --endo-aurum-hover: #F2D184;     /* CTAs estado de hover */
+  --endo-aurum-muted: #8C7326;     /* Gradientes dark e interações */
+  --endo-aurum-alpha: rgba(212, 175, 55, 0.1); /* Backgrounds de destaque */
+  
+  /* ==================
+     TIPOGRAFIA
+     ================== */
+  --font-family-display: 'Outfit', 'Helvetica Neue', system-ui, sans-serif;
+  --font-family-body: 'Inter', system-ui, sans-serif;
+  
+  /* Tracking (Letter Spacing) */
+  --tracking-display: -0.02em; /* Títulos monolíticos massivos */
+  --tracking-label: 0.15em;    /* Labels executivos super afogados */
+  --tracking-logo: 0.3em;      /* Logo principal */
+  
+  /* ==================
+     BORDAS & ELEVAÇÃO (Glassmorphism & Depth)
+     ================== */
+  --radius-minimal: 4px;       /* CTAs e tags */
+  --radius-smooth: 12px;       /* Cards principais */
+  --border-glass: 1px solid rgba(255, 255, 255, 0.05); /* Border topo (iluminação) */
+  
+  /* Shadows (Depth Layers - simulando o abismo 3D) */
+  --shadow-flat: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-gold-glow: 0px 0px 20px rgba(212, 175, 55, 0.15); /* Efeito The Apex Infinity */
+  --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  
+  /* ==================
+     MOTION & ANIMAÇÕES
+     ================== */
+  --transition-smooth: 300ms cubic-bezier(0.85, 0, 0.15, 1);
+  --transition-slow: 600ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 
+  ==============================================================
+  TAILWIND INSTRUCTIONS
+  ==============================================================
+  
+  module.exports = {
+    theme: {
+      extend: {
+        colors: {
+          endo: {
+            obsidian: 'var(--endo-obsidian)',
+            aurum: 'var(--endo-aurum-primary)',
+            // ... Mapeie os tokens aqui
+          }
+        }
+      }
+    }
+  }
+*/

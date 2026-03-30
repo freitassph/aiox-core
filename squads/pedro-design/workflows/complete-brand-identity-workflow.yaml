@@ -1,0 +1,184 @@
+# Complete Brand Identity Workflow
+# Cria uma identidade visual completa do zero, coordenando todos os agentes
+
+name: complete-brand-identity
+version: 1.0.0
+description: "Workflow completo para criação de identidade visual — da estratégia ao brandbook"
+squad: pedro-design
+
+metadata:
+  created: 2026-03-25
+  author: pdg-chief (Verso)
+  tags:
+    - brand-identity
+    - brandbook
+    - full-workflow
+    - pedro-design
+
+triggers:
+  - type: manual
+    command: "*create-brand-identity"
+
+inputs:
+  - name: brand_name
+    type: string
+    required: true
+    description: "Nome da marca"
+  - name: brief
+    type: string
+    required: true
+    description: "Brief completo da marca"
+  - name: scope
+    type: string
+    required: false
+    default: "standard"
+    description: "essential | standard | full | enterprise"
+  - name: industry
+    type: string
+    required: true
+    description: "Setor de atuação"
+
+steps:
+  - id: brief-analysis
+    name: "Fase 1A: Brief Analysis"
+    description: "pdg-chief analisa e decompõe o brief"
+    agent: pdg-chief
+    action: task
+    task: pdg-orchestrate-design.md
+    inputs:
+      brief: "{{inputs.brief}}"
+      type: "brand"
+    on_error: abort
+
+  - id: brand-discovery
+    name: "Fase 1B: Brand Discovery"
+    description: "pdg-brand-identity conduz o discovery e cria brand platform"
+    agent: pdg-brand-identity
+    action: task
+    task: pdg-create-brand-identity.md
+    depends_on:
+      - brief-analysis
+    inputs:
+      brand_name: "{{inputs.brand_name}}"
+      discovery: "{{steps.brief-analysis.output}}"
+      industry: "{{inputs.industry}}"
+    on_error: abort
+
+  - id: typography-selection
+    name: "Fase 2A: Typography Selection"
+    description: "pdg-typography-master seleciona tipografias e cria sistema"
+    agent: pdg-typography-master
+    action: task
+    task: pdg-typography-master-select-typefaces.md
+    depends_on:
+      - brand-discovery
+    inputs:
+      brand_platform: "{{steps.brand-discovery.output}}"
+    on_error: continue
+
+  - id: visual-system
+    name: "Fase 2B: Visual Language"
+    description: "pdg-visual-designer cria linguagem visual completa"
+    agent: pdg-visual-designer
+    action: task
+    depends_on:
+      - brand-discovery
+      - typography-selection
+    on_error: continue
+
+  - id: icon-base
+    name: "Fase 3A: Base Icon Set"
+    description: "pdg-illustration-artist cria set base de ícones"
+    agent: pdg-illustration-artist
+    action: task
+    task: pdg-create-svg-assets.md
+    depends_on:
+      - visual-system
+    inputs:
+      asset_type: "icon"
+      style: "{{steps.brand-discovery.output.icon_style}}"
+    on_error: continue
+
+  - id: svg-to-png
+    name: "Fase 3B: Logo Export Completo"
+    description: "Exportar logo em todos os formatos necessários"
+    agent: pdg-illustration-artist
+    action: task
+    task: pdg-create-svg-assets.md
+    depends_on:
+      - brand-discovery
+    inputs:
+      asset_type: "logo"
+      export_formats: ["svg", "png@1x", "png@2x", "png@3x", "ico", "webp"]
+    on_error: continue
+
+  - id: favicon-set
+    name: "Fase 3C: Favicon & App Icons"
+    description: "Criar set completo de favicon para todas as plataformas"
+    agent: pdg-visual-designer
+    action: task
+    task: pdg-create-favicon.md
+    depends_on:
+      - brand-discovery
+    on_error: continue
+
+  - id: mockup-applications
+    name: "Fase 4A: Brand Applications Mockups"
+    description: "pdg-mockup-3d-artist cria mockups das aplicações"
+    agent: pdg-mockup-3d-artist
+    action: task
+    task: pdg-create-mockup.md
+    depends_on:
+      - visual-system
+      - svg-to-png
+    inputs:
+      mockup_type: "brand"
+    on_error: continue
+
+  - id: brandbook
+    name: "Fase 5: Brandbook Completo"
+    description: "pdg-print-editorial cria o brandbook final"
+    agent: pdg-brand-identity
+    action: task
+    task: pdg-create-brandbook.md
+    depends_on:
+      - brand-discovery
+      - typography-selection
+      - visual-system
+      - icon-base
+      - mockup-applications
+    inputs:
+      brand_name: "{{inputs.brand_name}}"
+    on_error: abort
+
+  - id: quality-gate
+    name: "Fase 6: Quality Gate"
+    description: "pdg-auditor audita toda a identidade"
+    agent: pdg-auditor
+    action: task
+    task: pdg-audit-design.md
+    depends_on:
+      - brandbook
+    inputs:
+      scope: "brand-identity"
+    on_error: continue
+
+outputs:
+  - name: brand_platform
+    from: "{{steps.brand-discovery.output.brand_platform}}"
+    description: "Estratégia e plataforma de marca documentada"
+  - name: logo_package
+    from: "{{steps.svg-to-png.output}}"
+    description: "Todos os arquivos de logo em todos os formatos"
+  - name: brandbook
+    from: "{{steps.brandbook.output.brandbook_pdf}}"
+    description: "Brandbook PDF completo"
+
+completion:
+  on_success:
+    message: "Identidade visual completa de '{{inputs.brand_name}}' entregue com excelência."
+    notify: true
+  on_failure:
+    message: "Workflow interrompido — verificar logs de erro."
+    notify: true
+    rollback: false
