@@ -1,3 +1,11 @@
+---
+task: medical-landing-primary-task
+responsavel: "@lp-medica-orchestrator"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Medical Landing Page — Compliant & Converting
 
 ## Objetivo

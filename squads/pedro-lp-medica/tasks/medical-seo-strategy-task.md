@@ -1,3 +1,11 @@
+---
+task: medical-seo-strategy-task
+responsavel: "@medical-seo-specialist"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical SEO Strategy — Local Search & E-E-A-T
 
 ## Objetivo

@@ -1,3 +1,11 @@
+---
+task: medical-design-tokens-task
+responsavel: "@medical-design-system"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Design Tokens — Clinical Luxury System
 
 ## Objetivo

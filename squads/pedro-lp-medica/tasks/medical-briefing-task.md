@@ -1,3 +1,11 @@
+---
+task: medical-briefing-task
+responsavel: "@medical-prd-architect"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Briefing — Coleta Completa de Informações
 
 ## Objetivo

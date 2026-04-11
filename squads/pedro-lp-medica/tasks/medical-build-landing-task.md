@@ -1,3 +1,11 @@
+---
+task: medical-build-landing-task
+responsavel: "@medical-integration-engineer"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Landing Page Build — S+++ Tier Implementation
 
 ## Objetivo

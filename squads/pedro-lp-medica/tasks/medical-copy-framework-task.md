@@ -1,3 +1,11 @@
+---
+task: medical-copy-framework-task
+responsavel: "@medical-copywriter"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Copy Framework — Copy Humanizada CFM-Compliant
 
 ## Objetivo

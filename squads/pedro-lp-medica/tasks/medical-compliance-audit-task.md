@@ -1,3 +1,11 @@
+---
+task: medical-compliance-audit-task
+responsavel: "@cfm-compliance-sentinel"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Compliance Audit — CFM/CONAR/LGPD Full Audit
 
 ## Objetivo

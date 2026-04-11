@@ -1,3 +1,11 @@
+---
+task: medical-atomic-components-task
+responsavel: "@medical-atomic-design-architect"
+responsavel_type: Agent
+atomic_layer: Task
+elicit: false
+---
+
 # Task: Medical Atomic Components — Component Library Build
 
 ## Objetivo
