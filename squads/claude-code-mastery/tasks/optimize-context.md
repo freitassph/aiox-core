@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*optimize-context`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Optimize context window usage by analyzing CLAUDE.md size, moving detailed instructions to conditional `.claude/rules/`, configuring auto-compaction, and reviewing auto-memory files for efficiency.
+## Purpose Optimize context window usage by analyzing CLAUDE.md size, moving detailed instructions to conditional `.claude/rules/`, configuring auto-compaction, and reviewing auto-memory files for efficiency.
 
 ---
 
@@ -26,7 +26,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -36,7 +36,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - At least one CLAUDE.md file exists (project root or .claude/)
 - Read access to .claude/rules/ directory
@@ -148,7 +148,7 @@ For each section categorized as "conditional":
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Context Optimization Report
@@ -207,7 +207,7 @@ For each section categorized as "conditional":
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] All CLAUDE.md files analyzed with line counts and section categorization
 - [ ] Conditional content identified and moved to .claude/rules/

@@ -2,7 +2,7 @@
 
 **Task ID:** ci-cd-setup
 **Version:** 1.0
-**Purpose:** Configure Claude Code for headless execution in CI/CD pipelines (PR review, code generation, testing)
+## Purpose Configure Claude Code for headless execution in CI/CD pipelines (PR review, code generation, testing)
 **Orchestrator:** @project-integrator (Conduit)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Pipeline runs successfully in headless mode, safety limits configured, costs controlled
@@ -51,7 +51,7 @@ OUTPUT: CI/CD workflow files + secrets docs + safety config
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -63,7 +63,7 @@ OUTPUT: CI/CD workflow files + secrets docs + safety config
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. GitHub repository with Actions enabled (or equivalent CI platform)
 2. Anthropic API key available
@@ -302,7 +302,7 @@ concurrency:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 ci_cd_setup_result:
@@ -333,3 +333,11 @@ ci_cd_setup_result:
 | Repository is public and key would be exposed | HALT -- ensure secrets are properly configured |
 | Cost budget is zero | HALT -- headless mode incurs API costs |
 | CI platform not supported (no GitHub Actions, no GitLab CI) | HALT -- manual setup required |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*optimize-workflow`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Optimize Claude Code workflow for maximum productivity by analyzing usage patterns, identifying bottlenecks, and configuring permissions, shortcuts, and automation.
+## Purpose Optimize Claude Code workflow for maximum productivity by analyzing usage patterns, identifying bottlenecks, and configuring permissions, shortcuts, and automation.
 
 ---
 
@@ -52,7 +52,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -62,7 +62,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Claude Code integration exists (.claude/ directory present)
 - User has used Claude Code on this project at least once
@@ -164,7 +164,7 @@ Produce a prioritized optimization plan:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Workflow Optimization Report
@@ -216,7 +216,7 @@ Produce a prioritized optimization plan:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Usage patterns analyzed and maturity level classified
 - [ ] Bottlenecks identified with impact assessment

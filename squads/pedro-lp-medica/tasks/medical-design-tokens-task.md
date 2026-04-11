@@ -8,6 +8,38 @@ elicit: false
 
 # Task: Medical Design Tokens — Clinical Luxury System
 
+## purpose
+Generate a complete, project-specific design token system based on the Clinical Luxury design system, customized for the medical specialty and brand identity of the client. The output is a production-ready tokens.css file and Tailwind v4 configuration.
+
+## entrada
+- Briefing medico completo (output de medical-briefing-task)
+- Especialidade medica do projeto
+- Fotos e identidade visual existente do cliente
+- Preferencia de tonalidade (sobrio vs acolhedor)
+- Publico-alvo definido (faixa etaria e perfil)
+
+## saida
+- Arquivo /styles/tokens.css com todos os design tokens
+- Configuracao Tailwind v4 em /app/globals.css
+- Preview visual da paleta de cores
+- Relatorio de audit de contraste WCAG 2.1 AA
+
+## checklist
+- [ ] tokens.css gerado com todos os tokens necessarios
+- [ ] Cores brand personalizadas para a especialidade medica
+- [ ] Nenhuma cor hardcodada fora do tokens.css
+- [ ] Contraste verificado: texto/fundo >= 4.5:1 em todas as combinacoes
+- [ ] Contraste de foco >= 3:1 (WCAG 2.1 AA)
+- [ ] Dark section tokens funcionando
+- [ ] Reduced motion implementado
+- [ ] Tailwind v4 mapeado corretamente
+- [ ] Revisado e aprovado por medical-ui-artisan
+
+## pre-conditions
+- medical-briefing-task concluida e aprovada
+- Especialidade medica e publico-alvo definidos
+- Identidade visual ou referenciais de marca coletados do cliente
+
 ## Objetivo
 Gerar o sistema completo de design tokens do projeto, personalizado para a marca médica específica, usando o design system "Clinical Luxury" como base. Output: arquivo `styles/tokens.css` pronto para implementação.
 

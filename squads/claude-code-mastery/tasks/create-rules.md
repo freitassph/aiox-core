@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*create-rules`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Create conditional rules in `.claude/rules/` with proper `paths:` YAML frontmatter for context-efficient loading, ensuring rules only activate when relevant files are being worked on.
+## Purpose Create conditional rules in `.claude/rules/` with proper `paths:` YAML frontmatter for context-efficient loading, ensuring rules only activate when relevant files are being worked on.
 
 ---
 
@@ -25,7 +25,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -36,7 +36,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - .claude/ directory exists (or will be created)
 - Understanding of which directories/files the rule should apply to
@@ -155,7 +155,7 @@ When creating {X}, follow this pattern:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Rule Created
@@ -196,7 +196,7 @@ conventions. The rule will be active in that context.
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Rule need identified and categorized
 - [ ] File created in .claude/rules/ with correct path

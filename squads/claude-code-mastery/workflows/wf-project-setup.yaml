@@ -18,6 +18,24 @@ workflow:
   entry_agent: claude-mastery-chief
   estimated_duration: "30-60 minutes"
 
+  pre_conditions:
+    - "Working directory is a Git repository or valid project root"
+    - "Specialist agents are initialized and loaded"
+    - "Basic project structure detection is possible"
+
+  post_conditions:
+    - ".claude/ directory is fully populated with settings, rules, and scripts"
+    - "CLAUDE.md is optimized for project context"
+    - "Setup passes final audit with score >= 70"
+
+  on_failure:
+    - "Clean up partial .claude/ artifacts if setup fails mid-way"
+    - "Generate diagnostic report for remediation"
+
+  retry:
+    max_attempts: 2
+    retry_on: [filesystem_error, network_timeout]
+
 # ────────────────────────────────────────────────────────────────────────────
 # PHASES
 # ────────────────────────────────────────────────────────────────────────────

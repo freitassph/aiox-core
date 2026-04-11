@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*setup-wizard`
 **Orchestrator:** Orion (claude-mastery-chief)
-**Purpose:** Interactive wizard to set up Claude Code for a new or existing project, generating all required configuration files tailored to the detected project type.
+## Purpose Interactive wizard to set up Claude Code for a new or existing project, generating all required configuration files tailored to the detected project type.
 
 ---
 
@@ -31,7 +31,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -41,7 +41,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Working directory is a project root
 - Write access to the project directory
@@ -178,7 +178,7 @@ Analyze the project to determine its type:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Setup Complete
@@ -225,7 +225,7 @@ Analyze the project to determine its type:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Project type detected and confirmed
 - [ ] CLAUDE.md generated under 200 lines

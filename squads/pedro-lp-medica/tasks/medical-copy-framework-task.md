@@ -8,6 +8,35 @@ elicit: false
 
 # Task: Medical Copy Framework — Copy Humanizada CFM-Compliant
 
+## purpose
+Produce all landing page copy for the medical project including headlines, section texts, CTAs, FAQ, and testimonials, in a CFM/CONAR-compliant tone that educates patients, builds trust, and drives appointment bookings.
+
+## entrada
+- Briefing completo aprovado pelo medico
+- Compliance Risk Map da especialidade medica
+- SEO keyword strategy para otimizacao
+- Tom de comunicacao definido pelo medical-briefing-strategist
+
+## saida
+- Arquivos de copy por secao: hero, about, services, testimonials, FAQ
+- Compliance Clearance de copy assinada pelo cfm-compliance-sentinel
+- Copy aprovada pelo medico responsavel com assinatura e data
+
+## checklist
+- [ ] Headlines com foco no paciente (nao no medico)
+- [ ] H1 contem especialidade + beneficio + localizacao implicita
+- [ ] Copy revisada linha a linha pelo cfm-compliance-sentinel
+- [ ] Compliance Clearance emitida
+- [ ] Copy aprovada pelo medico responsavel (assinatura + data)
+- [ ] Nenhum placeholder no copy final
+- [ ] FAQ com respostas para as top 3 objecoes do briefing
+- [ ] Tone of voice consistente em todas as secoes
+
+## pre-conditions
+- medical-briefing-task concluida e aprovada
+- Compliance Risk Map da especialidade disponivel
+- SEO keyword strategy disponivel
+
 ## Objetivo
 Produzir TODA a copy da landing page médica: headlines, subtítulos, descrições de serviço, textos de seções, CTAs, FAQ e depoimentos. Copy 100% aprovada pelo médico e em conformidade com CFM/CONAR.
 

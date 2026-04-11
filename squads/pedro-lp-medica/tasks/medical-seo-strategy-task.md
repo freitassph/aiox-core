@@ -8,6 +8,34 @@ elicit: false
 
 # Task: Medical SEO Strategy — Local Search & E-E-A-T
 
+## purpose
+Define a complete SEO strategy for the medical landing page including keyword research, URL structure, Schema.org markup, Google Business Profile setup, and an editorial content calendar for organic growth.
+
+## entrada
+- Briefing completo com especialidade, cidade e servicos
+- Anlise de concorrencia (top 3 ranking para keywords principais)
+- Copy da landing page para alinhamento de keywords
+- Lista de condicoes tratadas pelo medico
+
+## saida
+- Documento /docs/seo-strategy.md com keywords e prioridades
+- Arquivo JSON-LD Schema.org completo para implementacao
+- Calendario editorial de 6 meses
+- Guia de configuracao do Google Meu Negocio
+
+## checklist
+- [ ] 10-15 keywords primarias selecionadas com volume e dificuldade
+- [ ] Estrutura de URLs mapeada para cada tipo de pagina
+- [ ] Schema.org JSON-LD gerado para MedicalBusiness + Physician
+- [ ] FAQPage, BreadcrumbList e MedicalCondition incluidos
+- [ ] Google Meu Negocio configurado com todas as informacoes
+- [ ] Content calendar com 6 artigos Tier 3 definidos
+
+## pre-conditions
+- medical-briefing-task concluida
+- Especialidade medica, cidade e servicos definidos
+- Concorrencia local mapeada
+
 ## Objetivo
 Definir estratégia completa de SEO para o projeto: keyword research, estrutura de URLs, Schema.org, Google Meu Negócio e content calendar.
 

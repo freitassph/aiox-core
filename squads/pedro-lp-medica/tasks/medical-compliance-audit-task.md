@@ -8,6 +8,34 @@ elicit: false
 
 # Task: Medical Compliance Audit — CFM/CONAR/LGPD Full Audit
 
+## purpose
+Execute a full compliance audit of the medical project against CFM Resolution 2.336/2023, CONAR Healthcare guidelines, and LGPD health data requirements, producing a signed compliance clearance for launch.
+
+## entrada
+- Copy completa aprovada pelo medico (para Audit 1)
+- Site em staging/preview (para Audit 2)
+- Checklist CFM 2336/2023
+- Checklist LGPD health data
+
+## saida
+- Relatorio de copy compliance (Audit 1)
+- Relatorio de site compliance (Audit 2)
+- Compliance Clearance final assinada pelo auditor responsavel
+
+## checklist
+- [ ] Zero Blockers em qualquer checklist
+- [ ] CRM verificado no portal CFM online
+- [ ] Compliance Clearance emitida (Audit 1 + Audit 2)
+- [ ] Aprovacao do medico responsavel (assinatura no relatorio)
+- [ ] Disclaimer de depoimentos visivel no site
+- [ ] Consentimento LGPD funcional em todos os formularios
+- [ ] Cookie banner implementado com opcao de recusar
+
+## pre-conditions
+- Copy completa produzida pela medical-copy-framework-task
+- Site implementado em ambiente de staging (para Audit 2)
+- medical-copy-framework-task concluida
+
 ## Objetivo
 Executar auditoria completa de conformidade em toda a comunicação digital do projeto. Esta task roda em 2 momentos: (1) antes da implementação (copy audit) e (2) antes do lançamento (full site audit).
 

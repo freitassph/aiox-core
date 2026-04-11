@@ -1,0 +1,149 @@
+name: game-ui-design-workflow
+description: Workflow de design de UI para jogos — do GDD ao playtest
+version: "1.0"
+squad: pedro-design
+trigger:
+  command: "*game-ui-design"
+  event: game-ui-request
+steps:
+  - id: gdd-analysis
+    agent: pdg-game-ui-designer
+    action: Analisar Game Design Document — mecânicas, core loop, plataforma, audiencia
+    outputs:
+      - game-requirements
+      - ui-needs-map
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: hud-design
+    on_failure: error-handler
+  - id: hud-design
+    agent: pdg-game-ui-designer
+    depends_on: gdd-analysis
+    action: Design do HUD — o que mostrar, onde, quando, como
+    outputs:
+      - hud-layout
+      - information-priority-map
+      - contextual-elements
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: menu-system
+    on_failure: error-handler
+  - id: menu-system
+    agent: pdg-game-ui-designer
+    depends_on: gdd-analysis
+    action: Design do sistema de menus — main, pause, settings, inventory
+    parallel_with:
+      - interaction-specs
+    outputs:
+      - menu-flowchart
+      - screen-inventory
+      - navigation-patterns
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: interaction-specs
+    on_failure: error-handler
+  - id: interaction-specs
+    agent: pdg-game-ui-designer
+    depends_on: hud-design
+    action: Especificar interações — input mapping, feedback, transitions
+    parallel_with:
+      - menu-system
+    outputs:
+      - interaction-specs
+      - feedback-matrix
+      - transition-guide
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: visual-design
+    on_failure: error-handler
+  - id: visual-design
+    agent: pdg-game-ui-designer
+    depends_on:
+      - hud-design
+      - menu-system
+    action: Aplicar visual — style guide do jogo, cores, tipografia, iconografia
+    outputs:
+      - ui-visual-design
+      - icon-set
+      - style-applied-screens
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: accessibility-config
+    on_failure: error-handler
+  - id: accessibility-config
+    agent: pdg-game-ui-designer
+    depends_on: visual-design
+    action: Configurar acessibilidade — colorblind, UI scaling, remapping
+    outputs:
+      - accessibility-config
+      - options-menu
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: prototype
+    on_failure: error-handler
+  - id: prototype
+    agent: pdg-game-ui-designer
+    depends_on:
+      - visual-design
+      - interaction-specs
+    action: Prototipar UI interativa — Figma ou engine
+    outputs:
+      - interactive-prototype
+      - flow-demo
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: playtest
+    on_failure: error-handler
+  - id: playtest
+    agent: pdg-game-ui-designer
+    depends_on: prototype
+    action: Playtest com foco em UI — comprehension, speed, satisfaction, frustration
+    outputs:
+      - playtest-results
+      - ui-issues
+      - iteration-priorities
+      - game-ui-approved
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: complete
+    on_failure: error-handler
+success_criteria:
+  - GDD analisado com UI needs map
+  - HUD layout com information priority map
+  - Menu system com flowchart completo
+  - Interaction specs com feedback matrix
+  - Visual design aplicado consistentemente
+  - Accessibility configurado com opções documentadas
+  - Protótipo interativo funcional
+  - Playtest com minimum 5 jogadores, 80% comprehension rate
+error_handler:
+  actions:
+    - action: log
+      message: "Workflow failed at {step_id} with error: {error}"
+    - action: notify
+      channel: pedro-design-alerts
+      recipient: pdg-chief
+pre_conditions:
+  - All required agents available and activated
+  - Design brief approved by pdg-chief
+  - Budget and timeline validated
+post_conditions:
+  - All design assets delivered
+  - Quality gates passed
+  - Client or stakeholder sign-off received

@@ -13,6 +13,20 @@ Saida: |
 
 # *gather-requirements
 
+## Purpose
+Definir a fundação estratégica e técnica do projeto através de requisitos claros e personas validadas.
+
+## Pre-conditions
+- Disponibilidade do briefing inicial do projeto.
+- Acesso às ferramentas de documentação (Markdown).
+
+## Checklist
+- [ ] Personas identificadas e documentadas
+- [ ] FRs priorizados (MUST/SHOULD/COULD)
+- [ ] NFRs definidos (Performance, Segurança, Acessibilidade)
+- [ ] Constraints mapeadas
+- [ ] User Stories criadas em `docs/stories/`
+
 Criar PRD completo com personas, requisitos funcionais e não-funcionais.
 
 ## Fases de Execução

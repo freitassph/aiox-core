@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*audit`
 **Orchestrator:** Orion (claude-mastery-chief)
-**Purpose:** Perform a comprehensive audit of the Claude Code setup in the current project, generating a scored report with actionable recommendations.
+## Purpose Perform a comprehensive audit of the Claude Code setup in the current project, generating a scored report with actionable recommendations.
 
 ---
 
@@ -31,7 +31,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -40,7 +40,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Working directory is a project root (has package.json, .git/, or similar project markers)
 - Read access to .claude/ directory and its subdirectories
@@ -162,7 +162,7 @@ Calculate the final score and generate recommendations.
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Claude Code Setup Audit Report
@@ -215,7 +215,7 @@ Calculate the final score and generate recommendations.
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] All applicable phases executed (quick: 1-3, full: 1-8)
 - [ ] Numeric score calculated with breakdown

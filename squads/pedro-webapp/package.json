@@ -1,0 +1,51 @@
+{
+  "name": "pedro-webapp",
+  "version": "2.1.0",
+  "description": "Squad elite para construção de qualquer webapp moderno: landing pages de alta conversão, dashboards analíticos, SaaS apps completos com auth/billing/multi-tenancy",
+  "main": "scripts/validate-squad.js",
+  "bin": {
+    "webapp-validate": "./scripts/validate-squad.js",
+    "webapp-audit": "./scripts/quality-gate-runner.js"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-squad.js",
+    "count-lines": "node scripts/agent-line-counter.js",
+    "quality-gate": "node scripts/quality-gate-runner.js",
+    "health-check": "node scripts/build-and-audit.js",
+    "build-and-audit": "node scripts/build-and-audit.js",
+    "check-workflows": "node scripts/check-orchestrator.js",
+    "audit": "npm run validate && npm run count-lines && npm run quality-gate && npm run check-workflows",
+    "full-audit": "npm run audit && npm run build-and-audit",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "aiox",
+    "webapp",
+    "landing-page",
+    "dashboard",
+    "saas",
+    "nextjs",
+    "stripe",
+    "clerk",
+    "quality-gate",
+    "tier-s-plus-plus"
+  ],
+  "author": "Pedro Henrique Menezes de Freitas",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.3.4",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro/aiox-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pedro/aiox-core/issues"
+  },
+  "homepage": "https://github.com/pedro/aiox-core#readme"
+}

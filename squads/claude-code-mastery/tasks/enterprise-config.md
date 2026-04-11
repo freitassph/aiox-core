@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*enterprise-config`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Generate and deploy enterprise-grade Claude Code configuration using managed-settings.json for organizational policy enforcement, MDM integration, compliance rules, and standardized MCP server deployment across teams.
+## Purpose Generate and deploy enterprise-grade Claude Code configuration using managed-settings.json for organizational policy enforcement, MDM integration, compliance rules, and standardized MCP server deployment across teams.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -38,7 +38,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Administrative access to deploy managed settings files
 - Understanding of organizational security policies
@@ -272,7 +272,7 @@ dir "C:\Program Files\ClaudeCode\managed-settings.json"
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Enterprise Configuration Package
@@ -335,7 +335,7 @@ dir "C:\Program Files\ClaudeCode\managed-settings.json"
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] managed-settings.json generated with deny-first rules and enterprise policy keys
 - [ ] MDM/OS-level deployment method documented for target platforms

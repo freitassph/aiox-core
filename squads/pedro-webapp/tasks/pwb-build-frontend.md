@@ -13,7 +13,20 @@ Saida: |
 
 # *build-frontend
 
-Implementar frontend completo com Next.js 15 — Server Components, performance Lighthouse >= 95.
+## Purpose
+Implementar o frontend do WebApp utilizando tecnologias modernas para garantir performance, acessibilidade e uma experiência de usuário premium.
+
+## Pre-conditions
+- Handoff de design concluído pelo @pwb-ux-designer.
+- Contrato de API definido e validado pelo @pwb-backend.
+
+## Checklist
+- [ ] Setup do Next.js 15 e Shadcn/ui concluído
+- [ ] Layout base e Providers configurados
+- [ ] Componentes implementados conforme HANDOFF.md
+- [ ] Formulários validados com Zod e React Hook Form
+- [ ] Performance Lighthouse validada (Score >= 95)
+- [ ] Responsividade e Dark Mode funcionais
 
 ## Fases de Execução
 

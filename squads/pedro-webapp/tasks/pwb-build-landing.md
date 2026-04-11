@@ -15,7 +15,20 @@ Saida: |
 
 # *build-landing
 
-Construir landing page de alta conversão com Lighthouse 100 e CRO otimizado.
+## Purpose
+Construir uma landing page de alta performance e conversão, otimizada para SEO e com uma estética premium que reflita a qualidade do produto.
+
+## Pre-conditions
+- Handoff de design e especificações CRO validados.
+- Copywriting final aprovado e revisado pelo PM.
+
+## Checklist
+- [ ] Estrutura de rotas (marketing) configurada
+- [ ] Hero Section implementada com foco em LCP e conversão
+- [ ] Todas as seções (Features, Pricing, FAQ) migradas do design
+- [ ] Otimização de Performance Lighthouse (Meta 100) concluída
+- [ ] Metadados e OG Image dinâmicos implementados
+- [ ] Testes de responsividade mobile finalizados
 
 ## Fases de Execução
 

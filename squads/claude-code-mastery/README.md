@@ -1,8 +1,8 @@
 # Claude Code Mastery Squad
 
-> Full-spectrum expertise in Claude Code: hooks, skills, subagents, MCP, plugins, agent teams, customization, integration, and roadmap awareness.
+## Overview
 
-**Version:** 1.0.0 | **Created:** 2026-03-01 | **Total:** 8 agents, 6,741 lines
+The Claude Code Mastery Squad is a Tier S+++ specialized unit designed to master the full-spectrum expertise of Claude Code. This squad oversees hooks, skills, subagents, MCP, plugins, agent teams, customization, integration, and roadmap tracking.
 
 ## Squad Architecture
 

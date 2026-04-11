@@ -13,7 +13,20 @@ Saida: |
 
 # *build-backend
 
-Implementar API Hono.js com Clean Architecture, rate limiting, RBAC e error handling.
+## Purpose
+Implementar uma API robusta e escalável seguindo padrões de Clean Architecture, garantindo segurança e alta performance no processamento de dados.
+
+## Pre-conditions
+- Schema do banco de dados (Drizzle/SQL) validado.
+- Contrato de API (OpenAPI/docs) definido.
+
+## Checklist
+- [ ] Setup do ambiente Hono.js e Drizzle orm concluído
+- [ ] Middlewares fundamentais configurados (CORS, Auth, Logs)
+- [ ] Rotas e Services implementados conforme contrato
+- [ ] Multi-tenancy (RLS/orgId) validado em todos os endpoints
+- [ ] Background jobs (BullMQ) configurados para tarefas pesadas
+- [ ] Health Check operacional
 
 ## Fases de Execução
 

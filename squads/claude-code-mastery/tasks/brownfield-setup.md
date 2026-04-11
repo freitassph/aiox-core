@@ -2,7 +2,7 @@
 
 **Task ID:** brownfield-setup
 **Version:** 1.0
-**Purpose:** Set up Claude Code in an existing brownfield project, respecting established conventions and protecting critical paths
+## Purpose Set up Claude Code in an existing brownfield project, respecting established conventions and protecting critical paths
 **Orchestrator:** @project-integrator (Conduit)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** No existing workflow disrupted, deny rules protect critical paths, conventions documented
@@ -51,7 +51,7 @@ OUTPUT: Brownfield integration config + protected paths + convention docs
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -63,7 +63,7 @@ OUTPUT: Brownfield integration config + protected paths + convention docs
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Project exists with established codebase (not greenfield)
 2. Project has existing commit history (to analyze conventions)
@@ -287,7 +287,7 @@ paths:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 brownfield_setup_result:
@@ -320,3 +320,11 @@ brownfield_setup_result:
 | Cannot detect any coding patterns (empty repo) | HALT -- nothing to learn from |
 | Critical paths list is empty and project is large | WARN -- strongly recommend identifying critical paths |
 | Existing .claude/settings.json has deny rules | MERGE -- add to existing rules, do not replace |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

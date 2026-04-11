@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*multi-project-setup`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Set up Claude Code for multiple related projects, configuring shared user settings, project-specific overrides, shared MCP servers, and cross-project rules.
+## Purpose Set up Claude Code for multiple related projects, configuring shared user settings, project-specific overrides, shared MCP servers, and cross-project rules.
 
 ---
 
@@ -52,7 +52,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -62,7 +62,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - All listed project directories exist and are accessible
 - User has write access to `~/.claude/` (user-level config)
@@ -165,7 +165,7 @@ Run verification across all projects:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Multi-Project Setup Report
@@ -217,7 +217,7 @@ Run verification across all projects:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Project relationships analyzed and mapped
 - [ ] Shared user settings configured at ~/.claude/

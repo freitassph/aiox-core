@@ -4,6 +4,37 @@
 
 ---
 
+## Overview
+
+Medical Landing Squad é um squad AIOX Tier S+++ especializado na criação de landing pages médicas de altíssima qualidade. Este squad segue o framework AIOX com CLI First, Agent Authority, e Story-Driven Development.
+
+**Directory structure:**
+```
+pedro-lp-medica/
+├── agents/          # 13 agentes especializados
+├── tasks/           # 8 tasks com acceptance criteria
+├── workflows/       # 3 workflows (full, design sprint, quick launch)
+├── checklists/      # 5 checklists de qualidade e compliance
+├── templates/       # 4 templates reutilizáveis
+├── config/          # Coding standards, tech stack, source tree
+├── scripts/         # Quality gates, validation, audit scripts
+└── package.json     # Dependencies e scripts de automação
+```
+
+**CLI Commands:**
+```bash
+npm run validate        # Valida estrutura do squad
+npm run count-lines     # Conta linhas de agentes (min 400)
+npm run quality-gate    # Executa 7 quality gates
+npm run check-workflows # Verifica integridade de workflows
+npm run audit           # Audit completo (validate + count + quality + workflows)
+npm run full-audit      # Audit + build-and-audit
+```
+
+**Dependencies:** yaml, zod, chalk, commander, glob
+
+---
+
 ## O que este squad entrega
 
 Sites médicos que são **genuinamente extraordinários**: mais sofisticados que a maioria dos sites corporativos, mais acolhedores que a média da área médica, e em perfeita conformidade com CFM, CONAR e LGPD.

@@ -8,6 +8,35 @@ elicit: false
 
 # Medical Landing Page — Compliant & Converting
 
+## purpose
+Orchestrate the end-to-end construction of a high-conversion medical landing page that is fully compliant with CFM and CONAR regulations, focused on patient education, trust building, and facilitating appointment bookings.
+
+## entrada
+- Dados do medico responsavel (CRM, RQE, especialidade, bio)
+- Regulamentacoes CFM/CONAR aplicaveis a especialidade
+- Referencias de concorrencia e benchmarks
+- Fotos e materiais visuais do medico e clinica
+
+## saida
+- Landing page publicada e funcional com dominio configurado
+- Compliance map aprovado pelo medico com zero itens de alto risco
+- Todo conteudo revisado e aprovado pelo medico responsavel
+- Relatorio tecnico com Lighthouse score > 85 e structured data valido
+
+## checklist
+- [ ] Compliance map aprovado pelo medico
+- [ ] Zero itens de alto risco na estrategia
+- [ ] Todo conteudo revisado e aprovado pelo medico com CRM documentado
+- [ ] Prototipo aprovado e fluxo de agendamento testado end-to-end
+- [ ] Zero issues criticos de compliance no audit final
+- [ ] Lighthouse score > 85
+- [ ] Structured data validado no Rich Results Test
+
+## pre-conditions
+- Medico responsavel identificado e disponivel para briefing
+- Especialidade medica e servicos definidos
+- Fotos e materiais visuais disponiveis
+
 ## Objetivo
 Construir landing page ou site médico de alta conversão, em total conformidade com CFM e CONAR, com foco em educar o paciente, construir confiança e facilitar o agendamento.
 

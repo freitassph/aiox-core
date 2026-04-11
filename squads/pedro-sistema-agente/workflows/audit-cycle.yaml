@@ -1,38 +1,83 @@
 workflow:
   id: audit-cycle
-  name: "Continuous Audit Cycle"
-  description: |
-    Ciclo de auditoria contínua para sistemas em produção.
-    Executar semanalmente ou após qualquer deploy significativo.
-    Verifica segurança, performance, comportamento do agente e alertas.
-  version: 1.0.0
-
-  trigger:
-    schedule: "weekly"
-    on_deploy: true
-
-  sequence:
-    - task: psa-audit-system
+  name: Continuous Security & Quality Audit (S+++)
+  description: Ciclo recursivo de auditoria para garantir integridade permanente da squad.
+  version: 1.1.0
+  pre_conditions:
+    - Environment is stable
+    - All agents are active
+  post_conditions:
+    - System is audit-ready
+    - Results are verified
+  steps:
+    - id: scan-all-agents
       agent: psa-auditor
-      description: "Auditoria completa: código, segurança, performance, agente"
-      outputs: ["docs/audit-reports/audit-{date}.md"]
-
-    - task: qa-regression
-      agent: psa-qa
-      description: "Suite de testes de regressão completa"
-      depends_on: [psa-audit-system]
-      outputs: ["tests/results/regression-{date}.json"]
-
-    - task: delivery-status
+      task: Realizar varredura completa de densidade e estrutura em todos os agentes
+        (.md).
+      retry:
+        max_attempts: 3
+        delay_ms: 500
+        strategy: fixed
+      error_handler:
+        - action: flag_incomplete_agents
+        - action: notify_pm
+    - id: audit-vps-hardening
+      agent: psa-devops
+      task: Verificar portas, firewall, SSH e integridade do Sistema Operacional.
+      retry:
+        max_attempts: 2
+        delay_ms: 1000
+        strategy: exponential
+      error_handler:
+        - action: lockdown_ssh
+        - action: alert_security_team
+    - id: check-rls-compliance
+      agent: psa-data-engineer
+      task: Auditar políticas de Row Level Security e isolamento de dados no
+        Supabase/Postgres.
+      retry:
+        max_attempts: 3
+        delay_ms: 1000
+        strategy: exponential
+      error_handler:
+        - action: revoke_temporary_keys
+        - action: notify_auditor
+    - id: validate-api-security
+      agent: psa-backend
+      task: Testar middlewares de autenticação, rate-limit e proteção contra injeção.
+      retry:
+        max_attempts: 2
+        delay_ms: 1000
+        strategy: fixed
+      error_handler:
+        - action: log_vulnerability_report
+        - action: block_api_access
+    - id: sanity-test-workflows
       agent: psa-maestro
-      description: "Resumo executivo semanal: métricas, issues, recomendações"
-      depends_on: [qa-regression]
-      outputs: ["docs/weekly-reports/report-{date}.md"]
-
-  escalation:
-    on_critical_finding:
-      notify: ["psa-maestro", "psa-backend"]
-      action: "STOP_DEPLOY"
-    on_agent_hallucination_spike:
-      notify: ["psa-ai-builder", "psa-maestro"]
-      action: "REVIEW_PROMPTS"
+      task: Validar se todos os workflows YAML estão seguindo o schema S+++ vigente.
+      retry:
+        max_attempts: 3
+        delay_ms: 500
+        strategy: fixed
+      error_handler:
+        - action: invalidate_workflow_cache
+        - action: notify_architect
+    - id: sync-knowledge-base
+      agent: psa-doc-writer
+      task: Auditar e sincronizar ADRs e documentação com as mudanças de auditoria.
+      retry:
+        max_attempts: 2
+        delay_ms: 1000
+        strategy: fixed
+      error_handler:
+        - action: mark_docs_as_stale
+        - action: notify_doc_team
+  error_handler:
+    actions:
+      - action: psa-audit-system
+        message: Triggering audit system due to failure
+      - action: log-error
+        message: Logging workflow error to centralized bucket
+  retry:
+    count: 3
+    delay: 10s

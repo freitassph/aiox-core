@@ -15,7 +15,20 @@ Saida: |
 
 # *setup-auth
 
-Configurar autenticação, autorização RBAC e gestão de sessão.
+## Purpose
+Configurar um sistema de autenticação e autorização seguro e granulado (RBAC), protegendo os dados dos usuários e da organização.
+
+## Pre-conditions
+- Definição de papéis (roles) e permissões detalhada no PRD.
+- Decisão estratégica entre Clerk e Supabase Auth documentada.
+
+## Checklist
+- [ ] Provider de Autenticação configurado e integrado
+- [ ] Middleware de proteção de rotas operacional
+- [ ] Páginas de Auth (Sign-in/Sign-up) customizadas
+- [ ] RBAC implementado no banco (RLS) e no código
+- [ ] Logging de eventos de segurança ativo
+- [ ] Security Hardening (Rate limiting, MFA) validado
 
 ## Fases de Execução
 

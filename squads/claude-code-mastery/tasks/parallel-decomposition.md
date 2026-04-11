@@ -2,7 +2,7 @@
 
 **Task ID:** parallel-decomposition
 **Version:** 1.0
-**Purpose:** Decompose a complex task into subtasks for parallel multi-agent execution
+## Purpose Decompose a complex task into subtasks for parallel multi-agent execution
 **Orchestrator:** @swarm-orchestrator (Nexus)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Dependency graph validated, no circular dependencies, merge strategy tested
@@ -51,7 +51,7 @@ OUTPUT: Execution plan + dependency graph + agent configs + merge strategy
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -63,7 +63,7 @@ OUTPUT: Execution plan + dependency graph + agent configs + merge strategy
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Task is large enough to benefit from parallelization (2+ independent subtasks)
 2. Claude Code is operational with Agent tool available
@@ -252,7 +252,7 @@ Time ->
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 parallel_decomposition_result:
@@ -291,3 +291,11 @@ parallel_decomposition_result:
 | Multiple agents must write to same file | HALT -- redesign with file ownership or worktree |
 | Critical path time exceeds time constraint | WARN -- consider decomposing critical path subtasks further |
 | Estimated cost exceeds budget | HALT -- downgrade models or reduce parallelism |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

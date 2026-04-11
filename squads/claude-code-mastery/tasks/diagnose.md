@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*diagnose`
 **Orchestrator:** Orion (claude-mastery-chief)
-**Purpose:** Triage Claude Code questions and problems, provide a quick answer, and route to the appropriate specialist agent when domain-specific expertise is needed.
+## Purpose Triage Claude Code questions and problems, provide a quick answer, and route to the appropriate specialist agent when domain-specific expertise is needed.
 
 ---
 
@@ -44,7 +44,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -53,7 +53,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Claude Code Mastery squad is active with Orion as the entry agent
 - Routing matrix is loaded from the agent definition (triage.routing_matrix)
@@ -128,7 +128,7 @@ Rate the diagnosis confidence:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Diagnosis
@@ -157,7 +157,7 @@ Rate the diagnosis confidence:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] User question parsed and keywords extracted
 - [ ] Routing matrix consulted with scored results

@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*audit-settings`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Audit all active Claude Code settings layers for conflicts, redundancies, security gaps, and optimization opportunities by reading managed, project, local, and user configuration files.
+## Purpose Audit all active Claude Code settings layers for conflicts, redundancies, security gaps, and optimization opportunities by reading managed, project, local, and user configuration files.
 
 ---
 
@@ -26,7 +26,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -35,7 +35,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Read access to all settings file locations
 - Claude Code installed on the system
@@ -139,7 +139,7 @@ Compile all findings into a structured report.
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Settings Audit Report
@@ -196,7 +196,7 @@ Compile all findings into a structured report.
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] All accessible settings layers read and parsed
 - [ ] Conflicts between layers identified and documented

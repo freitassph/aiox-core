@@ -1,0 +1,152 @@
+name: social-campaign-workflow
+description: Workflow de campanha visual para social media — do conceito à publicação
+version: "1.0"
+squad: pedro-design
+trigger:
+  command: "*social-campaign"
+  event: social-campaign-brief
+steps:
+  - id: campaign-brief
+    agent: pdg-social-media
+    action: Analisar brief de campanha social — objetivos, plataformas, audiencia,
+      mensagem
+    outputs:
+      - campaign-objectives
+      - platform-mix
+      - content-pillars
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: visual-concept
+    on_failure: error-handler
+  - id: visual-concept
+    agent: pdg-art-director
+    depends_on: campaign-brief
+    action: Definir conceito visual da campanha — mood, style, referências
+    outputs:
+      - visual-concept-doc
+      - moodboard
+      - style-guide
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: content-calendar
+    on_failure: error-handler
+  - id: content-calendar
+    agent: pdg-social-media
+    depends_on:
+      - campaign-brief
+      - visual-concept
+    action: Planejar calendário de conteúdo — frequência, tipos, sequência narrativa
+    outputs:
+      - content-calendar
+      - content-mix
+      - narrative-sequence
+    task: pdg-create-social-pack
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: asset-production
+    on_failure: error-handler
+  - id: asset-production
+    agent: pdg-visual-designer
+    depends_on:
+      - visual-concept
+      - content-calendar
+    action: Produzir assets visuais para cada plataforma e formato
+    outputs:
+      - instagram-posts
+      - instagram-stories
+      - facebook-assets
+      - linkedin-assets
+      - tiktok-assets
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: copy-integration
+    on_failure: error-handler
+  - id: copy-integration
+    agent: pdg-ux-writer
+    depends_on: asset-production
+    action: Integrar copy com visual — captions, headlines, CTAs
+    parallel_with:
+      - quality-review
+    outputs:
+      - captioned-assets
+      - copy-document
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: quality-review
+    on_failure: error-handler
+  - id: quality-review
+    agent: pdg-social-media
+    depends_on: asset-production
+    action: Review de qualidade — brand consistency, platform specs, readability
+    parallel_with:
+      - copy-integration
+    outputs:
+      - quality-report
+      - approved-assets
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: scheduling
+    on_failure: error-handler
+  - id: scheduling
+    agent: pdg-social-media
+    depends_on:
+      - copy-integration
+      - quality-review
+    action: Programar conteúdo — datas, horários, plataformas
+    outputs:
+      - scheduled-content
+      - publishing-calendar
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: launch
+    on_failure: error-handler
+  - id: launch
+    agent: pdg-social-media
+    depends_on: scheduling
+    action: Publicar e monitorar — performance inicial, ajustes
+    outputs:
+      - launch-report
+      - initial-performance
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: complete
+    on_failure: error-handler
+success_criteria:
+  - Brief de campanha documentado com objetivos e plataformas
+  - Conceito visual aprovado por pdg-art-director
+  - Calendário de conteúdo com minimum 2 semanas planejadas
+  - Assets produzidos para todas as plataformas definidas
+  - Copy integrado em todos os assets
+  - Quality review passed em todos os assets
+  - Conteúdo programado e publicado
+  - Relatório de lançamento com métricas iniciais
+error_handler:
+  actions:
+    - action: log
+      message: "Workflow failed at {step_id} with error: {error}"
+    - action: notify
+      channel: pedro-design-alerts
+      recipient: pdg-chief
+pre_conditions:
+  - All required agents available and activated
+  - Design brief approved by pdg-chief
+  - Budget and timeline validated
+post_conditions:
+  - All design assets delivered
+  - Quality gates passed
+  - Client or stakeholder sign-off received

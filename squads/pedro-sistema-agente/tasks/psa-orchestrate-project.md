@@ -84,3 +84,28 @@ psa-auditor → Zero críticos? Alertas configurados? → GO/NO-GO
 | Tempo de entrega | Dentro do prazo | Comparar datas |
 | Agentes com primeiro GO | > 80% | Número de retornos por gate |
 | Zero críticos de segurança | 100% | Relatório psa-auditor |
+
+
+## Purpose
+O propósito desta tarefa é garantir a execução impecável de um módulo específico do sistema Pedro Henrique, seguindo os rigorosos padrões de qualidade S+++.
+
+## Entrada
+- Requisitos técnicos detalhados
+- Contexto do projeto vindo do Maestro
+- Dependências de sistemas externos validadas
+
+## Saida
+- Código fonte documentado e testado
+- Artefatos de design ou infraestrutura validados
+- Relatório de conformidade técnica
+
+## Checklist
+- [ ] Validar conformidade com os padrões de código
+- [ ] Executar testes de unidade e integração
+- [ ] Revisar documentação técnica
+- [ ] Obter aprovação do Auditor
+
+## Pre-conditions
+- Ambiente de desenvolvimento configurado
+- Todas as dependências do agente resolvidas
+- Goal da tarefa claramente definido e aceito pela squad

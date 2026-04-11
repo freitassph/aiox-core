@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*permission-strategy`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Design a comprehensive permission strategy for a project by assessing security needs, selecting the appropriate permission mode, and engineering precise allow/ask/deny rules using Claude Code's `Tool(specifier)` syntax.
+## Purpose Design a comprehensive permission strategy for a project by assessing security needs, selecting the appropriate permission mode, and engineering precise allow/ask/deny rules using Claude Code's `Tool(specifier)` syntax.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -37,7 +37,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Understanding of the project's technology stack
 - Knowledge of team composition and access patterns
@@ -191,7 +191,7 @@ Build the deny list (evaluated first, highest priority):
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Permission Strategy
@@ -255,7 +255,7 @@ Show how specific operations will be handled:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Security assessment completed with sensitivity profile
 - [ ] Permission mode selected with documented rationale

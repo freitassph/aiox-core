@@ -101,3 +101,28 @@ Implementa o backend bulletproof: Hono.js, TypeScript strict, Clean Architecture
 | TypeScript errors | 0 | pnpm typecheck |
 | ESLint warnings | 0 | pnpm lint |
 | Endpoints sem auth | 0 (exceto /health) | Code review psa-auditor |
+
+
+## Purpose
+O propósito desta tarefa é garantir a execução impecável de um módulo específico do sistema Pedro Henrique, seguindo os rigorosos padrões de qualidade S+++.
+
+## Entrada
+- Requisitos técnicos detalhados
+- Contexto do projeto vindo do Maestro
+- Dependências de sistemas externos validadas
+
+## Saida
+- Código fonte documentado e testado
+- Artefatos de design ou infraestrutura validados
+- Relatório de conformidade técnica
+
+## Checklist
+- [ ] Validar conformidade com os padrões de código
+- [ ] Executar testes de unidade e integração
+- [ ] Revisar documentação técnica
+- [ ] Obter aprovação do Auditor
+
+## Pre-conditions
+- Ambiente de desenvolvimento configurado
+- Todas as dependências do agente resolvidas
+- Goal da tarefa claramente definido e aceito pela squad

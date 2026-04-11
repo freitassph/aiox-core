@@ -8,6 +8,36 @@ elicit: false
 
 # Task: Medical Briefing — Coleta Completa de Informações
 
+## purpose
+Coletar todas as informações necessárias do cliente (médico/clínica) para iniciar o projeto com clareza total. Sem o briefing completo, nenhuma outra task pode começar.
+
+## entrada
+- Cliente (médico ou representante da clínica) disponível para sessão de 60-90 min
+- Canal de comunicação definido (video chamada, presencial, telefone)
+- Formulário de briefing estruturado (este documento)
+
+## saida
+- Briefing Document completo com 5 blocos preenchidos
+- Cliente aprovou informações coletadas
+- Pendências documentadas com plano de follow-up
+- Handoff pronto para PRD creation
+
+## checklist
+- [ ] BLOCO 1: Identificação Profissional completo
+- [ ] BLOCO 2: Clínica/Consultório completo
+- [ ] BLOCO 3: Serviços e Procedimentos completo
+- [ ] BLOCO 4: Conteúdo e Provas Sociais completo
+- [ ] BLOCO 5: Objetivo de Conversão completo
+- [ ] BLOCO 6: Técnico e Deadline completo
+- [ ] Cliente aprovou briefing por email ou assinatura
+- [ ] Pendências listadas com responsáveis e datas
+
+## pre-conditions
+- Contrato assinado e pagamento inicial recebido
+- Contato do cliente (médico ou representante) confirmado
+- Agendamento da sessão de briefing confirmado
+- Formulário de briefing preparado e enviado pré-sessão (opcional)
+
 ## Objetivo
 Coletar todas as informações necessárias do cliente (médico/clínica) para iniciar o projeto com clareza total. Sem o briefing completo, nenhuma outra task pode começar.
 

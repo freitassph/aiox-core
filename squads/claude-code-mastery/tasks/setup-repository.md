@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*setup-repository`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Set up a new repository with complete Claude Code integration from scratch, creating the .claude/ directory structure, CLAUDE.md, settings, rules, and hooks.
+## Purpose Set up a new repository with complete Claude Code integration from scratch, creating the .claude/ directory structure, CLAUDE.md, settings, rules, and hooks.
 
 ---
 
@@ -57,7 +57,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -68,7 +68,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Target directory exists and is writable
 - Node.js 18+ available on PATH
@@ -181,7 +181,7 @@ Run verification checks:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Repository Setup Report
@@ -220,7 +220,7 @@ Run verification checks:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] .claude/ directory structure created
 - [ ] CLAUDE.md generated under 150 lines with project-specific content

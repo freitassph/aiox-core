@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*hook-designer`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Design custom Claude Code hooks for a project by identifying automation needs, choosing appropriate hook types and events, designing hook logic, and producing implementation-ready specifications.
+## Purpose Design custom Claude Code hooks for a project by identifying automation needs, choosing appropriate hook types and events, designing hook logic, and producing implementation-ready specifications.
 
 ---
 
@@ -49,7 +49,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -59,7 +59,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Claude Code installed and functional
 - Understanding of the project's workflow and pain points
@@ -198,12 +198,12 @@ Verify the hook works within the full Claude Code session:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Hook Design Specification
 
-**Purpose:** {hook_purpose}
+## Purpose {hook_purpose}
 **Event:** {event_name}
 **Type:** {command|prompt}
 **Language:** {node|bash|python}
@@ -261,7 +261,7 @@ Verify the hook works within the full Claude Code session:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Hook need identified and validated as hook-suitable
 - [ ] Hook type and event selected with rationale

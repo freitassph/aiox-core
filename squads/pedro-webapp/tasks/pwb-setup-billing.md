@@ -1,74 +1,75 @@
 ---
-task: Setup Billing & Subscriptions
+task: Setup Billing
 responsavel: "@pwb-billing"
 responsavel_type: agent
 atomic_layer: task
 Entrada: |
-  - prd: docs/PRD.md (planos, preços, modelo de billing)
-  - schema: supabase/migrations/ (tabelas de customers, subscriptions)
+  - prd: docs/PRD.md
+  - stripe_account: conta ativa no Stripe
 Saida: |
-  - billing_service: apps/api/src/services/billing.service.ts
-  - billing_routes: apps/api/src/routes/billing.ts
-  - webhook: apps/web/app/api/billing/webhook/route.ts
-  - billing_ui: apps/web/app/(app)/settings/billing/
-  - pricing_page: apps/web/app/(marketing)/pricing/page.tsx
+  - billing_schema: supabase/migrations/xxx_billing.sql
+  - webhook_api: apps/api/src/routes/billing.ts
+  - customer_portal: (configurado no Stripe)
 ---
 
 # *setup-billing
 
-Configurar Stripe completo: subscriptions, webhooks, portal do cliente, pricing page.
+## Purpose
+Implementar o sistema de cobrança e gestão de assinaturas, garantindo faturamento correto, segurança em transações e conformidade fiscal.
+
+## Pre-conditions
+- Conta Stripe ativa e configurada (Modo Teste).
+- Plano de precificação (Pricing) definido no PRD.
+
+## Checklist
+- [ ] Schema de Billing criado no banco (customers, subscriptions)
+- [ ] Webhook do Stripe implementado com verificação de assinatura
+- [ ] Lógica de Checkout Session configurada no Frontend/Backend
+- [ ] Customer Portal ativado para gestão de usuários
+- [ ] Feature Gating (bloqueio por plano) implementado e testado
+- [ ] Eventos de billing (sucesso, falha, cancelamento) logados
 
 ## Fases de Execução
 
-### Fase 1: Stripe Configuration
-- Criar Products e Prices no Stripe Dashboard (ou via API)
-- Configurar Webhook endpoint: `https://api.meuapp.com.br/api/billing/webhook`
-- Salvar `STRIPE_SECRET_KEY` e `STRIPE_WEBHOOK_SECRET` no ambiente
-- Habilitar Stripe Tax (automático)
+### Fase 1: DB Schema
+- Criar migração para: `stripe_customers`, `subscriptions`, `prices`, `products`
+- Relacionar `customer` com `organization_id` (SaaS) ou `user_id` (Micro/Indie)
+- Implementar RLS: Usuário vê apenas sua própria subscrição
 
-### Fase 2: Database Schema
-- Criar tabelas: `customers`, `subscriptions`, `invoices`, `stripe_webhook_events`
-- Índices em `stripe_customer_id`, `stripe_subscription_id`
-- RLS: apenas admins de org acessam billing
+### Fase 2: Stripe Setup
+- Criar produtos e preços no Stripe Dashboard (Test Mode)
+- Configurar `STRIPE_SECRET_KEY` e `STRIPE_WEBHOOK_SECRET`
+- Ativar Stripe Customer Portal (branding e funcionalidades)
 
-### Fase 3: Checkout Flow
-- Criar checkout session com trial (14 dias por default)
-- Redirecionar para Stripe Checkout
-- Processar `checkout.session.completed` no webhook
-- Criar/atualizar subscription no banco
+### Fase 3: Webhook Handler
+- Implementar endpoint `/api/webhooks/stripe`
+- **Crítico:** Validar assinatura (`stripe.webhooks.constructEvent`)
+- Handlers para:
+  - `checkout.session.completed` → Criar/Atualizar subscrição
+  - `customer.subscription.deleted` → Marcar subscrição como inativa
+  - `invoice.payment_failed` → Notificar pwb-email para dunning
 
-### Fase 4: Webhook Handler
-- Verificar assinatura Stripe (rejeitar se inválida)
-- Idempotência: checar `stripe_webhook_events` antes de processar
-- Processar: `subscription.created/updated/deleted`, `invoice.paid/payment_failed`
-- Retornar 200 para Stripe confirmar recebimento
+### Fase 4: Checkout Flow
+- Backend: `createCheckoutSession()` → retornar `url` do Stripe
+- Frontend: Botão de upgrade → chamar API → redirect para Stripe
 
-### Fase 5: Customer Portal
-- Implementar `POST /api/billing/portal` → retorna URL do portal Stripe
-- Botão "Gerenciar assinatura" em settings/billing
+### Fase 5: Feature Gating
+- Implementar helper `requireSubscription()` ou similar
+- Middleware para rotas premium
+- Bloquear UI components baseados no plano (UI gating)
 
-### Fase 6: Feature Gating
-- Implementar `PLAN_FEATURES` com limites por plano
-- `checkFeatureAccess(userId, feature)` helper
-- `requireFeature(feature)` middleware para routes da API
-- UI: mostrar upgrade prompt quando feature bloqueada
-
-### Fase 7: Pricing Page
-- Implementar toggle monthly/annual (mostrar economia)
-- Tier central destacado como "Mais Popular"
-- CTA diferente por tier
-- FAQ de objeções de pricing
-
-### Fase 8: Dunning
-- Email automático quando pagamento falha (template no pwb-email)
-- Restrição de acesso após 3 tentativas falhadas
+### Fase 6: Testes de Faturamento
+- Teste: Assinar com cartão de teste (4242...) → verificar DB subscrição ativa
+- Teste: Cancelar subscrição → verificar DB subscrição inativa
+- Teste: Falha no pagamento → verificar log de falha
+- Teste: Webhook sem assinatura → deve retornar 400
 
 ## Critério de Conclusão
-Checkout funcionando end-to-end, webhook processando eventos, feature gating ativo, portal do cliente funcional.
+Pagamentos funcionando do checkout ao webhook, RLS de billing ativo, feature gating validado.
 
 ## KPIs
 | Métrica | Alvo |
 |---------|------|
-| Webhook processing errors | 0 |
-| Billing bugs críticos | 0 |
-| Checkout completion rate | > 70% |
+| Tempos de resposta webhook | < 500ms |
+| Discrepância Stripe vs DB | 0 |
+| Segredos do Stripe em plain text | 0 |

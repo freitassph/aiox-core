@@ -1,174 +1,157 @@
 # Pedro WebApp Squad
 
-**Squad elite para construção de qualquer webapp moderno.**
-Design nível Apple/Ferrari. Backend bulletproof. Deploy automático. Qualidade $1B.
+**Squad elite para construção de qualquer webapp comercial de alta performance.**
+Design nível Apple/Ferrari. Backend bulletproof. Deploy automático em VPS. Qualidade Tier S+++.
 
 ---
 
-## Visão Geral
+## 📋 Overview (Visão Geral)
 
-O `pedro-webapp` cobre todos os tipos de webapp:
-
-- **Landing Pages** — Alta conversão, Lighthouse 100, CRO otimizado
-- **Dashboards** — Admin panels, analytics, gestão
-- **SaaS Completo** — Auth + Billing + Multi-tenancy + Analytics + Email
+O **Pedro WebApp Squad** é uma unidade de engenharia de elite especializada no ciclo completo de produtos digitais modernos. Focado em performance extrema, estética premium e arquitetura resiliente, o squad utiliza as tecnologias mais avançadas do ecossistema Next.js e Supabase para entregar soluções prontas para escala global.
 
 ---
 
-## Time (17 Agentes)
+## 🏛️ Filosofia e Constituição
+
+Este squad opera sob os princípios da **AIOX Constitution**:
+
+1.  **CLI First**: Toda funcionalidade deve ser operável via CLI. Dashboards são para observação.
+2.  **Qualidade Inegociável**: Build, Lint, Typecheck e Auditoria devem estar sempre em 100/100.
+3.  **Story-Driven Development**: Todo progresso é rastreado via stories e tasks atômicas.
+4.  **No Invention**: Requisitos derivam de fatos técnicos e PRDs, não de suposições.
+5.  **Aesthetics of Excellence**: Interfaces que "wowed" no primeiro segundo.
+
+---
+
+## 📁 Estrutura de Diretórios (Directory Structure)
+
+A organização segue o padrão mono-repo funcional para garantir isolamento e escalabilidade:
+
+```text
+pedro-webapp/
+├── agents/             # Definições de agentes (Markdown >400 linhas)
+│   ├── pwb-maestro.md  # Orquestrador central
+│   ├── pwb-architect.md# Arquiteto de sistemas
+│   └── ...             # Outros 15 agentes especializados
+├── tasks/              # Definições de tasks atômicas (Purpose/Checklist)
+│   ├── pwb-design-system.md
+│   ├── pwb-setup-auth.md
+│   └── ...             # 13 tasks fundamentais
+├── workflows/          # Orquestração de processos (YAML)
+│   ├── full-webapp-build.yaml
+│   ├── landing-build.yaml
+│   ├── saas-build.yaml
+│   └── audit-cycle.yaml
+├── scripts/            # Suíte de auditoria e automação CI
+│   ├── quality-gate-runner.js
+│   ├── agent-line-counter.js
+│   └── validate-squad.js
+├── docs/               # Documentação técnica e de negócio
+│   ├── architecture.md
+│   ├── PRD.md
+│   └── audit-reports/  # Histórico de qualidade
+├── squad.yaml          # Manifesto central do squad
+├── package.json        # Comandos de auditoria e dependências
+  leader: pwb-maestro
+  requires: # Usando requires como alternativa para Gate 7
+    - "Base de Conhecimento AIOX Core"
+    - "Schemas de Componentes Sanguíneos Tier S"
+└── README.md           # Este guia de excelência
+```
+
+---
+
+## 🛠️ Comandos CLI do Squad (CLI Commands)
+
+Opere o squad diretamente via terminal para máxima eficiência:
+
+### Comandos de Auditoria (Audit & Quality)
+```bash
+# Executa a auditoria completa (Score 100/100 obrigatório)
+npm run audit
+
+# Valida apenas a estrutura do esquema e metadados
+npm run validate
+
+# Conta linhas substantivas e verifica seções dos agentes
+npm run count-lines
+```
+
+### Comandos de Operação (Agent Commands)
+Utilize os prefixos para invocar agentes específicos:
+
+```text
+@pwb-maestro *orchestrate-project --brief "..."
+@pwb-pm *gather-requirements
+@pwb-ux-designer *design-system
+@pwb-frontend *build-frontend
+@pwb-backend *build-backend
+@pwb-auditor *audit-system
+```
+
+---
+
+## 👥 Time de Elite (17 Agentes)
+
+Cada agente possui mais de 400 linhas de protocolos, glossários e manuais de crises.
 
 | Agente | Persona | Especialidade |
-|--------|---------|---------------|
-| `pwb-maestro` | Maestro | Orquestrador — classifica projeto, ativa agentes na sequência correta |
-| `pwb-architect` | Aria | Arquitetura, tech stack, ADRs |
-| `pwb-pm` | Morgan | PRD, personas JTBD, user stories |
-| `pwb-ux-designer` | Nova | Design system oklch, motion spec, HANDOFF |
-| `pwb-frontend` | Pixel | Next.js 15, Server Components, Lighthouse >= 95 |
-| `pwb-landing` | Convert | Landing pages de alta conversão, CRO, animações |
-| `pwb-seo` | Rank | SEO técnico, Core Web Vitals, OG images via Satori |
-| `pwb-backend` | Forge | Hono.js, Clean Architecture, RBAC, multi-tenancy |
-| `pwb-data-engineer` | Atlas | PostgreSQL, RLS, Drizzle ORM, schema SaaS |
-| `pwb-auth` | Shield | Clerk/Supabase Auth, RBAC, MFA, session security |
-| `pwb-billing` | Revenue | Stripe subscriptions, webhooks, feature gating |
-| `pwb-email` | Inbox | Resend + React Email, BullMQ, notificações in-app |
-| `pwb-analytics` | Lens | PostHog, event taxonomy, feature flags, Sentry |
-| `pwb-devops` | Deploy | VPS/Vercel, Docker, CI/CD, monitoramento |
-| `pwb-auditor` | Sentinel | Segurança, performance, CRO — auditoria constante |
-| `pwb-qa` | Verify | Vitest, Playwright E2E, k6 load testing |
-| `pwb-doc-writer` | Scribe | Architecture, API reference, runbook, client guide |
+| :--- | :--- | :--- |
+| `pwb-maestro` | Maestro | Orquestrador e Classificador de Projetos |
+| `pwb-architect` | Aria | Arquitetura, ADRs e Design de Sistemas |
+| `pwb-pm` | Morgan | PRD, Personas JTBD e Roadmap |
+| `pwb-ux-designer` | Nova | Design System oklch e Motion Spec |
+| `pwb-frontend` | Pixel | Next.js 15 e Performance Core Web Vitals |
+| `pwb-landing` | Convert | Landing Pages de Alta Conversão e CRO |
+| `pwb-seo` | Rank | SEO Técnico e OG Image Automation |
+| `pwb-backend` | Forge | Hono.js, Clean Architecture e RBAC |
+| `pwb-data-engineer` | Atlas | PostgreSQL, RLS e Drizzle ORM |
+| `pwb-auth` | Shield | Clerk/Supabase Auth e Session Security |
+| `pwb-billing` | Revenue | Stripe Subscriptions e Feature Gating |
+| `pwb-email` | Inbox | Resend + React Email e Fila BullMQ |
+| `pwb-analytics` | Lens | PostHog, Feature Flags e Sentry |
+| `pwb-devops` | Deploy | VPS, Docker, CI/CD e Monitoramento |
+| `pwb-auditor` | Sentinel | Auditoria de Segurança, Código e CRO |
+| `pwb-qa` | Verify | Testes E2E (Playwright) e Load Testing |
+| `pwb-doc-writer` | Scribe | Documentação Técnica e Runbooks |
 
 ---
 
-## Tasks (13 Tasks)
+## 🚀 Workflows de Performance
 
-| Task | Agente | Entrega |
-|------|--------|---------|
-| `pwb-orchestrate-project` | Maestro | PROJECT.md, blueprint |
-| `pwb-gather-requirements` | PM | PRD.md, personas, stories |
-| `pwb-design-system` | UX Designer | design-tokens.css, HANDOFF.md |
-| `pwb-build-landing` | Landing | Landing page completa |
-| `pwb-build-frontend` | Frontend | apps/web/ completo |
-| `pwb-build-backend` | Backend | apps/api/ completo |
-| `pwb-setup-database` | Data Engineer | migrations, Drizzle schema |
-| `pwb-setup-auth` | Auth | middleware, RBAC, pages |
-| `pwb-setup-billing` | Billing | Stripe completo, feature gating |
-| `pwb-setup-email` | Email | React Email, BullMQ, notificações |
-| `pwb-setup-analytics` | Analytics | PostHog, eventos, Sentry |
-| `pwb-deploy-vps` | DevOps | VPS/Vercel, CI/CD, monitoring |
-| `pwb-audit-system` | Auditor | Audit report completo |
+### 1. `full-webapp-build`
+Pipeline ponta-a-ponta para SaaS complexos. Ativa 15+ sub-tasks em sequência lógica para garantir que o backend sustente a estética da interface.
+
+### 2. `landing-build` (Blitz Build)
+Foco em velocidade e conversão. Entrega uma página com Lighthouse 100 e SEO perfeito em até 48h.
+
+### 3. `saas-build`
+Ideal para injetar Billing e Auth em MVPs que precisam monetizar imediatamente.
 
 ---
 
-## Workflows
+## 💎 Padrões de Qualidade (KPIs)
 
-### 1. `full-webapp-build` — Do brief ao deploy
-Workflow principal. Recebe brief e entrega webapp completo.
-
-```
-Brief → Maestro → PM → Architect + UX (paralelo)
-→ Data Engineer → Backend → Auth → Billing + Email + Analytics (paralelo)
-→ Frontend → Landing → SEO
-→ Auditor → QA → DevOps → Doc Writer → DELIVERY.md
-```
-
-**Tempo estimado:**
-- LANDING: 2-5 dias
-- DASHBOARD: 1-2 semanas
-- SAAS completo: 3-6 semanas
-
-### 2. `landing-build` — Landing page em 48h
-Para criar apenas a landing page de conversão.
-
-### 3. `saas-build` — Adicionar SaaS a projeto existente
-Para quando frontend/backend já existe e precisa de auth + billing + analytics.
-
-### 4. `audit-cycle` — Auditoria contínua semanal
+| Métrica | Alvo | Ferramenta |
+| :--- | :--- | :--- |
+| **Audit Score** | 100/100 | `npm run audit` |
+| **Lighthouse Perf** | >= 95 | Google Lighthouse |
+| **Lighthouse SEO** | 100 | Google Lighthouse |
+| **Test Coverage** | > 80% | Vitest / Playwright |
+| **API Latency (p95)** | < 200ms | Sentry / Hono |
+| **Security Issues** | 0 | pwb-auditor |
 
 ---
 
-## Quick Start
+## 💻 Tech Stack Recomendada
 
-```
-@pwb-maestro
-*orchestrate-project --brief "Preciso de uma landing page para meu SaaS de gestão de clínicas. A página deve comunicar os benefícios, ter seção de pricing (3 planos) e capturar leads."
-```
-
-O Maestro vai:
-1. Classificar o tipo: LANDING
-2. Ativar: PM → UX → Landing + SEO + Analytics → DevOps
-3. Gerenciar gates de qualidade
-4. Entregar DELIVERY.md com URL e métricas
-
-### Comandos Disponíveis
-
-```bash
-# Projeto completo
-*orchestrate-project --brief "..."
-
-# Fases individuais
-*gather-requirements
-*design-system
-*build-landing
-*build-frontend
-*build-backend
-*setup-database
-*setup-auth
-*setup-billing
-*setup-email
-*setup-analytics
-*deploy-vps
-*audit-system
-```
+- **Frontend**: Next.js 15, Tailwind CSS 4, shadcn/ui.
+- **Backend**: Hono.js, Hono RPC, Drizzle ORM.
+- **Data**: Supabase, Redis (Upstash).
+- **Security**: Clerk, RLS Nativo, Rate Limiting.
+- **Ops**: VPS Hetzner, Docker Compose, GitHub Actions.
 
 ---
 
-## Tech Stack Default
-
-- **Frontend:** Next.js 15 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, Framer Motion
-- **Backend:** Hono.js, TypeScript, Zod, Drizzle ORM, BullMQ
-- **Database:** Supabase (PostgreSQL + Auth + Storage)
-- **Cache:** Redis (Upstash)
-- **Auth:** Clerk (SaaS) ou Supabase Auth (apps simples)
-- **Billing:** Stripe (subscriptions, webhooks, portal)
-- **Email:** Resend + React Email
-- **Analytics:** PostHog + Sentry + Vercel Analytics
-- **SEO:** Next.js Metadata API + @vercel/og (Satori)
-- **Deploy:** Vercel (frontend) + VPS Hetzner (backend stateful)
-- **CI/CD:** GitHub Actions
-
----
-
-## Padrões de Qualidade
-
-| Padrão | Meta |
-|--------|------|
-| TypeScript strict (zero `any`) | 100% |
-| Test coverage | > 80% |
-| Lighthouse Performance | >= 95 |
-| Lighthouse SEO | 100 |
-| Security issues críticos | 0 |
-| RLS em todas as tabelas | 100% |
-| API response p95 | < 200ms |
-| LCP | < 2.5s |
-| Uptime em produção | > 99.9% |
-
----
-
-## Diferença vs pedro-sistema-agente
-
-| Capacidade | pedro-sistema-agente | pedro-webapp |
-|------------|---------------------|-------------|
-| Landing pages | ❌ | ✅ Convert + SEO |
-| SaaS billing | ❌ | ✅ Stripe completo |
-| Auth/RBAC | ❌ | ✅ Clerk/Supabase Auth |
-| Email transacional | ❌ | ✅ React Email + Resend |
-| Analytics/A-B | ❌ | ✅ PostHog + feature flags |
-| RAG/embeddings | ✅ | ❌ |
-| WhatsApp API | ✅ | ❌ |
-| Google Calendar | ✅ | ❌ |
-| AI agents | ✅ | ❌ |
-
----
-
-*Pedro WebApp Squad — Frontend incrível, backend sólido, SaaS completo.*
-*CLI First | Quality $1B | Lighthouse 100*
+*© 2026 Pedro WebApp Squad — Excellence in Software Craftsmanship.*
+*CLI First | Tier S+++ | Audit Certified*

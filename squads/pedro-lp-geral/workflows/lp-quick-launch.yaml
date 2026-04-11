@@ -1,0 +1,81 @@
+workflow:
+  id: lp-quick-launch
+  name: "Quick Launch — 7 dias"
+  description: "Fast track para projetos urgentes. Entrega landing S++ (ligeiramente abaixo de S+++) com copy, design essencial e deploy funcional. Ideal para validação rápida de mercado."
+  version: 1.0.0
+
+  pre_conditions:
+    - "Briefing rápido aprovado (mínimo 70% preenchido)"
+    - "Brand Archetype definido (ou usar TECHNICAL como default)"
+    - "Cliente ciente de limitações vs full workflow"
+
+  post_conditions:
+    - "Landing page publicada (S++ tier)"
+    - "Lighthouse Performance >= 90"
+    - "Accessibility >= 90"
+    - "Copy de conversão aprovada"
+    - "Analytics básico configurado"
+
+  error_handler: |
+    Em caso de falha crítica: pausar, avaliar viabilidade, propor upgrade para full workflow se necessário.
+
+  retry_policy:
+    max_retries: 2
+    backoff: "30s → 60s"
+
+  constraints:
+    design_tier: "S++ (S+++ na tipografia e cores, simplificado em motion e components)"
+    sections_max: 7
+    animations: "CSS only, sem GSAP, Framer Motion básico"
+    integrations: "WhatsApp + GA4 básico + formulário simples"
+
+  phases:
+    - id: day-1
+      name: "Dia 1: Brief Express + Archetype"
+      steps:
+        - agent: lp-prd-architect
+          description: "Briefing em 45 min. Foco em: oferta, avatar, archetype, diferencial."
+          output: briefing-document.md
+
+    - id: day-2
+      name: "Dia 2: Design Tokens Express"
+      steps:
+        - agent: lp-prestige-design-system
+          description: "Tokens core (cores + tipografia + radius). Sem motion profile completo."
+          output: styles/design-tokens.css
+
+    - id: day-3
+      name: "Dia 3: Copy Hero + Oferta"
+      steps:
+        - agent: lp-world-class-copywriter
+          description: "Hero copy + offer section + 2 depoimentos + CTA. Seções core."
+          output: sections-copy.md
+
+    - id: day-4-5
+      name: "Dias 4–5: Build"
+      steps:
+        - agent: lp-ui-artisan
+          description: "Implementar 5-7 seções core em Next.js. Mobile-first."
+          output: "site implementado"
+
+    - id: day-6
+      name: "Dia 6: QA Rápido + Integrações"
+      steps:
+        - agent: lp-qa-auditor
+          description: "QA express: mobile, CTAs, formulário, LGPD banner básico"
+        - agent: lp-integration-engineer
+          description: "GA4 + WhatsApp + LGPD CMP básico"
+
+    - id: day-7
+      name: "Dia 7: Deploy"
+      steps:
+        - agent: lp-deployment-agent
+          description: "Vercel deploy + DNS + monitoramento básico"
+
+  kpis:
+    lighthouse_mobile_performance: ">= 88"
+    lighthouse_accessibility: ">= 90"
+    lgpd_compliance: "100%"
+    launch: "dia 7 garantido"
+
+  upgrade_path: "Após validação de mercado, migrar para lp-geral-primary para versão S+++"

@@ -2,7 +2,7 @@
 
 **Task ID:** create-agent-definition
 **Version:** 1.0
-**Purpose:** Create a purpose-built subagent definition file for use with the Agent tool
+## Purpose Create a purpose-built subagent definition file for use with the Agent tool
 **Orchestrator:** @swarm-orchestrator (Nexus)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Agent file passes lint, loads correctly, and executes test prompt
@@ -51,7 +51,7 @@ OUTPUT: Agent definition file + test results
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -63,7 +63,7 @@ OUTPUT: Agent definition file + test results
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. `.claude/agents/` directory exists (create if not)
 2. Understanding of the task the agent will perform
@@ -145,7 +145,7 @@ allowed-tools:
 ## Constraints
 {What the agent must NOT do}
 
-## Output Format
+## Saida / Output Format
 {Expected output structure}
 ```
 
@@ -189,7 +189,7 @@ You are a {role} specialized in {domain}. Your job is to {primary task}.
 - NEVER {prohibited behavior}
 - When unsure, {fallback behavior}
 
-## Output Format
+## Saida / Output Format
 Return your analysis as:
 {format specification}
 ```
@@ -248,7 +248,7 @@ Is the task complex with ambiguous inputs?
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 agent_definition_result:
@@ -276,3 +276,11 @@ agent_definition_result:
 | Agent requires tools that do not exist | HALT -- verify tool availability first |
 | Test prompts all fail | HALT -- rewrite instructions, do not ship broken agent |
 | Agent name conflicts with existing agent | HALT -- choose unique name |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

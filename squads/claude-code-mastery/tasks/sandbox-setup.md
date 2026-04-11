@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*sandbox-setup`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Configure Claude Code's sandbox environment for filesystem isolation, network restrictions, and process boundaries to ensure safe command execution with minimal friction.
+## Purpose Configure Claude Code's sandbox environment for filesystem isolation, network restrictions, and process boundaries to ensure safe command execution with minimal friction.
 
 ---
 
@@ -27,7 +27,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -37,7 +37,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Claude Code installed and operational
 - Understanding of the project's required filesystem access and network needs
@@ -217,7 +217,7 @@ Set filesystem access controls:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Sandbox Configuration
@@ -269,7 +269,7 @@ Set filesystem access controls:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Platform detected and sandbox support verified
 - [ ] Isolation level selected based on security assessment

@@ -15,7 +15,20 @@ Saida: |
 
 # *deploy-vps
 
-Deploy em produção: VPS + Docker + Nginx + SSL + CI/CD + monitoramento.
+## Purpose
+Providenciar a implantação segura e automatizada do WebApp em ambiente de produção (VPS), garantindo alta disponibilidade, monitoramento e escalabilidade básica.
+
+## Pre-conditions
+- Codebase validada e testada integralmente.
+- Configurações de domínio e DNS prontas para uso.
+
+## Checklist
+- [ ] VPS provisionada e endurecida (Hardening)
+- [ ] Certificados SSL (Certbot) ativos e configurados
+- [ ] Docker Compose de produção operacional e testado
+- [ ] Nginx configurado como proxy reverso com segurança
+- [ ] Pipeline de CI/CD (GitHub Actions) integrado e funcional
+- [ ] Monitoramento (Uptime Kuma, Sentry) e alertas operacionais
 
 ## Fases de Execução
 

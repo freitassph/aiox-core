@@ -2,7 +2,7 @@
 
 **Task ID:** integrate-project
 **Version:** 1.0
-**Purpose:** Set up Claude Code infrastructure in an existing project with tailored configuration
+## Purpose Set up Claude Code infrastructure in an existing project with tailored configuration
 **Orchestrator:** @project-integrator (Conduit)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Integration passes smoke test, all config files valid, CLAUDE.md under 200 lines
@@ -61,7 +61,7 @@ OUTPUT: Complete Claude Code integration + smoke test results
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -73,7 +73,7 @@ OUTPUT: Complete Claude Code integration + smoke test results
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Project directory exists with source code
 2. Claude Code CLI is installed
@@ -271,7 +271,7 @@ paths:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 integration_result:
@@ -302,3 +302,11 @@ integration_result:
 | .claude/settings.json exists with custom rules | WARN -- merge, do not overwrite |
 | No write access to project directory | HALT -- cannot create config files |
 | Project uses unsupported language (no detection signals) | WARN -- generate generic CLAUDE.md |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

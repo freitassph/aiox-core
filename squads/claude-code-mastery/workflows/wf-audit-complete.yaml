@@ -18,6 +18,24 @@ workflow:
   entry_agent: claude-mastery-chief
   estimated_duration: "20-40 minutes"
 
+  pre_conditions:
+    - ".claude/ directory exists"
+    - "System has Internet access for MCP/Hook validation"
+    - "Claude Code is authenticated"
+
+  post_conditions:
+    - "Audit report is generated as markdown"
+    - "Overall health score is calculated"
+    - "Actionable recommendations are listed"
+
+  on_failure:
+    - "Log error to .aiox-core/logs/audit-failure.log"
+    - "Notify user of critical blocking error"
+
+  retry:
+    max_attempts: 2
+    delay_ms: 5000
+
 # ────────────────────────────────────────────────────────────────────────────
 # PHASES
 # ────────────────────────────────────────────────────────────────────────────

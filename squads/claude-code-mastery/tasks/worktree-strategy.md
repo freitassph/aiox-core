@@ -2,7 +2,7 @@
 
 **Task ID:** worktree-strategy
 **Version:** 1.0
-**Purpose:** Plan and configure git worktree isolation for multi-agent development scenarios
+## Purpose Plan and configure git worktree isolation for multi-agent development scenarios
 **Orchestrator:** @swarm-orchestrator (Nexus)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Worktree lifecycle tested end-to-end, cleanup verified
@@ -46,7 +46,7 @@ OUTPUT: Worktree config + branch strategy + lifecycle plan
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -58,7 +58,7 @@ OUTPUT: Worktree config + branch strategy + lifecycle plan
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Git repository is initialized and has at least one commit
 2. Current working tree is clean (no uncommitted changes)
@@ -286,7 +286,7 @@ git worktree prune
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 worktree_strategy_result:
@@ -318,3 +318,11 @@ worktree_strategy_result:
 | Git version < 2.5 | HALT -- upgrade git for worktree support |
 | No file conflicts detected between agents | SKIP -- use shared repo instead (simpler) |
 | Worktree creation fails | HALT -- check git lock files and existing worktrees |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

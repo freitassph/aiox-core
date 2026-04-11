@@ -1,0 +1,53 @@
+{
+  "name": "pedro-lp-geral",
+  "version": "1.0.0",
+  "description": "Squad universal de landing pages de altíssima conversão — Prestige Design System S+++ (Universal Archetypes), copy de classe mundial (Ogilvy × Schwartz × Hormozi), performance técnica impecável. Adapta-se a qualquer nicho, segmento ou indústria.",
+  "main": "scripts/lp-quality-audit.sh",
+  "bin": {
+    "lp-geral-audit": "./scripts/lp-quality-audit.sh"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-squad.js",
+    "count-lines": "node scripts/agent-line-counter.js",
+    "quality-gate": "node scripts/quality-gate-runner.js",
+    "health-check": "node scripts/health-check.js",
+    "build-and-audit": "node scripts/build-and-audit.js",
+    "check-workflows": "node scripts/check-orchestrator.js",
+    "migrate": "node scripts/migration-runner.js",
+    "audit": "npm run validate && npm run count-lines && npm run quality-gate && npm run check-workflows",
+    "full-audit": "npm run audit && npm run build-and-audit",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "aiox",
+    "landing-page",
+    "universal",
+    "prestige-design",
+    "high-conversion",
+    "world-class-copy",
+    "tier-s-plus-plus",
+    "quality-gate",
+    "task-first",
+    "schema-validation"
+  ],
+  "author": "Pedro Henrique Menezes de Freitas",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.3.4",
+    "zod": "^3.22.4",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "glob": "^10.3.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedro/aiox-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pedro/aiox-core/issues"
+  },
+  "homepage": "https://github.com/pedro/aiox-core#readme"
+}

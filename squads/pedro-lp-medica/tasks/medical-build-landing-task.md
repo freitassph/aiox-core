@@ -8,6 +8,44 @@ elicit: false
 
 # Task: Medical Landing Page Build — S+++ Tier Implementation
 
+## purpose
+Implement the complete medical landing page following the Clinical Luxury design system, Atomic Design architecture, CFM/CONAR/LGPD compliance, with Core Web Vitals green and conversion rate above 4%.
+
+## entrada
+- medical-design-tokens-task concluida com tokens.css
+- medical-copy-framework-task concluida com copy aprovada
+- medical-compliance-audit-task concluida (copy aprovada)
+- medical-briefing-task concluida com todos os dados do medico
+- Fotos profissionais do medico e clinica entregues pelo cliente
+- Componentes atomicos implementados pela medical-atomic-components-task
+
+## saida
+- Site publicado em Vercel com dominio configurado
+- Lighthouse Report com todas as metricas principais
+- Accessibility Report (axe-core + teste manual)
+- Schema.org Validation (Rich Results Test)
+- Compliance Clearance assinada pelo cfm-compliance-sentinel
+
+## checklist
+- [ ] Cada secao aprovada por medical-design-system
+- [ ] Nenhum hardcode de cor/spacing (apenas tokens)
+- [ ] Animacoes respeitam prefers-reduced-motion
+- [ ] Lighthouse Mobile Performance >= 90
+- [ ] LCP < 2.5s, CLS = 0, INP < 200ms
+- [ ] Compliance Clearance emitida
+- [ ] Schema.org valido no Rich Results Test
+- [ ] axe-core: zero erros criticos
+- [ ] CRM/RQE visivel em minimo 3 locais
+- [ ] Consentimento LGPD em todos os formularios
+
+## pre-conditions
+- medical-design-tokens-task concluida
+- medical-atomic-components-task concluida
+- medical-copy-framework-task concluida
+- medical-compliance-audit-task concluida (copy aprovada)
+- medical-briefing-task concluida
+- Fotos profissionais entregues pelo cliente
+
 ## Objetivo
 Implementar a landing page médica completa, seguindo o design system Clinical Luxury, arquitetura Atomic Design, em conformidade CFM/CONAR/LGPD, com performance Core Web Vitals verde e conversão > 4%.
 

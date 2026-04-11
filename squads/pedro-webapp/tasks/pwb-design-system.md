@@ -15,7 +15,19 @@ Saida: |
 
 # *design-system
 
-Criar design system premium com tokens oklch, especificações de componentes e motion spec.
+## Purpose
+Estabelecer a identidade visual e os componentes de interface do projeto, garantindo consistência e premium aesthetic.
+
+## Pre-conditions
+- PRD validado pela Morgan (PM).
+- Tipo de projeto definido pelo Aria (Architect).
+
+## Checklist
+- [ ] Color System definido em oklch (Light/Dark)
+- [ ] Tipografia configurada (Geist Sans/Mono)
+- [ ] Componentes específicos criados (Hero, Tables, Cards)
+- [ ] Motion Specs (Motion-framer) definidos
+- [ ] HANDOFF.md gerado para o time de Frontend
 
 ## Fases de Execução
 

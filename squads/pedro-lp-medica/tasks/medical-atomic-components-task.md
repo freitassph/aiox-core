@@ -8,6 +8,36 @@ elicit: false
 
 # Task: Medical Atomic Components — Component Library Build
 
+## purpose
+Specify and implement the atomic component library for the medical landing page, following the Brad Frost hierarchy (Atoms to Molecules to Organisms), using design tokens and ensuring accessibility compliance.
+
+## entrada
+- tokens.css gerado pela medical-design-tokens-task
+- Briefing completo do projeto
+- Lista de componentes prioritarios por template (SingleDoctor, MultiClinic, etc.)
+- Specs de componentes documentadas pelo medical-atomic-design-architect
+
+## saida
+- Diretorio src/components/ com atoms, molecules e organisms implementados
+- Component inventory com status de cada componente
+- Documentacao visual (Storybook ou equivalente)
+- Todos os componentes aprovados no Design Quality Checklist
+
+## checklist
+- [ ] Todos os componentes Priority 1 implementados e testados
+- [ ] TypeScript sem any, interface de props completa
+- [ ] Todas as variantes implementadas (hover/focus/active/disabled/loading)
+- [ ] Sem hardcode de cores ou espacamento (apenas design tokens)
+- [ ] Reduced motion respeitado em todos os componentes
+- [ ] Acessibilidade: contraste + foco + ARIA verificados
+- [ ] Responsivo de 320px a 1440px
+- [ ] Design Quality S+++ Checklist aprovado
+
+## pre-conditions
+- medical-design-tokens-task concluida com tokens.css valido
+- Template do projeto definido (SingleDoctor, MultiClinic, etc.)
+- medical-atomic-design-architect disponivel para specs
+
 ## Objetivo
 Especificar e implementar a biblioteca de componentes atômicos para o projeto, seguindo a hierarquia Brad Frost (Átomos → Moléculas → Organismos).
 

@@ -1,0 +1,156 @@
+name: environmental-design-workflow
+description: Workflow de design ambiental — do audit espacial à instalação
+version: "1.0"
+squad: pedro-design
+trigger:
+  command: "*environmental-design"
+  event: space-design-request
+steps:
+  - id: space-audit
+    agent: pdg-environmental-designer
+    task: pdg-space-audit.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    action: Auditar espaço físico — dimensões, fluxos, iluminação, materiais existentes
+    outputs:
+      - space-plan
+      - existing-conditions
+      - constraints-map
+    on_success: user-flow
+    on_failure: error-handler
+  - id: user-flow
+    agent: pdg-environmental-designer
+    task: pdg-user-flow-environmental.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: space-audit
+    action: Mapear fluxo de usuários — entry, navigation, exit, touchpoints
+    outputs:
+      - user-flow-map
+      - decision-points
+      - pain-points
+    on_success: wayfinding-strategy
+    on_failure: error-handler
+  - id: wayfinding-strategy
+    agent: pdg-environmental-designer
+    task: pdg-wayfinding-strategy.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - space-audit
+      - user-flow
+    action: Definir estratégia de wayfinding — landmarks, zones, paths, nodes
+    outputs:
+      - wayfinding-plan
+      - zoning-map
+      - landmark-locations
+    on_success: signage-design
+    on_failure: error-handler
+  - id: signage-design
+    agent: pdg-environmental-designer
+    task: pdg-signage-design.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: wayfinding-strategy
+    action: Design de sistema de sinalização — tipos, tamanhos, materiais, locations
+    parallel_with:
+      - brand-integration
+    outputs:
+      - signage-system
+      - sign-specs
+      - placement-map
+    on_success: brand-integration
+    on_failure: error-handler
+  - id: brand-integration
+    agent: pdg-environmental-designer
+    task: pdg-environmental-brand-integration.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: wayfinding-strategy
+    action: Integrar identidade de marca no espaço — cores, graphics, materials
+    parallel_with:
+      - signage-design
+    outputs:
+      - brand-in-space-plan
+      - wall-graphics
+      - environmental-branding
+    on_success: material-spec
+    on_failure: error-handler
+  - id: material-spec
+    agent: pdg-environmental-designer
+    task: pdg-material-spec.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - signage-design
+      - brand-integration
+    action: Especificar materiais — durability, maintenance, sustainability, cost
+    outputs:
+      - material-specification
+      - supplier-list
+      - cost-estimate
+    on_success: mockup-3d
+    on_failure: error-handler
+  - id: mockup-3d
+    agent: pdg-mockup-3d-artist
+    task: pdg-environmental-3d-mockup.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - signage-design
+      - brand-integration
+    action: Criar visualizações 3D do espaço final
+    outputs:
+      - 3d-views
+      - walkthrough
+      - lighting-simulation
+    on_success: installation-guide
+    on_failure: error-handler
+  - id: installation-guide
+    agent: pdg-environmental-designer
+    task: pdg-installation-guide.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - material-spec
+      - mockup-3d
+    action: Criar guia de instalação — sequência, responsaveis, timeline
+    outputs:
+      - installation-guide
+      - timeline
+      - responsibility-matrix
+    on_success: complete
+    on_failure: error-handler
+success_criteria:
+  - Space audit completo com dimensões e condições
+  - User flow mapado com minimum 3 scenarios
+  - Wayfinding strategy com zones e paths definidos
+  - Signage system com minimum 5 tipos de placas
+  - Brand integration no espaço documentada
+  - Material spec com fornecedores e custos
+  - Minimum 6 views 3D aprovadas
+  - Installation guide com timeline e responsaveis
+error_handler:
+  id: error-handler
+  name: Error Handler
+  actions:
+    - action: log
+      message: "Workflow failed at {step_id}: {error}"
+    - action: notify
+      channel: design-creator-log
+pre_conditions:
+  - All required agents available and activated
+  - Design brief approved by pdg-chief
+  - Budget and timeline validated
+post_conditions:
+  - All design assets delivered
+  - Quality gates passed
+  - Client or stakeholder sign-off received

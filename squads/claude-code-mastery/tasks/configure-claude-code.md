@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*configure`
 **Orchestrator:** Sigil (config-engineer)
-**Purpose:** Configure Claude Code settings for a project by analyzing project needs and generating a tailored `.claude/settings.json` with appropriate permissions, deny rules, and MCP server configuration.
+## Purpose Configure Claude Code settings for a project by analyzing project needs and generating a tailored `.claude/settings.json` with appropriate permissions, deny rules, and MCP server configuration.
 
 ---
 
@@ -25,7 +25,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -35,7 +35,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Write access to the .claude/ directory
 - Understanding of the project's technology stack (detected or user-provided)
@@ -158,7 +158,7 @@ managed-settings.json  (highest -- cannot be overridden)
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Configuration Complete
@@ -205,7 +205,7 @@ Run `*audit-settings` to validate the configuration.
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Project needs analyzed (technology, sensitive files, safe operations)
 - [ ] settings.json generated with deny-first permission rules

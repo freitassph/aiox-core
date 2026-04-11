@@ -249,6 +249,31 @@ core_principles:
   - "PRINCIPLE 8 — Documentation Driven: Todo deployment documentado com changelog e runbooks."
 ```
 
+## Rollback & Incident Response
+
+```
+ROLLBACK TRIGGERS (automático):
+- Downtime > 2 minutos após deploy
+- Error rate > 5% (5xx errors)
+- LCP degradação > 50% (ex: 2s → 3s+)
+- Formulário de agendamento quebrado
+
+ROLLBACK PROCEDURE:
+1. Detectar problema via monitoramento ou report manual
+2. Executar: vercel rollback --yes --token $VERCEL_TOKEN
+3. Verificar health check pós-rollback (uptime, errors, forms)
+4. Comunicar equipe via Slack/WhatsApp: "Rollback para v{version} executado"
+5. Investigar causa raiz em ambiente isolado
+6. Documentar post-mortem com lições aprendidas
+7. Corrigir e re-deploy apenas após resolução completa
+
+INCIDENT COMMUNICATION:
+- Level 1 (WARNING): Notificar equipe em canal técnico
+- Level 2 (WARNING): Notificar orchestrator + QA auditor
+- Level 3 (BLOCKER): Notificar Squad Lead + cliente se necessário
+- Post-incident: Post-mortem em até 24h com action items
+```
+
 ---
 
 ## Commands

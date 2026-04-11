@@ -5,39 +5,108 @@
 # Version: 1.0.0
 # ═══════════════════════════════════════════════════════════════════════════════
 
-squad:
-  name: claude-code-mastery
-  display_name: "Claude Code Mastery Squad"
-  version: "1.0.0"
-  domain: "Claude Code — Full Spectrum Expertise"
-  description: |
-    Squad especialista em todas as dimensões do Claude Code: hooks, skills,
-    subagents, MCP, plugins, agent teams, customização, integração com projetos,
-    roadmap tracking, e AIOX-core architecture awareness.
+name: claude-code-mastery
+version: 1.0.0
+short-title: "Claude Code Mastery — Full Spectrum Expertise"
+description: |
+  Squad especialista em todas as dimensões do Claude Code: hooks, skills,
+  subagents, MCP, plugins, agent teams, customização, integração com projetos,
+  roadmap tracking, e AIOX-core architecture awareness.
+author: "Pedro Henrique Menezes de Freitas"
+license: MIT
+slashPrefix: ccm
 
-  philosophy: |
-    "Master the tool to master the craft."
-    Cada agent é baseado em elite minds reais com frameworks documentados
-    no ecossistema Claude Code. O squad cobre desde automação com hooks
-    até orquestração multi-agente e engenharia de contexto.
+aiox:
+  minVersion: "2.1.0"
+  type: squad
 
-  keywords:
-    - claude-code
-    - hooks
-    - skills
-    - subagents
-    - mcp
-    - plugins
-    - agent-teams
-    - customization
-    - integration
-    - context-engineering
-    - roadmap
-    - aiox
+requires:
+  node: ">=18.0.0"
+  aiox: ">=2.1.0"
 
-  entry_agent: claude-mastery-chief
-  created_by: "squad-creator-pro"
-  created_at: "2026-03-01"
+meta:
+  domain: claude-code-expertise
+  target: Dominio completo do Claude Code em todas as dimensoes
+  orchestrator: claude-mastery-chief
+  standards:
+    - task-first-architecture
+    - json-schema-validation
+    - cli-first
+    - agent-authority
+    - story-driven
+    - no-invention
+    - quality-first
+    - absolute-imports
+  design_tier: S+++
+  quality_level: mastery
+  min_agent_lines: 400
+  validation_gates: 7
+
+# ─────────────────────────────────────────────────────────────────────────────
+# COMPONENTS
+# ─────────────────────────────────────────────────────────────────────────────
+
+components:
+  agents:
+    - claude-mastery-chief.md
+    - hooks-architect.md
+    - mcp-integrator.md
+    - swarm-orchestrator.md
+    - config-engineer.md
+    - skill-craftsman.md
+    - project-integrator.md
+    - roadmap-sentinel.md
+
+  tasks:
+    - audit-integration.md
+    - audit-settings.md
+    - audit-setup.md
+    - brownfield-setup.md
+    - ci-cd-setup.md
+    - claude-md-engineer.md
+    - configure-claude-code.md
+    - context-rot-audit.md
+    - create-agent-definition.md
+    - create-rules.md
+    - create-team-topology.md
+    - diagnose.md
+    - enterprise-config.md
+    - hook-designer.md
+    - integrate-project.md
+    - mcp-integration-plan.md
+    - mcp-workflow.md
+    - multi-project-setup.md
+    - optimize-context.md
+    - optimize-workflow.md
+    - parallel-decomposition.md
+    - permission-strategy.md
+    - sandbox-setup.md
+    - setup-repository.md
+    - setup-wizard.md
+    - worktree-strategy.md
+
+  workflows:
+    - wf-audit-complete.yaml
+    - wf-knowledge-update.yaml
+    - wf-project-setup.yaml
+
+  checklists:
+    - agent-team-readiness-checklist.md
+    - brownfield-readiness-checklist.md
+    - change-checklist.md
+    - context-rot-checklist.md
+    - integration-audit-checklist.md
+    - multi-agent-review-checklist.md
+    - pre-push-checklist.md
+
+  templates:
+    - claude-md-fullstack.md
+    - claude-md-library.md
+    - claude-md-microservices.md
+    - claude-md-mobile.md
+    - claude-md-monorepo.md
+    - github-actions-claude-ci.yml
+    - github-actions-claude-review.yml
 
 # ─────────────────────────────────────────────────────────────────────────────
 # TIER ARCHITECTURE
@@ -203,3 +272,63 @@ settings:
   activation:
     prefix: "claude-code-mastery"
     example: "@claude-code-mastery:hooks-architect"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CONFIG
+# ─────────────────────────────────────────────────────────────────────────────
+
+config:
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DEPENDENCIES
+# ─────────────────────────────────────────────────────────────────────────────
+
+dependencies:
+  node:
+    - yaml
+    - zod
+    - chalk
+    - commander
+    - glob
+  python: []
+  squads:
+    - pedro-sistema-agente
+    - claude-code-mastery
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TAGS
+# ─────────────────────────────────────────────────────────────────────────────
+
+tags:
+  - claude-code
+  - hooks
+  - skills
+  - subagents
+  - mcp
+  - plugins
+  - agent-teams
+  - customization
+  - integration
+  - context-engineering
+  - roadmap
+  - aiox
+  - tier-s-plus-plus-plus
+  - mastery
+  - enterprise
+  - task-first
+  - schema-validation
+  - quality-gate
+  - workflow-engine
+  - bulletproof
+  - systematic
+  - aiox-core
+  - framework
+  - automation
+  - best-practices
+  - documentation
+  - templates
+  - checklists
+  - config-management

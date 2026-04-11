@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*audit-integration`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Audit an existing Claude Code integration in a project, checking completeness, consistency, health, and generating an actionable score with recommendations.
+## Purpose Audit an existing Claude Code integration in a project, checking completeness, consistency, health, and generating an actionable score with recommendations.
 
 ---
 
@@ -52,7 +52,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -61,7 +61,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - `.claude/` directory exists in the target project
 - Read access to all project files
@@ -163,7 +163,7 @@ Where component_score:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## Claude Code Integration Audit
@@ -209,7 +209,7 @@ Where component_score:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] All 6 phases executed
 - [ ] Score calculated with weighted components

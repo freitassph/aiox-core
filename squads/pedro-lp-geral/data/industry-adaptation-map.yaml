@@ -1,0 +1,119 @@
+industry_adaptation_map:
+  description: "Mapeamento de segmentos → Brand Archetype recomendado + ajustes específicos"
+
+  luxury:
+    segments:
+      - joalheria e acessórios premium
+      - moda de luxo e haute couture
+      - consultoria de alto nível (estratégia, M&A)
+      - imóveis de luxo e alto padrão
+      - vinhos finos e destilados premium
+      - private banking e wealth management
+      - hotelaria 5 estrelas e resorts
+      - aviação executiva e yachts
+      - gastronomia gourmet e restaurantes fine dining
+      - perfumaria nicho e cosmética premium
+    design_adjustments:
+      color_palette: "dark navy/black base + gold accent + cream text"
+      typography_mood: "serif elegante (Playfair Display, Cormorant)"
+      imagery: "editorial, minimalista, fotografia de produto artística"
+      whitespace: "extremamente generoso — 'o luxo existe no espaço vazio'"
+      radius: "sharp (2-4px) — elegância afiada"
+      copy_tone: "exclusividade, raridade, pertencimento a grupo seleto"
+    regulatory_notes:
+      - "Reclamações de qualidade: ter política de devolução clara"
+      - "Produtos importados: menção a impostos/taxas quando aplicável"
+
+  bold:
+    segments:
+      - academias e crossfit
+      - suplementos e nutrição esportiva
+      - startups e scale-ups tech
+      - esportes radicais e outdoor
+      - produtos masculinos (cuidados, moda)
+      - agências de marketing e growth
+      - cursos de empreendedorismo e vendas
+      - coaching de performance e resultados
+      - indústria heavy metal e construção
+      - segurança e defesa pessoal
+    design_adjustments:
+      color_palette: "black/very dark base + electric accent (verde/vermelho/laranja/azul)"
+      typography_mood: "geométrica forte (Space Grotesk, Cabinet Grotesk)"
+      imagery: "high contrast, ação, movimento, antes/depois"
+      whitespace: "moderado — energia não pode ser contida"
+      radius: "médio (8-12px) — força com sofisticação"
+      copy_tone: "desafio, urgência, transformação radical, resultados"
+    regulatory_notes:
+      - "Suplementos ANVISA: sem claims terapêuticos"
+      - "Antes/depois fitness: mostrar somente com disclaimer adequado"
+
+  human:
+    segments:
+      - saúde e bem-estar geral
+      - psicologia e terapia
+      - coaching de vida e relacionamentos
+      - educação e tutoria
+      - ONGs e impacto social
+      - cuidados com bebês e família
+      - serviços de cuidados para idosos
+      - nutrição e alimentação saudável
+      - yoga, meditação e mindfulness
+      - serviços de limpeza e organização doméstica
+      - pet care e veterinária
+    design_adjustments:
+      color_palette: "warm white/cream base + terracotta/sage accent"
+      typography_mood: "serif calorosa (Lora, Merriweather) + sans amigável"
+      imagery: "fotos reais de pessoas, momentos autênticos, natureza"
+      whitespace: "moderado-generoso, acolhedor"
+      radius: "grande (16-24px) — acolhimento e suavidade"
+      copy_tone: "empatia, storytelling, jornada, transformação pessoal"
+    regulatory_notes:
+      - "Saúde: sem garantias de cura ou resultado médico"
+      - "Psicologia CRP: seguir regulamentos do Conselho"
+
+  technical:
+    segments:
+      - B2B SaaS e software empresarial
+      - engenharia e consultoria técnica
+      - fintech e serviços financeiros
+      - advocacia e escritórios jurídicos
+      - contabilidade e auditoria
+      - ciência e laboratórios
+      - TI e cibersegurança
+      - automação e robótica
+      - arquitetura e engenharia civil
+      - medicina especializada (cardiologia, neurologia, cirurgia)
+    design_adjustments:
+      color_palette: "slate white base + technical navy accent"
+      typography_mood: "IBM Plex Sans (precisão técnica) + JetBrains Mono (dados)"
+      imagery: "dados, gráficos, interfaces, ambientes profissionais"
+      whitespace: "preciso, não excessivo — eficiência"
+      radius: "pequeno (4-8px) — precisão e profissionalismo"
+      copy_tone: "dados, ROI, benchmarks, autoridade, prova técnica"
+    regulatory_notes:
+      - "Financeiro: sem promessas de retorno (CVM)"
+      - "Jurídico OAB: sem captação irregular"
+      - "Contabilidade CFC: seguir regulamentos"
+
+  playful:
+    segments:
+      - alimentação, lanches e food delivery
+      - entretenimento e gaming
+      - produtos infantis e brinquedos
+      - apps consumer e redes sociais
+      - moda jovem e streetwear
+      - eventos e festas
+      - artesanato e DIY
+      - animais de estimação (produtos, não serviços médicos)
+      - viagens e turismo
+      - papelaria e material criativo
+    design_adjustments:
+      color_palette: "white base + purple/pink/yellow multi-accent"
+      typography_mood: "Nunito/Poppins (redonda, amigável, divertida)"
+      imagery: "colorida, diversa, ilustrações, flat design, emojis"
+      whitespace: "moderado — movimento e energia"
+      radius: "grande/full (32px+) — leveza e diversão"
+      copy_tone: "humor, identidade cultural, FOMO social, pertencimento"
+    regulatory_notes:
+      - "Produtos infantis: INMETRO e regulamentações de segurança"
+      - "Alimentos: ANVISA, sem claims terapêuticos"

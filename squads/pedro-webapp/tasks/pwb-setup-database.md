@@ -15,7 +15,20 @@ Saida: |
 
 # *setup-database
 
-Criar schema PostgreSQL completo com RLS, índices otimizados e schema Drizzle.
+## Purpose
+Projetar e implementar a infraestrutura de dados do projeto, garantindo segurança (RLS), performance e integridade dos dados.
+
+## Pre-conditions
+- Entidades e relacionamentos definidos no PRD.
+- Decisões de arquitetura de dados (ADRs) validadas e documentadas.
+
+## Checklist
+- [ ] ERD documentado em DATABASE.md
+- [ ] Migrations SQL criadas (Users, Orgs, Business Logic)
+- [ ] Políticas de RLS (Row Level Security) aplicadas em todas as tabelas
+- [ ] Índices de performance criados para FKs e queries comuns
+- [ ] Schema Drizzle sincronizado e testado com o banco
+- [ ] Script de seed de desenvolvimento funcional
 
 ## Fases de Execução
 

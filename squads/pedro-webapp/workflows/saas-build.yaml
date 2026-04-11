@@ -6,26 +6,45 @@ workflow:
     Auth com RBAC, billing Stripe, email transacional, analytics e feature flags.
   version: 1.0.0
 
-  sequence:
+  pre_conditions:
+    - "Frontend e Backend base já implementados"
+    - "Conta Stripe e Providerr de Auth definidos"
+  
+  post_conditions:
+    - "Sistema de checkout e subscrição funcional"
+    - "Acesso granular via RBAC validado"
+
+  error_handler:
+    actions:
+      - "Bloqueio de novas subscrições preventivo"
+      - "Aviso imediato ao suporte técnico (@pwb-maestro) via Slack/Discord"
+
+  retry: 1
+
+  steps:
     - task: pwb-setup-database
       agent: pwb-data-engineer
+      retry: 1
       description: "Schema SaaS: organizations, subscriptions, notifications, audit_logs"
       outputs: ["supabase/migrations/xxx_saas_schema.sql"]
 
     - task: pwb-setup-auth
       agent: pwb-auth
+      retry: 1
       description: "Clerk ou Supabase Auth, RBAC, MFA, org management"
       depends_on: [pwb-setup-database]
       outputs: ["middleware.ts", "app/(auth)/", "lib/auth/"]
 
     - task: pwb-setup-billing
       agent: pwb-billing
+      retry: 1
       description: "Stripe: products, checkout, webhooks, portal, feature gating"
       depends_on: [pwb-setup-auth]
       outputs: ["apps/api/src/services/billing.service.ts"]
 
     - task: pwb-setup-email
       agent: pwb-email
+      retry: 1
       description: "Resend: templates (welcome, invoice, trial-ending, etc.), fila BullMQ"
       depends_on: [pwb-setup-auth]
       parallel: true
@@ -33,6 +52,7 @@ workflow:
 
     - task: pwb-setup-analytics
       agent: pwb-analytics
+      retry: 1
       description: "PostHog: funnels, feature flags, A/B tests, Sentry"
       depends_on: [pwb-setup-auth]
       parallel: true
@@ -40,5 +60,6 @@ workflow:
 
     - task: pwb-audit-system
       agent: pwb-auditor
+      retry: 1
       description: "Auditoria focada em billing, auth security e analytics"
       depends_on: [pwb-setup-billing, pwb-setup-email, pwb-setup-analytics]

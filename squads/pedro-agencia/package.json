@@ -1,0 +1,40 @@
+{
+  "name": "pedro-agencia",
+  "version": "1.0.0",
+  "description": "A agência mais completa, poderosa e lendária que já foi criada como squad AIOX",
+  "main": "scripts/validate-squad.js",
+  "bin": {
+    "squad-validate": "./scripts/validate-squad.js",
+    "squad-audit": "./scripts/quality-gate-runner.js"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-squad.js",
+    "count-lines": "node scripts/agent-line-counter.js",
+    "quality-gate": "node scripts/quality-gate-runner.js",
+    "health-check": "node scripts/health-check.js",
+    "build-and-audit": "node scripts/build-and-audit.js",
+    "check-workflows": "node scripts/check-orchestrator.js",
+    "migrate": "node scripts/migration-runner.js",
+    "audit": "npm run validate && npm run count-lines && npm run quality-gate && npm run check-workflows",
+    "full-audit": "npm run audit && npm run build-and-audit",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "aiox",
+    "squad",
+    "agencia",
+    "marketing",
+    "brand",
+    "performance"
+  ],
+  "author": "Pedro Henrique Menezes de Freitas",
+  "license": "MIT",
+  "dependencies": {
+    "yaml": "^2.3.4",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

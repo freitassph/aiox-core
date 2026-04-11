@@ -87,6 +87,19 @@ config:
   tech-stack: config/tech-stack.md
   source-tree: config/source-tree.md
 
+dependencies:
+  - yaml: "^2.3.4"
+  - zod: "^3.22.4"
+  - chalk: "^4.1.2"
+  - commander: "^11.1.0"
+  - glob: "^10.3.10"
+
+requires:
+  - node: ">=18.0.0"
+  - npm: ">=9.0.0"
+  - vercel: "CLI para deployment (opcional)"
+  - figma: "Design system documentation (opcional)"
+
 tags:
   - pedro-lp-medica
   - medical

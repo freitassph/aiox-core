@@ -2,7 +2,7 @@
 
 **Task ID:** mcp-workflow
 **Version:** 1.0
-**Purpose:** Discover, evaluate, configure, and validate MCP servers for a project's tech stack
+## Purpose Discover, evaluate, configure, and validate MCP servers for a project's tech stack
 **Orchestrator:** @mcp-integrator (Piper)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Fully tested MCP integration with documented context budget
@@ -51,7 +51,7 @@ OUTPUT: Configured MCP servers + context budget report + CLAUDE.md updates
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -62,7 +62,7 @@ OUTPUT: Configured MCP servers + context budget report + CLAUDE.md updates
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Claude Code is installed and operational in the project
 2. `.claude/settings.json` or `~/.claude.json` exists (or will be created)
@@ -249,7 +249,7 @@ Need to accomplish a task?
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 mcp_workflow_result:
@@ -283,3 +283,11 @@ mcp_workflow_result:
 | MCP server binary not installable | SKIP server -- suggest alternative |
 | Config file write fails | HALT -- check file permissions |
 | All MCP servers fail validation | HALT -- likely environment issue, debug first |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

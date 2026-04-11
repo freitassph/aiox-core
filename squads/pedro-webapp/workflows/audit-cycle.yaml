@@ -1,40 +1,40 @@
 workflow:
   id: audit-cycle
-  name: "Continuous Audit Cycle"
+  name: "Audit Cycle — Continuous Quality Assurance"
   description: |
-    Ciclo de auditoria contínua para webapps em produção.
-    Executar semanalmente ou após qualquer deploy significativo.
+    Workflow de auditoria recorrente para garantir que o squad e o sistema
+    mantenham 100/100 de qualidade e segurança.
   version: 1.0.0
 
-  trigger:
-    schedule: "weekly"
-    on_deploy: true
+  pre_conditions:
+    - "Codebase estável (build passando)"
+    - "Ambiente de Staging ou Prod disponível para testes de fumaça"
+  
+  post_conditions:
+    - "Audit report gerado em docs/audit-reports/"
+    - "Pontuação mínima de 95/100 mantida"
 
-  sequence:
+  error_handler:
+    actions:
+      - "Notificar @pwb-maestro sobre falhas críticas"
+      - "Gerar ticket de correção imediata em docs/CRISIS.md"
+  
+  steps:
     - task: pwb-audit-system
       agent: pwb-auditor
-      description: "Auditoria completa: segurança, performance, CRO, billing, monitoring"
-      outputs: ["docs/audit-reports/audit-{date}.md"]
-
-    - task: qa-regression
+      retry: 1
+      description: "Executar auditoria de segurança, performance, código e CRO"
+      outputs: ["docs/audit-reports/"]
+    
+    - task: qa-gate
       agent: pwb-qa
-      description: "Suite de regressão: unit + E2E + caminhos críticos"
+      retry: 1
+      description: "Rodar suíte de testes E2E e sanitização"
       depends_on: [pwb-audit-system]
-      outputs: ["tests/results/regression-{date}.json"]
 
-    - task: delivery-status
+    - task: delivery-report
       agent: pwb-maestro
-      description: "Resumo executivo: métricas, issues, recomendações"
-      depends_on: [qa-regression]
-      outputs: ["docs/weekly-reports/report-{date}.md"]
-
-  escalation:
-    on_critical_finding:
-      notify: ["pwb-maestro", "pwb-backend"]
-      action: "STOP_DEPLOY"
-    on_lighthouse_regression:
-      notify: ["pwb-frontend", "pwb-seo"]
-      action: "INVESTIGATE_PERFORMANCE"
-    on_conversion_drop:
-      notify: ["pwb-landing", "pwb-analytics"]
-      action: "REVIEW_CRO"
+      retry: 1
+      description: "Compilar resultados e notificar stakeholders"
+      depends_on: [qa-gate]
+      outputs: ["docs/DELIVERY.md"]

@@ -2,6 +2,17 @@ squad:
   id: pedro-webapp
   name: "Pedro WebApp Squad"
   version: 2.1.0
+  dependencies:
+    - nextjs: "^15.0.0"
+    - tailwindcss: "^4.0.0"
+    - shadcn: "latest"
+    - supabase: "^2.0.0"
+    - hono: "^4.0.0"
+    - drizzle: "^0.30.0"
+    - stripe: "^14.0.0"
+    - resend: "^3.0.0"
+    - posthog: "^1.0.0"
+
   description: |
     Squad elite para construção de qualquer webapp moderno: landing pages de alta conversão,
     dashboards analíticos, SaaS apps completos com auth/billing/multi-tenancy.
@@ -10,8 +21,10 @@ squad:
   tier: "S+++"
   tags: [webapp, landing-page, dashboard, saas, frontend, backend, nextjs, stripe, clerk]
   author: pedro-sistema-agente
-
   leader: pwb-maestro
+  requires:
+    - "Base de Conhecimento AIOX Core"
+    - "Schemas de Componentes Sanguíneos Tier S"
 
   agents:
     # Orquestração

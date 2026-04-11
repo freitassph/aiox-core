@@ -18,6 +18,23 @@ workflow:
   entry_agent: roadmap-sentinel
   estimated_duration: "15-30 minutes"
 
+  pre_conditions:
+    - "Internet access available to reach GitHub and documentation sites"
+    - "roadmap-sentinel agent is active and calibrated"
+
+  post_conditions:
+    - "Knowledge base data files are updated with latest deltas"
+    - "Impact assessment per specialist agent is generated"
+    - "Update report with version comparison is produced"
+
+  on_failure:
+    - "Rollback data files to previous state if corrupted"
+    - "Log source accessibility errors"
+
+  retry:
+    max_attempts: 3
+    retry_on: [network_timeout, rate_limit]
+
 # ────────────────────────────────────────────────────────────────────────────
 # PHASES
 # ────────────────────────────────────────────────────────────────────────────

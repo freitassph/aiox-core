@@ -91,3 +91,28 @@ Conecta o sistema com WhatsApp, Google Calendar, e APIs externas do cliente.
 | WhatsApp delivery rate | > 98% | Evolution API metrics |
 | OAuth token refresh | Automático 100% | Monitorar logs de refresh |
 | Circuit breaker test | Funciona em simulação | Teste manual |
+
+
+## Purpose
+O propósito desta tarefa é garantir a execução impecável de um módulo específico do sistema Pedro Henrique, seguindo os rigorosos padrões de qualidade S+++.
+
+## Entrada
+- Requisitos técnicos detalhados
+- Contexto do projeto vindo do Maestro
+- Dependências de sistemas externos validadas
+
+## Saida
+- Código fonte documentado e testado
+- Artefatos de design ou infraestrutura validados
+- Relatório de conformidade técnica
+
+## Checklist
+- [ ] Validar conformidade com os padrões de código
+- [ ] Executar testes de unidade e integração
+- [ ] Revisar documentação técnica
+- [ ] Obter aprovação do Auditor
+
+## Pre-conditions
+- Ambiente de desenvolvimento configurado
+- Todas as dependências do agente resolvidas
+- Goal da tarefa claramente definido e aceito pela squad

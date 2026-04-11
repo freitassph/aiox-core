@@ -12,6 +12,20 @@ Saida: |
 
 # *orchestrate-project
 
+## Purpose
+Analisar o brief inicial e definir a arquitetura macro do projeto, classificando-o e criando o blueprint de execução.
+
+## Pre-conditions
+- Recebimento do brief do projeto em linguagem natural.
+- Acesso à infraestrutura de documentos do squad.
+
+## Checklist
+- [ ] Brief analisado e ambiguidades resolvidas
+- [ ] Tipo de projeto classificado (LANDING/DASHBOARD/SAAS/MICRO)
+- [ ] Stack tecnológica definida
+- [ ] PROJECT.md criado com roadmap e sequência de agentes
+- [ ] PHASE-STATUS.md inicializado
+
 Análise do brief, classificação do projeto e criação do blueprint completo.
 
 ## Fases de Execução

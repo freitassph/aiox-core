@@ -1,0 +1,152 @@
+name: design-audit-workflow
+description: Workflow de auditoria de design completa — do scope ao improvement backlog
+version: "1.0"
+squad: pedro-design
+trigger:
+  command: "*audit-design"
+  event: design-audit-request
+steps:
+  - id: scope-definition
+    agent: pdg-auditor
+    task: pdg-audit-scope.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    action: Definir escopo da auditoria — o que auditar, criterios, timeline
+    outputs:
+      - audit-scope
+      - audit-plan
+      - evaluation-criteria
+    on_success: visual-consistency
+    on_failure: error-handler
+  - id: visual-consistency
+    agent: pdg-auditor
+    task: pdg-visual-consistency-audit.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: scope-definition
+    action: Auditar consistência visual — cores, tipografia, spacing, estilo
+    outputs:
+      - consistency-report
+      - visual-deviations
+    on_success: component-audit
+    on_failure: error-handler
+  - id: component-audit
+    agent: pdg-design-system
+    task: pdg-component-audit.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: scope-definition
+    action: Auditar componentes — variants, states, usage, documentation
+    parallel_with:
+      - token-audit
+    outputs:
+      - component-audit-report
+      - component-issues
+    on_success: token-audit
+    on_failure: error-handler
+  - id: token-audit
+    agent: pdg-design-system
+    task: pdg-token-audit.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: scope-definition
+    action: Auditar design tokens — naming, values, usage, consistency
+    parallel_with:
+      - component-audit
+    outputs:
+      - token-audit-report
+      - token-issues
+    on_success: accessibility-check
+    on_failure: error-handler
+  - id: accessibility-check
+    agent: pdg-auditor
+    task: pdg-accessibility-audit.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - visual-consistency
+      - component-audit
+    action: Auditar acessibilidade — WCAG 2.1 AA, colorblind, screen reader
+    outputs:
+      - accessibility-audit
+      - violations-list
+    on_success: documentation-review
+    on_failure: error-handler
+  - id: documentation-review
+    agent: pdg-auditor
+    task: pdg-documentation-review.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - component-audit
+      - token-audit
+    action: Revisar documentação — completeness, accuracy, currency
+    outputs:
+      - documentation-score
+      - doc-gaps
+    on_success: report
+    on_failure: error-handler
+  - id: report
+    agent: pdg-auditor
+    task: pdg-audit-report.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on:
+      - visual-consistency
+      - component-audit
+      - token-audit
+      - accessibility-check
+      - documentation-review
+    action: Compilar relatório final — scores, findings, recommendations
+    outputs:
+      - final-audit-report
+      - consistency-score
+      - executive-summary
+    on_success: improvement-backlog
+    on_failure: error-handler
+  - id: improvement-backlog
+    agent: pdg-auditor
+    task: pdg-improvement-backlog.md
+    retry:
+      max_attempts: 2
+      backoff: linear
+    depends_on: report
+    action: Criar backlog de melhorias — priorizado por impacto e esforço
+    outputs:
+      - improvement-backlog
+      - priority-matrix
+      - recommended-timeline
+    on_success: complete
+    on_failure: error-handler
+success_criteria:
+  - Escopo definido com critérios claros
+  - Consistência visual auditada com score
+  - Componentes auditados com issues documentados
+  - Tokens auditados com naming e consistency check
+  - Accessibility check com violations list
+  - Documentação revisada com score
+  - Relatório final com executive summary e scores
+  - Backlog priorizado com impacto e esforço
+error_handler:
+  id: error-handler
+  name: Error Handler
+  actions:
+    - action: log
+      message: "Workflow failed at {step_id}: {error}"
+    - action: notify
+      channel: design-creator-log
+pre_conditions:
+  - All required agents available and activated
+  - Design brief approved by pdg-chief
+  - Budget and timeline validated
+post_conditions:
+  - All design assets delivered
+  - Quality gates passed
+  - Client or stakeholder sign-off received

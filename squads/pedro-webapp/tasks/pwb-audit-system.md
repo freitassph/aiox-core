@@ -13,7 +13,20 @@ Saida: |
 
 # *audit-system
 
-Auditoria completa: segurança, qualidade de código, performance, conversão e monitoramento.
+## Purpose
+Realizar uma auditoria técnica rigorosa e multidimensional em todo o ecossistema WebApp, garantindo conformidade com padrões de segurança, performance, qualidade de código e conversão.
+
+## Pre-conditions
+- Codebase consolidada e buildando.
+- Acesso total aos logs de produção e ferramentas de monitoramento.
+
+## Checklist
+- [ ] Auditoria de Segurança concluída (Zero issues críticos)
+- [ ] Code Quality Audit finalizado (Linter, Typecheck, Coverage)
+- [ ] Performance Audit validado (Lighthouse >= 95, Queries DB)
+- [ ] CRO Audit realizado para fluxos de conversão
+- [ ] Monitoramento e Billing validados
+- [ ] Reporte de Auditoria gerado e assinado
 
 ## Fases de Execução
 
@@ -41,7 +54,7 @@ pnpm build       # deve passar
 - Zero `any` em TypeScript?
 - Error handling em todas as operações assíncronas?
 - Sem imports relativos (`../../../`)?
-- Sem `console.log` em produção?
+- Sem `console.log` in produção?
 
 **Critério:** Todos os quality gates passando
 

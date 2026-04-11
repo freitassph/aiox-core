@@ -2,7 +2,7 @@
 
 **Task ID:** claude-md-engineer
 **Version:** 1.0
-**Purpose:** Engineer a high-quality, concise CLAUDE.md file optimized for Claude Code's context loading and auto-memory
+## Purpose Engineer a high-quality, concise CLAUDE.md file optimized for Claude Code's context loading and auto-memory
 **Orchestrator:** @project-integrator (Conduit)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Under 200 lines, all sections actionable, no filler content, passes self-review
@@ -61,7 +61,7 @@ OUTPUT: Optimized CLAUDE.md file
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -73,7 +73,7 @@ OUTPUT: Optimized CLAUDE.md file
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Project directory exists with source code
 2. Understanding of what Claude Code needs from CLAUDE.md
@@ -287,7 +287,7 @@ git log --oneline -20
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 claude_md_engineer_result:

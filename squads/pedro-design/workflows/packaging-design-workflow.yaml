@@ -1,0 +1,146 @@
+name: packaging-design-workflow
+description: Workflow de design de embalagem completa — estrutural, gráfico e produção
+version: "1.0"
+squad: pedro-design
+trigger:
+  command: "*design-packaging"
+  event: packaging-brief-received
+steps:
+  - id: brief
+    agent: pdg-packaging-designer
+    action: Analisar brief de embalagem — produto, categoria, audiencia, canais
+    outputs:
+      - packaging-requirements
+      - shelf-context-analysis
+    task: pdg-develop-creative-strategy
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: shelf-audit
+    on_failure: error-handler
+  - id: shelf-audit
+    agent: pdg-packaging-designer
+    depends_on: brief
+    action: Auditar gôndola competitiva — identificar padroes e oportunidades
+    outputs:
+      - competitive-shelf-map
+      - differentiation-opportunities
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: structural-design
+    on_failure: error-handler
+  - id: structural-design
+    agent: pdg-packaging-designer
+    depends_on:
+      - brief
+      - shelf-audit
+    action: Definir formato estrutural — tipo, material, dimensões, funcionalidade
+    outputs:
+      - structural-concept
+      - dieline
+      - material-spec
+    task: pdg-design-packaging
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: graphic-design
+    on_failure: error-handler
+  - id: graphic-design
+    agent: pdg-packaging-designer
+    depends_on: structural-design
+    action: Design gráfico da embalagem — front, back, laterais, regulatory
+    outputs:
+      - front-of-pack-design
+      - back-of-pack-design
+      - regulatory-compliance
+    task: pdg-create-illustration
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: 3d-mockup
+    on_failure: error-handler
+  - id: 3d-mockup
+    agent: pdg-mockup-3d-artist
+    depends_on: graphic-design
+    action: Gerar renders 3D fotorrealistas em múltiplos ângulos
+    outputs:
+      - hero-render
+      - shelf-context-render
+      - hand-scale-render
+      - open-experience-render
+    task: pdg-create-3d-scene
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: print-spec
+    on_failure: error-handler
+  - id: print-spec
+    agent: pdg-packaging-designer
+    depends_on:
+      - graphic-design
+      - 3d-mockup
+    action: Especificação de impressão — processo, cores, acabamentos
+    outputs:
+      - print-specification
+      - color-specs
+      - finishing-specs
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: regulatory-check
+    on_failure: error-handler
+  - id: regulatory-check
+    agent: pdg-packaging-designer
+    depends_on: graphic-design
+    action: Verificar conformidade regulatoria por categoria
+    outputs:
+      - regulatory-compliance-report
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: production-handoff
+    on_failure: error-handler
+  - id: production-handoff
+    agent: pdg-packaging-designer
+    depends_on:
+      - print-spec
+      - regulatory-check
+    action: Handoff para produção — files, specs, contato grafico
+    outputs:
+      - production-ready-files
+      - printer-brief
+      - proof-review-schedule
+    task: pdg-orchestrate-design
+    retry:
+      max_attempts: 2
+      backoff: linear
+    on_success: complete
+    on_failure: error-handler
+success_criteria:
+  - Brief analisado com requisitos documentados
+  - Auditoria de gôndola com minimum 5 competidores
+  - Design estrutural com dieline preciso
+  - Design gráfico completo (front, back, laterais)
+  - Minimum 4 renders 3D em ângulos diferentes
+  - Especificação de impressão completa
+  - Conformidade regulatoria verificada
+  - Files production-ready entregues
+error_handler:
+  actions:
+    - action: log
+      message: "Workflow failed at {step_id} with error: {error}"
+    - action: notify
+      channel: pedro-design-alerts
+      recipient: pdg-chief
+pre_conditions:
+  - All required agents available and activated
+  - Design brief approved by pdg-chief
+  - Budget and timeline validated
+post_conditions:
+  - All design assets delivered
+  - Quality gates passed
+  - Client or stakeholder sign-off received

@@ -2,7 +2,7 @@
 
 **Task ID:** create-team-topology
 **Version:** 1.0
-**Purpose:** Design and configure a multi-agent team with defined topology, roles, and communication patterns
+## Purpose Design and configure a multi-agent team with defined topology, roles, and communication patterns
 **Orchestrator:** @swarm-orchestrator (Nexus)
 **Mode:** Interactive (elicit: true)
 **Quality Standard:** Team topology tested with dry-run, all agents load successfully
@@ -51,7 +51,7 @@ OUTPUT: Agent team files + topology diagram + communication spec
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -63,7 +63,7 @@ OUTPUT: Agent team files + topology diagram + communication spec
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. `.claude/agents/` directory exists
 2. Workload is clearly defined and scoped
@@ -216,7 +216,7 @@ Are subtasks independent with no shared state?
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 team_topology_result:

@@ -1,51 +1,61 @@
 ---
-task: Setup Analytics & Error Tracking
+task: Setup Analytics & Monitoring
 responsavel: "@pwb-analytics"
 responsavel_type: agent
 atomic_layer: task
 Entrada: |
-  - prd: docs/PRD.md
-  - auth: (auth configurado — para identificar usuários)
+  - posthog_key: chave de API do PostHog
+  - sentry_dsn: DSN do Sentry
 Saida: |
-  - posthog_setup: lib/analytics/posthog.ts
-  - event_taxonomy: lib/analytics/events.ts
-  - feature_flags: lib/analytics/feature-flags.ts
-  - sentry_setup: instrumentation.ts
-  - providers: app/providers.tsx
+  - analytics_lib: apps/web/lib/posthog.tsx
+  - monitoring_setup: apps/web/sentry.config.ts
+  - feature_flags: (configuradas no PostHog)
 ---
 
 # *setup-analytics
 
-Configurar PostHog (analytics + feature flags) e Sentry (error tracking).
+## Purpose
+Configurar e implementar as ferramentas de mensuração de dados, observabilidade de erros e gestão de experimentos (feature flags), garantindo decisões baseadas em dados.
+
+## Pre-conditions
+- Definição de KPIs e eventos críticos no PRD.
+- Contas ativas no PostHog e Sentry.
+
+## Checklist
+- [ ] SDK do PostHog integrado ao Frontend (Auto-capture off)
+- [ ] Rastreamento de eventos customizados em fluxos críticos
+- [ ] Sentry configurado para captura de erros (Front/Back)
+- [ ] Feature Flags habilitadas e testadas
+- [ ] Funis de conversão e dashboards criados
+- [ ] Monitoramento de performance sistêmica ativo
 
 ## Fases de Execução
 
-### Fase 1: PostHog Setup
-- Criar conta PostHog (cloud ou self-hosted)
-- Instalar: `pnpm add posthog-js posthog-node`
-- Configurar `PostHogProvider` em `app/providers.tsx`
-- Desabilitar em dev (`NODE_ENV !== 'production'`)
-- Pageview manual (não autocapture)
+### Fase 1: PostHog Setup (Frontend)
+```bash
+pnpm add posthog-js
+```
+- Criar `providers/posthog-provider.tsx` — usar `capture_pageview: false`
+- Chamar `posthog.init` com `api_host` (proxy recomendado)
+- Implementar `identify()` após o login do usuário (identidade real)
 
-### Fase 2: Event Taxonomy
-Definir todos os eventos do projeto em `lib/analytics/events.ts`:
-- Acquisition: Landing Viewed, CTA Clicked, Signup Started/Completed
-- Activation: Onboarding Step, First Feature Used
-- Retention: Dashboard Viewed, Feature Used
-- Revenue: Pricing Viewed, Plan Selected, Subscription Created/Canceled
-- Referral: Invite Sent/Accepted
+### Fase 2: Tracking de Eventos (JTBD)
+Implementar `capture()` nos eventos definidos pelo PM:
+- `user_signed_up`
+- `feature_used` (com nome da feature)
+- `pricing_viewed`
+- `checkout_started`
+- `subscription_completed` (importante p/ faturamento)
 
-### Fase 3: Identificação de Usuário
-- `identifyUser(userId, { email, plan, createdAt })` após login
-- `resetAnalytics()` no logout
-- Server-side tracking para eventos críticos (billing, signup)
+### Fase 3: Server-side Analytics (API)
+- Instalar Node SDK do PostHog
+- Capturar eventos em background jobs (faturamento, emails)
+- Garantir que `distinct_id` seja consistente entre front e back
 
-### Fase 4: Funnels e Dashboards
-Configurar no PostHog:
-- Funnel de signup (Landing → Signup Started → Completed)
-- Funnel de ativação (Signup → First Feature Used)
-- Funnel de upgrade (Pricing Viewed → Plan Selected → Subscription)
-- Dashboard: DAU, MAU, Churn, MRR
+### Fase 4: Funneis e Dashboards
+- Criar funil de Onboarding em PostHog UI
+- Criar funil de Retenção (Week 1, Week 4)
+- Criar dashboard executivo para o Pedro (User growth, MRR growth)
 
 ### Fase 5: Feature Flags
 - Criar flags iniciais: `new-feature-x`, `beta-feature-y`

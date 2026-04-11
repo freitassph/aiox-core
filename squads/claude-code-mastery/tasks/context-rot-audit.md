@@ -2,7 +2,7 @@
 
 **Task ID:** context-rot-audit
 **Version:** 1.0
-**Purpose:** Audit CLAUDE.md, rules, and auto-memory for stale, incorrect, or bloated context that degrades Claude Code performance
+## Purpose Audit CLAUDE.md, rules, and auto-memory for stale, incorrect, or bloated context that degrades Claude Code performance
 **Orchestrator:** @project-integrator (Conduit)
 **Mode:** Autonomous (elicit: false)
 **Quality Standard:** Rot score calculated, all stale references identified, remediation plan generated
@@ -51,7 +51,7 @@ OUTPUT: Rot score + findings report + remediation plan
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -61,7 +61,7 @@ OUTPUT: Rot score + findings report + remediation plan
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 1. Project has Claude Code configured (CLAUDE.md or .claude/ exists)
 2. Git repository for change history analysis
@@ -282,7 +282,7 @@ Score Interpretation:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```yaml
 context_rot_audit_result:
@@ -327,3 +327,11 @@ context_rot_audit_result:
 | Rot score exceeds 50 | HALT -- critical rot, needs immediate human attention |
 | Auto-fix would modify more than 10 files | HALT -- too many changes, require manual review |
 | CLAUDE.md has AIOX-managed sections | WARN -- do not modify managed sections |
+
+---
+
+## Checklist
+
+- [ ] Task execution completed
+- [ ] Output artifacts validated
+- [ ] Quality standards met

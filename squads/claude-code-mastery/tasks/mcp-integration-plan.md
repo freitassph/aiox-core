@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Command:** `*mcp-integration-plan`
 **Agent:** Conduit (project-integrator)
-**Purpose:** Plan MCP server integration for a project by analyzing needs, mapping capabilities to available servers, estimating context budget impact, and prioritizing by ROI.
+## Purpose Plan MCP server integration for a project by analyzing needs, mapping capabilities to available servers, estimating context budget impact, and prioritizing by ROI.
 
 ---
 
@@ -45,7 +45,7 @@
 
 ---
 
-## Inputs
+## Entrada / Inputs
 
 | Field | Type | Source | Required | Validation |
 |-------|------|--------|----------|------------|
@@ -55,7 +55,7 @@
 
 ---
 
-## Preconditions
+## Pre-conditions / Pre-condicoes
 
 - Project directory accessible for analysis
 - Understanding of available MCP ecosystem (official + community)
@@ -161,7 +161,7 @@ For each MCP in the plan:
 
 ---
 
-## Output Format
+## Saida / Output Format
 
 ```markdown
 ## MCP Integration Plan
@@ -218,7 +218,7 @@ For each MCP in the plan:
 
 ---
 
-## Completion Criteria
+## Checklist / Completion Criteria
 
 - [ ] Project needs analyzed with frequency assessment
 - [ ] Available MCPs mapped to identified needs
