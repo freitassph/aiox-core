@@ -1,0 +1,92 @@
+name: environmental-design-workflow
+description: "Workflow de design ambiental — do audit espacial à instalação"
+version: "1.0"
+squad: pedro-design
+
+trigger:
+  command: "*environmental-design"
+  event: space-design-request
+
+steps:
+  - id: space-audit
+    agent: pdg-environmental-designer
+    action: "Auditar espaço físico — dimensões, fluxos, iluminação, materiais existentes"
+    outputs:
+      - space-plan
+      - existing-conditions
+      - constraints-map
+
+  - id: user-flow
+    agent: pdg-environmental-designer
+    depends_on: space-audit
+    action: "Mapear fluxo de usuários — entry, navigation, exit, touchpoints"
+    outputs:
+      - user-flow-map
+      - decision-points
+      - pain-points
+
+  - id: wayfinding-strategy
+    agent: pdg-environmental-designer
+    depends_on: [space-audit, user-flow]
+    action: "Definir estratégia de wayfinding — landmarks, zones, paths, nodes"
+    outputs:
+      - wayfinding-plan
+      - zoning-map
+      - landmark-locations
+
+  - id: signage-design
+    agent: pdg-environmental-designer
+    depends_on: wayfinding-strategy
+    action: "Design de sistema de sinalização — tipos, tamanhos, materiais, locations"
+    parallel_with: [brand-integration]
+    outputs:
+      - signage-system
+      - sign-specs
+      - placement-map
+
+  - id: brand-integration
+    agent: pdg-environmental-designer
+    depends_on: wayfinding-strategy
+    action: "Integrar identidade de marca no espaço — cores, graphics, materials"
+    parallel_with: [signage-design]
+    outputs:
+      - brand-in-space-plan
+      - wall-graphics
+      - environmental-branding
+
+  - id: material-spec
+    agent: pdg-environmental-designer
+    depends_on: [signage-design, brand-integration]
+    action: "Especificar materiais — durability, maintenance, sustainability, cost"
+    outputs:
+      - material-specification
+      - supplier-list
+      - cost-estimate
+
+  - id: mockup-3d
+    agent: pdg-mockup-3d-artist
+    depends_on: [signage-design, brand-integration]
+    action: "Criar visualizações 3D do espaço final"
+    outputs:
+      - 3d-views
+      - walkthrough
+      - lighting-simulation
+
+  - id: installation-guide
+    agent: pdg-environmental-designer
+    depends_on: [material-spec, mockup-3d]
+    action: "Criar guia de instalação — sequência, responsaveis, timeline"
+    outputs:
+      - installation-guide
+      - timeline
+      - responsibility-matrix
+
+success_criteria:
+  - "Space audit completo com dimensões e condições"
+  - "User flow mapado com minimum 3 scenarios"
+  - "Wayfinding strategy com zones e paths definidos"
+  - "Signage system com minimum 5 tipos de placas"
+  - "Brand integration no espaço documentada"
+  - "Material spec com fornecedores e custos"
+  - "Minimum 6 views 3D aprovadas"
+  - "Installation guide com timeline e responsaveis"

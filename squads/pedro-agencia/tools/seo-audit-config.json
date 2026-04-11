@@ -1,0 +1,47 @@
+{
+  "name": "pedro-agencia-seo-audit-config",
+  "version": "1.0.0",
+  "description": "SEO audit configuration for pedro-agencia squad",
+  "squad": "pedro-agencia",
+  "owner": "pa-vertex",
+  "audit": {
+    "technical": {
+      "coreWebVitals": true,
+      "mobileFriendly": true,
+      "httpsCheck": true,
+      "sitemapCheck": true,
+      "robotsTxtCheck": true,
+      "canonicalCheck": true,
+      "structuredData": true,
+      "redirectChains": true,
+      "brokenLinks": true,
+      "duplicateContent": true
+    },
+    "onPage": {
+      "titleTags": true,
+      "metaDescriptions": true,
+      "headingStructure": true,
+      "keywordDensity": true,
+      "imageAltText": true,
+      "internalLinking": true,
+      "urlStructure": true,
+      "contentLength": true,
+      "readability": true
+    },
+    "offPage": {
+      "backlinkProfile": true,
+      "domainAuthority": true,
+      "referringDomains": true,
+      "anchorTextDistribution": true,
+      "toxicLinks": true
+    },
+    "thresholds": {
+      "lcp_good": 2500,
+      "inp_good": 200,
+      "cls_good": 0.1,
+      "min_word_count": 1500,
+      "min_da_target": 30,
+      "max_redirect_chains": 3
+    }
+  }
+}

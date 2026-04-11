@@ -255,6 +255,18 @@ squad:
     - id: pa-go-to-market
       file: tasks/pa-go-to-market.md
       agent: pa-launch
+    - id: pa-brand-strategy
+      file: tasks/pa-brand-strategy.md
+      agent: pa-oracle
+    - id: pa-campaign-full
+      file: tasks/pa-campaign-full.md
+      agent: pa-empire
+    - id: pa-content-engine
+      file: tasks/pa-content-engine.md
+      agent: pa-chronicle
+    - id: pa-growth-sprint
+      file: tasks/pa-growth-sprint.md
+      agent: pa-rocket
 
   workflows:
     - id: wf-full-campaign
@@ -272,6 +284,12 @@ squad:
     - id: wf-content-machine
       file: workflows/wf-content-machine.yaml
       description: "Máquina de produção de conteúdo mensal"
+    - id: wf-campaign-launch
+      file: workflows/wf-campaign-launch.yaml
+      description: "Workflow de lançamento de campanha integrada 360° — do brief ao go-live"
+    - id: wf-onboarding-client
+      file: workflows/wf-onboarding-client.yaml
+      description: "Workflow completo de onboarding de novo cliente da pedro-agencia"
 
   quality_standards:
     brand_consistency: "100% — sem desvio de identidade"
@@ -287,6 +305,24 @@ squad:
   config:
     agency_philosophy: config/agency-philosophy.md
     client_manifesto: config/client-manifesto.md
+    coding_standards: config/coding-standards.md
+    tech_stack: config/tech-stack.md
+    source_tree: config/source-tree.md
+
+  data:
+    industry_benchmarks: data/industry-benchmarks.md
+    ad_platform_reference: data/ad-platform-reference.md
+    brand_archetypes_reference: data/brand-archetypes-reference.md
+    seo_framework_reference: data/seo-framework-reference.md
+
+  scripts:
+    campaign_report_generator: scripts/campaign-report-generator.js
+    benchmark_fetcher: scripts/benchmark-fetcher.js
+    utm_builder: scripts/utm-builder.js
+
+  tools:
+    seo_audit_config: tools/seo-audit-config.json
+    analytics_setup: tools/analytics-setup.json
 
 aiox:
   minVersion: "2.1.0"

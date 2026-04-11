@@ -71,8 +71,12 @@ components:
     - landing-page-sections-template.md
     - copy-framework-by-specialty-template.md
     - design-tokens-template.yaml
-  tools: []
-  scripts: []
+  tools:
+    - cfm-quick-reference.md
+    - medical-specialty-config.md
+  scripts:
+    - cfm-compliance-checker.sh
+    - medical-seo-audit.sh
   data:
     - cfm-resolucao-2336-2023-reference.md
     - medical-specialties-map.yaml

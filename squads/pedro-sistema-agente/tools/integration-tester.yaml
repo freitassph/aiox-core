@@ -1,0 +1,230 @@
+# Integration Tester Tool
+# Comprehensive testing utility for system integrations
+
+name: integration-tester
+version: 1.0.0
+type: tool
+
+description: >
+  Automated integration testing tool that verifies all external
+  service connections, API endpoints, webhooks, and data flows
+  for systems built by pedro-sistema-agente squad.
+
+integration_tests:
+  whatsapp:
+    description: Test WhatsApp Cloud API integration
+    test_cases:
+      - name: webhook_verification
+        description: Verify webhook responds to Meta's challenge
+        steps:
+          - Send GET request with hub.mode=subscribe, hub.challenge, hub.verify_token
+          - Expect hub.challenge returned as response body
+          - Verify status 200
+        required_env: WHATSAPP_VERIFY_TOKEN
+
+      - name: send_text_message
+        description: Send a text message via Cloud API
+        steps:
+          - POST to /v17.0/{phone_number_id}/messages
+          - Include messaging_product, to, type, text.body
+          - Verify response contains valid message ID
+        required_env: WHATSAPP_PHONE_NUMBER_ID, WHATSAPP_TOKEN
+
+      - name: receive_message
+        description: Verify inbound message is processed
+        steps:
+          - Send test message to WhatsApp number
+          - Verify webhook receives POST with message data
+          - Verify message is stored in database
+          - Verify agent responds (if auto-reply enabled)
+
+      - name: template_message
+        description: Send a template (HSM) message
+        steps:
+          - POST template message with approved template name
+          - Verify response contains valid message ID
+          - Verify template is approved status in Meta dashboard
+
+  supabase:
+    description: Test Supabase database integration
+    test_cases:
+      - name: connection_test
+        description: Verify database connectivity
+        steps:
+          - Execute SELECT 1 query
+          - Verify response received within 2 seconds
+          - Verify no connection errors
+        required_env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
+
+      - name: crud_operations
+        description: Test basic CRUD on a sample table
+        steps:
+          - INSERT: Create test record
+          - SELECT: Read test record
+          - UPDATE: Modify test record
+          - DELETE: Remove test record
+          - Verify all operations succeed
+        required_env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
+
+      - name: rls_policies
+        description: Test Row Level Security policies
+        steps:
+          - Authenticate as different user roles
+          - Attempt operations that should be allowed
+          - Attempt operations that should be denied
+          - Verify policy enforcement
+
+      - name: realtime_subscriptions
+        description: Test Supabase Realtime
+        steps:
+          - Subscribe to table changes
+          - Perform INSERT/UPDATE/DELETE
+          - Verify change events received
+          - Verify event payload contains correct data
+
+  openai:
+    description: Test OpenAI API integration
+    test_cases:
+      - name: connection_test
+        description: Verify OpenAI API connectivity
+        steps:
+          - Call models endpoint with minimal prompt
+          - Verify response received
+          - Verify response is valid text
+        required_env: OPENAI_API_KEY
+
+      - name: streaming_response
+        description: Test streaming response handling
+        steps:
+          - Request with stream=true
+          - Verify SSE events received
+          - Verify complete response can be assembled
+          - Verify no data loss in stream
+
+      - name: rate_limit_handling
+        description: Test rate limit handling
+        steps:
+          - Send rapid sequential requests
+          - Verify 429 responses are handled gracefully
+          - Verify retry logic works
+          - Verify no crashes under rate limit
+
+  google_calendar:
+    description: Test Google Calendar integration
+    test_cases:
+      - name: auth_flow
+        description: Test OAuth2 authentication
+        steps:
+          - Initiate OAuth2 flow
+          - Complete authorization
+          - Verify access token received
+          - Verify token refresh works
+
+      - name: create_event
+        description: Test event creation
+        steps:
+          - Create test event with start/end time
+          - Verify event ID returned
+          - Verify event visible in calendar
+          - Clean up test event
+
+      - name: check_availability
+        description: Test free/busy check
+        steps:
+          - Query availability for time range
+          - Verify busy slots returned
+          - Verify open slots identified
+
+  email:
+    description: Test email delivery
+    test_cases:
+      - name: send_transactional
+        description: Test transactional email delivery
+        steps:
+          - Send test email to verified address
+          - Verify send API returns success
+          - Verify email received in inbox
+          - Verify email content matches template
+          - Verify links and images render correctly
+
+      - name: template_rendering
+        description: Test email template rendering
+        steps:
+          - Render each template with sample data
+          - Verify HTML is valid
+          - Verify all variables are replaced
+          - Verify responsive design works
+
+  webhooks:
+    description: Test outbound webhook delivery
+    test_cases:
+      - name: delivery_success
+        description: Test successful webhook delivery
+        steps:
+          - Configure test webhook endpoint
+          - Trigger webhook event
+          - Verify HTTP POST received at endpoint
+          - Verify payload structure matches specification
+          - Verify signature verification
+
+      - name: retry_logic
+        description: Test webhook retry on failure
+        steps:
+          - Configure webhook to endpoint that returns 500
+          - Verify retry attempts (expected: 3)
+          - Verify exponential backoff between retries
+          - Verify dead letter queue after max retries
+
+      - name: signature_verification
+        description: Test webhook signature validation
+        steps:
+          - Receive webhook with signature header
+          - Verify signature matches payload
+          - Verify tampered payload fails verification
+          - Verify expired signatures rejected
+
+test_execution:
+  modes:
+    all: Run all integration tests
+    service: Run tests for specific service (--service whatsapp)
+    smoke: Run only critical path tests
+    custom: Run tests from a test specification file
+
+  output_formats:
+    - json
+    - markdown
+    - junit_xml
+    - tap
+
+  ci_integration:
+    github_actions: |
+      - name: Integration Tests
+        run: node scripts/integration-tester.js --mode smoke --format junit_xml
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ... other secrets
+
+usage:
+  command: "integration-tester"
+  options:
+    - flag: "--mode <all|smoke|service|custom>"
+      description: "Test execution mode"
+    - flag: "--service <name>"
+      description: "Test specific service (whatsapp, supabase, openai, etc.)"
+    - flag: "--format <json|markdown|junit_xml|tap>"
+      description: "Output format"
+    - flag: "--output <file>"
+      description: "Output file path"
+    - flag: "--env-file <path>"
+      description: "Environment file with credentials"
+    - flag: "--verbose"
+      description: "Detailed output with request/response logs"
+    - flag: "--timeout <ms>"
+      description: "Request timeout in milliseconds (default: 10000)"
+
+  examples:
+    - "integration-tester --mode smoke"
+    - "integration-tester --service whatsapp --format markdown"
+    - "integration-tester --mode all --env-file .env.test --output test-results.json"
+    - "integration-tester --service supabase --verbose"

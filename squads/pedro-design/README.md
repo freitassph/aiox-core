@@ -1,6 +1,8 @@
 # pedro-design Squad
 
-> Squad elite de design em todas as dimensões. Os maiores gênios do design combinados em 12 agentes especializados. Tier S+++ sem compromisso.
+> Squad elite de design em todas as dimensões. Os maiores gênios do design combinados em 21 agentes especializados (+ 2 orphan). Tier S+++++ sem compromisso.
+
+**Version:** 2.0.0
 
 ## O que este squad faz
 
@@ -87,4 +89,4 @@ Ver `config/design-standards.md` para grid, tipografia, cores e padrões de anim
 
 ---
 
-*pedro-design Squad v1.0.0 — Tier S+++ | CLI First | Zero Mediocridade*
+*pedro-design Squad v2.0.0 — Tier S+++++ | CLI First | Zero Mediocridade*

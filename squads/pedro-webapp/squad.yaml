@@ -158,6 +158,36 @@ squad:
     conversion_rate_baseline: "> 3% landing"
     security_critical_issues: 0
 
+  checklists:
+    - file: checklists/landing-page-checklist.md
+    - file: checklists/webapp-quality-checklist.md
+
+  templates:
+    - file: templates/bug-report-template.md
+    - file: templates/component-docs-template.md
+    - file: templates/dashboard-component-template.md
+    - file: templates/deployment-runbook-template.md
+    - file: templates/saas-feature-spec-template.md
+    - file: templates/user-story-template.md
+
+  scripts:
+    - file: scripts/build-and-audit.js
+    - file: scripts/lighthouse-auditor.js
+    - file: scripts/deploy-orchestrator.js
+    - file: scripts/bundle-analyzer.js
+
+  tools:
+    - file: tools/deployment-runbook.yaml
+    - file: tools/component-library-manager.yaml
+    - file: tools/api-contract-tester.yaml
+
+  data:
+    - file: data/webapp-tech-stack-reference.md
+    - file: data/saas-pricing-benchmarks.md
+    - file: data/dashboard-patterns-library.md
+    - file: data/deployment-providers-comparison.md
+    - file: data/web-security-best-practices.md
+
   config:
     tech_stack: config/tech-stack.md
     coding_standards: config/coding-standards.md

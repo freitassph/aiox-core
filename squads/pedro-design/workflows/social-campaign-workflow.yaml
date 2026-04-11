@@ -1,0 +1,90 @@
+name: social-campaign-workflow
+description: "Workflow de campanha visual para social media — do conceito à publicação"
+version: "1.0"
+squad: pedro-design
+
+trigger:
+  command: "*social-campaign"
+  event: social-campaign-brief
+
+steps:
+  - id: campaign-brief
+    agent: pdg-social-media
+    action: "Analisar brief de campanha social — objetivos, plataformas, audiencia, mensagem"
+    outputs:
+      - campaign-objectives
+      - platform-mix
+      - content-pillars
+
+  - id: visual-concept
+    agent: pdg-art-director
+    depends_on: campaign-brief
+    action: "Definir conceito visual da campanha — mood, style, referências"
+    outputs:
+      - visual-concept-doc
+      - moodboard
+      - style-guide
+
+  - id: content-calendar
+    agent: pdg-social-media
+    depends_on: [campaign-brief, visual-concept]
+    action: "Planejar calendário de conteúdo — frequência, tipos, sequência narrativa"
+    outputs:
+      - content-calendar
+      - content-mix
+      - narrative-sequence
+
+  - id: asset-production
+    agent: pdg-visual-designer
+    depends_on: [visual-concept, content-calendar]
+    action: "Produzir assets visuais para cada plataforma e formato"
+    outputs:
+      - instagram-posts
+      - instagram-stories
+      - facebook-assets
+      - linkedin-assets
+      - tiktok-assets
+
+  - id: copy-integration
+    agent: pdg-ux-writer
+    depends_on: asset-production
+    action: "Integrar copy com visual — captions, headlines, CTAs"
+    parallel_with: [quality-review]
+    outputs:
+      - captioned-assets
+      - copy-document
+
+  - id: quality-review
+    agent: pdg-social-media
+    depends_on: asset-production
+    action: "Review de qualidade — brand consistency, platform specs, readability"
+    parallel_with: [copy-integration]
+    outputs:
+      - quality-report
+      - approved-assets
+
+  - id: scheduling
+    agent: pdg-social-media
+    depends_on: [copy-integration, quality-review]
+    action: "Programar conteúdo — datas, horários, plataformas"
+    outputs:
+      - scheduled-content
+      - publishing-calendar
+
+  - id: launch
+    agent: pdg-social-media
+    depends_on: scheduling
+    action: "Publicar e monitorar — performance inicial, ajustes"
+    outputs:
+      - launch-report
+      - initial-performance
+
+success_criteria:
+  - "Brief de campanha documentado com objetivos e plataformas"
+  - "Conceito visual aprovado por pdg-art-director"
+  - "Calendário de conteúdo com minimum 2 semanas planejadas"
+  - "Assets produzidos para todas as plataformas definidas"
+  - "Copy integrado em todos os assets"
+  - "Quality review passed em todos os assets"
+  - "Conteúdo programado e publicado"
+  - "Relatório de lançamento com métricas iniciais"

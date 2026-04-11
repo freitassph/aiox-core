@@ -1,0 +1,92 @@
+{
+  "name": "pedro-agencia-analytics-setup",
+  "version": "1.0.0",
+  "description": "Analytics configuration template for pedro-agencia squad clients",
+  "squad": "pedro-agencia",
+  "owner": "pa-prism",
+  "platforms": {
+    "googleAnalytics4": {
+      "enabled": true,
+      "enhancedMeasurement": {
+        "pageViews": true,
+        "scrolls": true,
+        "outboundClicks": true,
+        "siteSearch": true,
+        "videoEngagement": true,
+        "fileDownloads": true
+      },
+      "events": {
+        "recommended": [
+          "form_submit",
+          "purchase",
+          "add_to_cart",
+          "begin_checkout",
+          "sign_up",
+          "generate_lead"
+        ],
+        "custom": []
+      },
+      "conversions": {
+        "primary": ["purchase", "generate_lead"],
+        "secondary": ["sign_up", "add_to_cart"]
+      }
+    },
+    "googleTagManager": {
+      "enabled": true,
+      "containerType": "web",
+      "triggers": {
+        "formSubmission": {
+          "type": "Form Submission",
+          "waitForTags": true,
+          "checkValidation": true
+        },
+        "clickAllLinks": {
+          "type": "All Elements",
+          "conditions": ["Click URL matches .*"]
+        },
+        "youtubeVideo": {
+          "type": "YouTube",
+          "enableProgressBar": true
+        },
+        "scrollDepth": {
+          "type": "Scroll Depth",
+          "vertical": [25, 50, 75, 100]
+        }
+      }
+    },
+    "metaPixel": {
+      "enabled": true,
+      "standardEvents": [
+        "PageView",
+        "ViewContent",
+        "AddToCart",
+        "InitiateCheckout",
+        "Purchase",
+        "Lead",
+        "CompleteRegistration"
+      ],
+      "advancedMatching": {
+        "email": true,
+        "phone": true,
+        "firstName": true,
+        "lastName": true,
+        "city": true,
+        "state": true,
+        "zip": true,
+        "country": true
+      }
+    }
+  },
+  "dashboards": {
+    "lookerStudio": {
+      "templateUrl": "https://lookerstudio.google.com/campaign-dashboard-template",
+      "dataSources": [
+        "Google Analytics 4",
+        "Google Ads",
+        "Meta Ads",
+        "Google Search Console"
+      ],
+      "refreshRate": "daily"
+    }
+  }
+}

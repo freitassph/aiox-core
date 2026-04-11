@@ -43,10 +43,30 @@ components:
     - ai-agent-build.yaml
     - audit-cycle.yaml
 
-  checklists: []
-  templates: []
-  tools: []
-  scripts: []
+  checklists:
+    - accessibility-checklist.md
+    - api-testing-checklist.md
+    - code-review-checklist.md
+    - deployment-checklist.md
+    - performance-audit-checklist.md
+    - security-audit-checklist.md
+    - system-audit-checklist.md
+  templates:
+    - api-docs-template.md
+    - prd-template.md
+    - tech-spec-template.md
+  tools:
+    - ai-agent-builder.yaml
+    - vps-deploy.yaml
+    - integration-tester.yaml
+  scripts:
+    - build-and-audit.js
+    - health-check.js
+    - migration-runner.js
+  data:
+    - api-reference.md
+    - design-system-reference.md
+    - deployment-checklist-reference.md
 
 config:
   coding-standards: ../../docs/framework/CODING-STANDARDS.md

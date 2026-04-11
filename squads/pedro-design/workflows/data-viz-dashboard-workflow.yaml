@@ -1,0 +1,94 @@
+name: data-viz-dashboard-workflow
+description: "Workflow de criação de dashboard de dados — do audit ao user testing"
+version: "1.0"
+squad: pedro-design
+
+trigger:
+  command: "*data-viz-dashboard"
+  event: dashboard-request
+
+steps:
+  - id: data-audit
+    agent: pdg-data-viz-specialist
+    action: "Auditar dados disponíveis — fontes, qualidade, atualização, acessos"
+    outputs:
+      - data-profile
+      - data-quality-report
+      - available-metrics
+
+  - id: kpi-definition
+    agent: pdg-data-viz-specialist
+    depends_on: data-audit
+    action: "Definir KPIs com stakeholders — o que importa, por que, como medir"
+    outputs:
+      - kpi-list
+      - kpi-definitions
+      - success-metrics
+
+  - id: chart-selection
+    agent: pdg-data-viz-specialist
+    depends_on: [data-audit, kpi-definition]
+    action: "Selecionar tipos de gráfico ideais para cada métrica"
+    outputs:
+      - chart-map
+      - visualization-specs
+
+  - id: wireframe
+    agent: pdg-data-viz-specialist
+    depends_on: [kpi-definition, chart-selection]
+    action: "Criar wireframe de dashboard — layout, hierarchy, grouping"
+    parallel_with: [visual-system]
+    outputs:
+      - dashboard-wireframe
+      - layout-spec
+
+  - id: visual-design
+    agent: pdg-data-viz-specialist
+    depends_on: wireframe
+    action: "Aplicar design system — cores, tipografia, spacing, componentes"
+    parallel_with: [visual-system]
+    outputs:
+      - visual-dashboard
+      - color-palette-applied
+
+  - id: visual-system
+    agent: pdg-design-system
+    depends_on: chart-selection
+    action: "Definir sistema visual específico para data viz — paletas, tipografia"
+    outputs:
+      - dataviz-style-guide
+
+  - id: accessibility-check
+    agent: pdg-data-viz-specialist
+    depends_on: visual-design
+    action: "Verificar acessibilidade — colorblind, contrast, screen reader"
+    outputs:
+      - accessibility-report
+      - remediation-list
+
+  - id: build
+    agent: pdg-data-viz-specialist
+    depends_on: [visual-design, accessibility-check]
+    action: "Construir dashboard em ferramenta selecionada"
+    outputs:
+      - live-dashboard
+      - data-connections
+
+  - id: user-testing
+    agent: pdg-ux-designer
+    depends_on: build
+    action: "Testar com usuários — comprehension, speed, satisfaction"
+    outputs:
+      - test-results
+      - improvement-list
+      - dashboard-approved
+
+success_criteria:
+  - "Data audit com fontes e qualidade documentadas"
+  - "KPIs definidos com stakeholders e documentados"
+  - "Chart selection justificada por tipo de dado"
+  - "Wireframe de dashboard com layout aprovado"
+  - "Visual design aplicado com sistema consistente"
+  - "Accessibility check passed (WCAG AA minimo)"
+  - "Dashboard funcional com dados reais"
+  - "User testing com minimum 5 usuários, 80% comprehension"

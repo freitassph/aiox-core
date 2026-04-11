@@ -1,0 +1,296 @@
+# VPS Deploy Tool
+# Automated deployment utility for Pedro Sistema Agente systems
+
+name: vps-deploy
+version: 1.0.0
+type: tool
+
+description: >
+  Automated VPS deployment tool that handles server provisioning,
+  application deployment, database migrations, SSL setup, and
+  health verification for systems built by pedro-sistema-agente squad.
+
+deployment_modes:
+  full_deploy:
+    description: Complete deployment from scratch
+    steps:
+      - validate_project
+      - build_application
+      - provision_server
+      - configure_server
+      - deploy_application
+      - run_migrations
+      - setup_ssl
+      - configure_monitoring
+      - verify_health
+
+  app_only:
+    description: Deploy application code only (no server changes)
+    steps:
+      - validate_project
+      - build_application
+      - deploy_application
+      - verify_health
+
+  migration_only:
+    description: Run database migrations only
+    steps:
+      - validate_migrations
+      - run_migrations
+      - verify_schema
+
+  rollback:
+    description: Rollback to previous deployment
+    steps:
+      - identify_previous_version
+      - restore_application
+      - rollback_migrations
+      - verify_health
+
+server_provisioning:
+  supported_providers:
+    - digitalocean
+    - hetzner
+    - aws_ec2
+    - vultr
+    - linode
+
+  minimum_specs:
+    cpu: 2
+    ram: "4GB"
+    disk: "50GB SSD"
+    network: "1Gbps"
+    os: "Ubuntu 22.04 LTS"
+
+  recommended_specs:
+    cpu: 4
+    ram: "8GB"
+    disk: "100GB SSD"
+    network: "1Gbps"
+    os: "Ubuntu 24.04 LTS"
+
+  initial_setup:
+    - create_deploy_user
+    - configure_ssh_keys
+    - disable_password_auth
+    - configure_firewall_ufw
+    - install_docker_and_compose
+    - install_fail2ban
+    - configure_unattended_upgrades
+    - set_timezone_utc
+    - configure_swap_2gb
+    - install_certbot
+
+application_deployment:
+  methods:
+    docker_compose:
+      description: Deploy using Docker Compose (recommended)
+      files_required:
+        - docker-compose.yml
+        - Dockerfile
+        - .env.production
+      advantages:
+        - Reproducible builds
+        - Easy rollback
+        - Container isolation
+        - Resource limits
+
+    pm2_direct:
+      description: Deploy using PM2 process manager
+      files_required:
+        - ecosystem.config.js
+        - .env.production
+        - Built application (npm run build)
+      advantages:
+        - Simpler setup
+        - Lower overhead
+        - Good for single-process apps
+
+  docker_compose_template: |
+    version: '3.8'
+
+    services:
+      app:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        restart: unless-stopped
+        ports:
+          - "127.0.0.1:3000:3000"
+        env_file:
+          - .env.production
+        environment:
+          - NODE_ENV=production
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+          start_period: 40s
+        deploy:
+          resources:
+            limits:
+              cpus: '2'
+              memory: 4G
+            reservations:
+              cpus: '1'
+              memory: 2G
+        logging:
+          driver: json-file
+          options:
+            max-size: "100m"
+            max-file: "7"
+
+      redis:
+        image: redis:7-alpine
+        restart: unless-stopped
+        ports:
+          - "127.0.0.1:6379:6379"
+        volumes:
+          - redis_data:/data
+        command: redis-server --appendonly yes
+        healthcheck:
+          test: ["CMD", "redis-cli", "ping"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+
+    volumes:
+      redis_data:
+
+  nginx_template: |
+    server {
+        listen 80;
+        server_name {{DOMAIN}} www.{{DOMAIN}};
+        return 301 https://$host$request_uri;
+    }
+
+    server {
+        listen 443 ssl http2;
+        server_name {{DOMAIN}} www.{{DOMAIN}};
+
+        ssl_certificate /etc/letsencrypt/live/{{DOMAIN}}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/{{DOMAIN}}/privkey.pem;
+
+        # Security headers
+        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';" always;
+
+        # Gzip compression
+        gzip on;
+        gzip_types text/plain text/css application/json application/javascript text/xml application/xml text/javascript;
+        gzip_min_length 1000;
+
+        # Frontend (Next.js)
+        location / {
+            proxy_pass http://127.0.0.1:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        # Rate limiting
+        limit_req zone=api burst=20 nodelay;
+    }
+
+ssl_setup:
+  provider: Let's Encrypt (Certbot)
+  commands:
+    - certbot certonly --nginx -d {{DOMAIN}} -d www.{{DOMAIN}}
+    - certbot renew --dry-run  # Verify auto-renewal
+  auto_renewal: |
+    # Crontab entry (added automatically)
+    0 3 * * * certbot renew --quiet --post-hook "systemctl reload nginx"
+  monitoring: |
+    # Check certificate expiry
+    echo | openssl s_client -servername {{DOMAIN}} -connect {{DOMAIN}}:443 2>/dev/null | openssl x509 -noout -dates
+
+monitoring:
+  health_checks:
+    - name: HTTP Health
+      endpoint: /api/health
+      interval: 30s
+      expected_status: 200
+
+    - name: Database Connection
+      command: supabase status
+      interval: 60s
+
+    - name: Redis Connection
+      command: redis-cli ping
+      interval: 30s
+
+    - name: Disk Space
+      command: df -h / | awk 'NR==2 {print $5}'
+      threshold: "80%"
+      interval: 300s
+
+    - name: Memory Usage
+      command: free -m | awk 'NR==2{printf "%s", $3*100/$2}'
+      threshold: "85%"
+      interval: 60s
+
+  alerting:
+    channels:
+      - email
+      - slack
+      - webhook
+    triggers:
+      - health_check_failure (3 consecutive)
+      - disk_usage_above_90_percent
+      - memory_usage_above_90_percent
+      - application_restart (3 times in 10 minutes)
+      - ssl_expiry_within_7_days
+
+rollback_procedure:
+  steps:
+    - Stop current deployment
+    - Restore previous Docker image or code version
+    - Start previous version
+    - Verify health endpoint
+    - If database migrations were applied, run reverse migrations
+    - Update deployment log with rollback reason and timestamp
+
+  automatic_triggers:
+    - Health check failure for > 5 minutes after deploy
+    - Error rate > 5% within 10 minutes of deploy
+    - Response time > 3x baseline within 10 minutes of deploy
+
+usage:
+  command: "vps-deploy"
+  options:
+    - flag: "--deploy"
+      description: "Full deployment (build + deploy + verify)"
+    - flag: "--deploy-app"
+      description: "Deploy application code only"
+    - flag: "--deploy-migrations"
+      description: "Run migrations only"
+    - flag: "--rollback"
+      description: "Rollback to previous version"
+    - flag: "--server <provider>"
+      description: "Provision new server (digitalocean, hetzner, aws)"
+    - flag: "--setup-ssl"
+      description: "Configure SSL for domain"
+    - flag: "--verify"
+      description: "Run post-deployment health checks"
+    - flag: "--env <file>"
+      description: "Environment file path (default: .env.production)"
+    - flag: "--dry-run"
+      description: "Preview deployment without executing"
+
+  examples:
+    - "vps-deploy --deploy"
+    - "vps-deploy --deploy --env .env.staging"
+    - "vps-deploy --server hetzner --name production-01"
+    - "vps-deploy --rollback"
+    - "vps-deploy --verify --url https://myapp.com"
+    - "vps-deploy --dry-run"

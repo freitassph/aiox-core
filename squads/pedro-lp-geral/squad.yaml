@@ -75,8 +75,12 @@ components:
     - copy-framework-universal-template.md
     - design-tokens-template.yaml
 
-  tools: []
-  scripts: []
+  tools:
+    - conversion-optimization-matrix.md
+    - industry-adaptation-guide.md
+  scripts:
+    - lp-quality-audit.sh
+    - copy-framework-analyzer.sh
 
   data:
     - prestige-design-system-tokens.yaml

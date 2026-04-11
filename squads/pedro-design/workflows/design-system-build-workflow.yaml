@@ -1,0 +1,97 @@
+name: design-system-build-workflow
+description: "Workflow de construção de design system completo — do audit à library"
+version: "1.0"
+squad: pedro-design
+
+trigger:
+  command: "*build-design-system"
+  event: design-system-request
+
+steps:
+  - id: audit-existing
+    agent: pdg-design-system
+    action: "Auditar estado atual — inconsistências, duplicações, gaps"
+    outputs:
+      - audit-report
+      - inconsistency-map
+
+  - id: token-definition
+    agent: pdg-design-system
+    depends_on: audit-existing
+    action: "Definir design tokens — colors, typography, spacing, shadows, borders, radius"
+    outputs:
+      - design-tokens
+      - token-naming-convention
+
+  - id: color-system
+    agent: pdg-design-system
+    depends_on: token-definition
+    action: "Construir sistema de cores — primary, secondary, semantic, neutral palettes"
+    parallel_with: [typography]
+    outputs:
+      - color-palette
+      - color-usage-guidelines
+      - accessibility-contrast-matrix
+
+  - id: typography
+    agent: pdg-design-system
+    depends_on: token-definition
+    action: "Definir sistema tipográfico — font families, scale, weights, line heights"
+    parallel_with: [color-system]
+    outputs:
+      - typography-scale
+      - font-usage-guidelines
+      - responsive-typography
+
+  - id: component-inventory
+    agent: pdg-design-system
+    depends_on: audit-existing
+    action: "Inventariar componentes existentes e identificar necessidades"
+    outputs:
+      - component-inventory
+      - component-gap-analysis
+
+  - id: component-design
+    agent: pdg-design-system
+    depends_on: [component-inventory, color-system, typography]
+    action: "Design de componentes — buttons, inputs, cards, modals, navigation"
+    outputs:
+      - component-specs
+      - component-variants
+      - interaction-states
+
+  - id: documentation
+    agent: pdg-design-system
+    depends_on: component-design
+    action: "Documentar cada componente com props, variants, examples e usage guidelines"
+    outputs:
+      - component-docs
+      - usage-examples
+      - do-dont-guide
+
+  - id: library-build
+    agent: pdg-design-system
+    depends_on: documentation
+    action: "Construir library de componentes em ferramenta selecionada (Figma, code)"
+    outputs:
+      - component-library
+      - design-tokens-export
+
+  - id: adoption-guide
+    agent: pdg-design-system
+    depends_on: library-build
+    action: "Criar guia de adoção — como usar, quando estender, governança"
+    outputs:
+      - adoption-guide
+      - governance-model
+      - contribution-process
+
+success_criteria:
+  - "Audit report com inconsistencies e gaps documentados"
+  - "Design tokens definidos e nomeados consistentemente"
+  - "Sistema de cores com minimum 5 paletas (primary, secondary, semantic, neutrals, data-viz)"
+  - "Escala tipográfica responsiva definida"
+  - "Minimum 15 componentes documentados com variants e states"
+  - "Documentação completa com exemplos de uso"
+  - "Library funcional em Figma e/ou código"
+  - "Guia de adoção com governança definida"
