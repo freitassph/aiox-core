@@ -105,4 +105,4 @@
 
 ---
 
-*Template do pedro-design squad — Craft (squad-creator)*
+*Template do pedro-design squad*

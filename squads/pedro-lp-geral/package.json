@@ -1,7 +1,7 @@
 {
   "name": "pedro-lp-geral",
   "version": "1.0.0",
-  "description": "Squad universal de landing pages de altíssima conversão — Prestige Design System S+++ (Universal Archetypes), copy de classe mundial (Ogilvy × Schwartz × Hormozi), performance técnica impecável. Adapta-se a qualquer nicho, segmento ou indústria.",
+  "description": "Landing page geral squad - High-conversion landing pages with brand archetypes and psychological persuasion",
   "main": "scripts/lp-quality-audit.sh",
   "bin": {
     "lp-geral-audit": "./scripts/lp-quality-audit.sh"
@@ -20,15 +20,11 @@
   },
   "keywords": [
     "aiox",
+    "pedro-lp-geral",
     "landing-page",
-    "universal",
-    "prestige-design",
-    "high-conversion",
-    "world-class-copy",
-    "tier-s-plus-plus",
-    "quality-gate",
-    "task-first",
-    "schema-validation"
+    "conversion",
+    "brand-archetypes",
+    "squad"
   ],
   "author": "Pedro Henrique Menezes de Freitas",
   "license": "MIT",

@@ -5,7 +5,7 @@ author: synkra-aios
 license: MIT
 slashPrefix: pedro-lp-geral
 
-aios:
+aiox:
   minVersion: "2.1.0"
   type: squad
 
@@ -68,12 +68,14 @@ components:
     - accessibility-wcag21-checklist.md
     - lgpd-compliance-checklist.md
     - cro-conversion-checklist.md
+    - performance-core-web-vitals-checklist.md
 
   templates:
     - lp-briefing-template.md
     - landing-page-sections-template.md
     - copy-framework-universal-template.md
     - design-tokens-template.yaml
+    - cta-conversion-template.md
 
   tools:
     - conversion-optimization-matrix.md

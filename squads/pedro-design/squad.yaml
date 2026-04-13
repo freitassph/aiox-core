@@ -59,9 +59,8 @@ components:
     # Espacial e Game
     - pdg-environmental-designer.md
     - pdg-game-ui-designer.md
-    # Qualidade
+    # Qualidade e Publicacoes
     - pdg-auditor.md
-    # Orphans (existem no disk)
     - pdg-print-editorial.md
     - pdg-slide-designer.md
 
@@ -102,7 +101,6 @@ components:
     - pdg-audit-design.md
     - pdg-validate-accessibility.md
     - pdg-audit-design-system.md
-    # Orphan (existe no disk)
     - pdg-create-full-identity.md
 
   workflows:
@@ -162,7 +160,9 @@ components:
     - ui-handoff-template.md
     - design-audit-report-template.md
 
-  tools: []
+  tools:
+    - design-quality-scorer.yaml
+    - color-accessibility-checker.yaml
   scripts: []
   data:
     - color-palettes-reference.md

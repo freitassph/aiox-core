@@ -1,7 +1,7 @@
 {
-  "name": "pedro-squadcreator",
+  "name": "pedro-lp-medica",
   "version": "1.1.0",
-  "description": "Squad creator capable of creating any Tier S+++ squad from scratch with full automation",
+  "description": "Medical landing page squad - CFM/CONAR/LGPD compliant clinical luxury design",
   "main": "scripts/validate-squad.js",
   "bin": {
     "squad-create": "./scripts/validate-squad.js",
@@ -21,12 +21,12 @@
   },
   "keywords": [
     "aiox",
-    "squad-creator",
-    "agent-factory",
-    "tier-s-plus-plus",
-    "quality-gate",
-    "task-first",
-    "schema-validation"
+    "pedro-lp-medica",
+    "landing-page",
+    "medical",
+    "cfm-compliance",
+    "clinical-luxury",
+    "squad"
   ],
   "author": "Pedro Henrique Menezes de Freitas",
   "license": "MIT",

@@ -62,16 +62,13 @@ Baseado na metodologia **Atomic Design de Brad Frost**, o sistema "Clinical Luxu
 | Agente | Persona | Especialidade |
 |--------|---------|--------------|
 | `medical-prd-architect` | Camila Santos | PRDs, briefing, patient journey |
-| `medical-briefing-strategist` | Dra. Ana Claudia | Marketing médico, estratégia CFM/CONAR |
 | `cfm-compliance-sentinel` | Dr. Eduardo Leal | CFM 2.336/2023, LGPD Art. 11, CONAR |
 | `medical-design-system` | Valentina Cruz | Design tokens, Clinical Luxury System |
 | `medical-atomic-design-architect` | Bruno Nakamura | Atomic Design, component specs |
 | `medical-ui-artisan` | Felipe Torres | Next.js + Tailwind v4, implementação S+++ |
-| `medical-ux-architect` | Beatriz Ramos | Patient-centered UX, flows, wireframes |
 | `medical-copywriter` | Marina Silveira | Copy humanizada CFM-compliant |
 | `medical-content-curator` | Isabela Nunes | Conteúdo educativo baseado em evidências |
 | `medical-seo-specialist` | Rafael Alves | SEO local, E-E-A-T, Schema.org healthcare |
-| `medical-frontend-builder` | Thiago Azevedo | Next.js, Schema, LGPD, performance |
 | `medical-integration-engineer` | Lucas Cunha | Agendamento, WhatsApp, GA4, LGPD CMP |
 | `medical-cro-optimizer` | Leonardo Pimentel | CRO ético, A/B testing, funil |
 | `medical-qa-auditor` | Renata Fonseca | QA CFM/LGPD/WCAG, técnico |

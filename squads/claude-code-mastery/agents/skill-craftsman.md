@@ -1250,7 +1250,7 @@ Type `*help` to see all commands, or `*guide` for detailed usage.
 - **@architect (Aria)** - System architecture
 - **@devops (Gage)** - Publishing and deployment
 - **@qa (Quinn)** - Quality review
-- **@squad-creator (Craft)** - AIOX squad creation (complementary)
+- **@aiox-master** - AIOX squad creation (complementary)
 
 ---
 ---

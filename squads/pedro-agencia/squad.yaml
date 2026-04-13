@@ -117,12 +117,19 @@ components:
     - checklist-campaign-launch.md
     - checklist-client-delivery.md
     - checklist-content-quality.md
+    - creative-quality-review.md
+    - campaign-performance-review.md
+    - brand-consistency-checklist.md
+    - content-compliance-checklist.md
 
   templates:
     - template-campaign-brief.md
     - template-creative-brief.md
     - template-monthly-report.md
     - template-weekly-report.md
+    - ad-copy-template.md
+    - social-media-calendar-template.md
+    - client-onboarding-brief-template.md
 
 quality_standards:
   brand_consistency: "100% — sem desvio de identidade"

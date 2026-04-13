@@ -23,8 +23,8 @@ squad:
   author: pedro-sistema-agente
   leader: pwb-maestro
   requires:
-    - "Base de Conhecimento AIOX Core"
-    - "Schemas de Componentes Sanguíneos Tier S"
+    - pedro-sistema-agente
+    - pedro-design
 
   agents:
     # Orquestração
@@ -115,6 +115,9 @@ squad:
     - id: pwb-build-landing
       file: tasks/pwb-build-landing.md
       agent: pwb-landing
+    - id: pwb-setup-seo
+      file: tasks/pwb-setup-seo.md
+      agent: pwb-seo
     - id: pwb-build-frontend
       file: tasks/pwb-build-frontend.md
       agent: pwb-frontend

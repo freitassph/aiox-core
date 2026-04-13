@@ -1,6 +1,6 @@
 workflow:
   id: ai-agent-build
-  name: Advanced AI Agent Factory (S+++)
+  name: Advanced AI Agent Build System (S+++)
   description: Orquestração para criação, treinamento e validação de novos agentes
     de IA de alta densidade.
   version: 1.1.0

@@ -17,8 +17,8 @@ pedro-agencia/
 ├── agents/          # 22 agentes especializados
 ├── tasks/           # 36 tasks com entrada/saida/checklist
 ├── workflows/       # 7 workflows multi-step com retry logic
-├── checklists/      # 3 checklists de qualidade
-├── templates/       # 4 templates reutilizáveis
+├── checklists/      # 7 checklists de qualidade
+├── templates/       # 7 templates reutilizáveis
 ├── config/          # Configurações e standards
 ├── data/            # Data files de referência
 ├── tools/           # Tool configurations
@@ -184,6 +184,119 @@ Antes de qualquer entrega ao cliente, o squad verifica:
 - [ ] Métricas de sucesso definidas e trackadas?
 - [ ] pa-prism com dashboard de acompanhamento configurado?
 - [ ] pa-anchor com onboarding do cliente documentado?
+
+---
+
+## Troubleshooting
+
+### Quando Agents Falham
+
+| Sintoma | Causa Provável | Solução |
+|---------|---------------|---------|
+| Agent não responde ao atalho (`@pa-*`) | Arquivo do agent não encontrado em `agents/` | Verifique se o arquivo `.md` existe em `pedro-agencia/agents/` com nome exato |
+| Agent retorna output genérico | Brief/contexto insuficiente | Reforce o contexto com dados do cliente, objetivos e constraints antes de ativar |
+| Output fora do padrão Tier S+++ | Checklist de qualidade não executado | Rode o checklist correspondente (`creative-quality-review`, `content-quality`, etc.) antes de aprovar |
+| Agent conflita com outro agent | Sobreposição de responsabilidade não resolvida | Consulte a tabela de agentes primários vs. suporte no README; pa-empire resolve conflitos |
+| Workflow interrompe no meio | Dependência não satisfeita (ex.: input de outro agent faltando) | Verifique o `squad.yaml` workflows; garanta que todos os inputs pré-requisito foram gerados |
+
+**Procedimento de Recovery:**
+1. Identifique o agent que falhou
+2. Rode `@pa-empire` com o contexto: "O agent [X] falhou na task [Y]. Reoriente e reexecute."
+3. pa-empire reorquestra o fluxo corrigindo a falha
+
+### Como Verificar Integridade de Campanhas
+
+**Diagnóstico Rápido (5 minutos):**
+```
+1. @pa-prism → "Analise a integridade de tracking da campanha [nome]. Pixels, UTMs, conversões."
+2. @pa-profit → "Verifique status das campanhas ativas: budget spend, performance, aprovações."
+3. @pa-anchor → "Confirme alinhamento com cliente: aprovações pendentes, comunicação em dia."
+```
+
+**Checklist de Integridade:**
+- [ ] Rode `checklists/campaign-performance-review.md` — SEÇÃO 1 (Data Integrity)
+- [ ] Verifique Pixel Helper em todas as landing pages da campanha
+- [ ] Confirme no GA4 que dados estão chegando sem lacunas > 1h
+- [ ] Cheque contas de anúncio: sem restrições, saldo suficiente
+- [ ] Confirme que todos os criativos estão aprovados pelas plataformas
+
+**Se encontrar problemas:**
+1. Documente o problema com dados concretos (screenshot, número, URL)
+2. Escale para pa-empire com diagnóstico completo
+3. Aplaque correção conforme `checklists/campaign-performance-review.md` SEÇÃO 6
+
+### Como Resolver Problemas de Budget Allocation
+
+**Sintoma: Budget sendo gasto sem resultados**
+```
+1. @pa-prism → "Identifique quais audiências/criativos têm CPA acima da meta."
+2. @pa-profit → "Realoque budget dos underperformers para os winners. Documente as mudanças."
+3. @pa-empire → "Valide a realocação e comunique ao cliente."
+```
+
+**Sintoma: Budget não está sendo gasto (underdelivery)**
+```
+1. @pa-profit → "Diagnostique underdelivery: bid too low? audience too narrow? approvals pending?"
+2. Aplique correção: aumente bids, amplie audiences, resolva aprovações de criativos
+3. @pa-prism → "Monitore delivery nas próximas 24h e reporte."
+```
+
+**Regra de Ouro:** Nunca realoque mais de 20% do budget total em uma única mudança. Faça ajustes incrementais e meça o impacto antes de continuar.
+
+### Comandos de Diagnóstico
+
+| Comando | Agente | Uso |
+|---------|--------|-----|
+| `@pa-prism` | Analytics | "Audit completo de tracking e dados da campanha [X]" |
+| `@pa-profit` | Performance | "Status de performance e budget de todas as campanhas ativas" |
+| `@pa-anchor` | Account | "Pendências de aprovação e comunicação com cliente [X]" |
+| `@pa-genesis` | Creative | "Review de qualidade criativa das peças [X]" |
+| `@pa-aegis` | Compliance | "Verifique conformidade de [peça/campanha] com regulamentações" |
+| `@pa-oracle` | Brand | "Verifique consistência de marca em [peças/campanha]" |
+| `@pa-empire` | Orchestration | "Diagnóstico completo do projeto [X] — identifique blockers e riscos" |
+
+**Diagnóstico Completo (quando tudo parece estar falhando):**
+```
+@pa-empire → "Execute diagnóstico completo do projeto [nome].
+Verifique: (1) integridade de dados com pa-prism,
+(2) performance de campanhas com pa-profit,
+(3) qualidade criativa com pa-genesis,
+(4) compliance com pa-aegis,
+(5) alinhamento com cliente via pa-anchor.
+Consolide findings e priorize ações."
+```
+
+---
+
+## Changelog
+
+### v1.0.0 - Current
+
+**Initial Release — Pedro Agência Squad (Tier S+++)**
+
+- **22 agents** especializados, cada um composto pelo DNA dos maiores nomes da história em sua área
+- **36 tasks** com entrada, saída e checklist definidos
+- **7 workflows** multi-step com retry logic (campaign, brand launch, growth sprint, onboarding, content machine, campaign launch, onboarding client)
+- **7 checklists** de qualidade:
+  - `checklist-campaign-launch.md` — Pré-lançamento de campanha
+  - `checklist-client-delivery.md` — Entrega ao cliente
+  - `checklist-content-quality.md` — Qualidade de conteúdo
+  - `creative-quality-review.md` — Revisão de qualidade criativa (pa-genesis)
+  - `campaign-performance-review.md` — Revisão de performance (pa-prism)
+  - `brand-consistency-checklist.md` — Consistência de marca (pa-oracle)
+  - `content-compliance-checklist.md` — Conformidade de conteúdo (pa-aegis)
+- **7 templates** reutilizáveis:
+  - `template-campaign-brief.md` — Brief de campanha
+  - `template-creative-brief.md` — Brief criativo
+  - `template-monthly-report.md` — Relatório mensal
+  - `template-weekly-report.md` — Relatório semanal
+  - `ad-copy-template.md` — Copy de anúncios multi-plataforma (pa-quill)
+  - `social-media-calendar-template.md` — Calendário de social media (pa-pulse)
+  - `client-onboarding-brief-template.md` — Briefing de onboarding (pa-anchor)
+- **Configuração completa**: agency philosophy, client manifesto, coding standards, tech stack, source tree
+- **Data files**: industry benchmarks, ad platform reference, brand archetypes, SEO framework
+- **Scripts**: campaign report generator, benchmark fetcher, UTM builder
+- **Quality standards**: brand consistency 100%, ROAS > 4x, SEO Top 3, NPS > 70
 
 ---
 

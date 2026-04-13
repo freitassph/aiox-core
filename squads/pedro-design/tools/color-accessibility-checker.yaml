@@ -1,0 +1,192 @@
+# color-accessibility-checker.yaml
+# Tool: Color Accessibility Validator for WCAG 2.1 compliance
+# Usage: Validate color combinations for contrast, colorblind safety, and WCAG compliance
+
+tool:
+  id: color-accessibility-checker
+  name: "Color Accessibility Checker"
+  version: 1.0.0
+  description: >
+    Comprehensive color accessibility validation tool that checks color
+    combinations against WCAG 2.1 AA and AAA standards, simulates colorblind
+    vision, validates color semantics, and ensures sufficient contrast across
+    all text, UI, and graphical elements.
+
+  inputs:
+    - name: colors
+      type: array<object>
+      required: true
+      description: "List of color pairs to validate"
+      schema:
+        - foreground: string (hex/rgb/hsl)
+          background: string (hex/rgb/hsl)
+          type: string (enum: "text-normal", "text-large", "ui-component", "graphical-object", "focus-indicator")
+          label: string (optional description)
+    - name: color_palette
+      type: array<string>
+      required: false
+      description: "Full color palette to check for colorblind distinguishability"
+    - name: compliance_level
+      type: string
+      required: false
+      default: "AA"
+      enum: ["AA", "AAA"]
+      description: "WCAG compliance level to validate against"
+    - name: simulate_deficiencies
+      type: array<string>
+      required: false
+      default: ["protanopia", "deuteranopia", "tritanopia"]
+      description: "Color vision deficiencies to simulate"
+
+  outputs:
+    - name: accessibility_report
+      type: object
+      schema:
+        compliant: boolean
+        compliance_level: string
+        total_pairs_tested: integer
+        pairs_passed: integer
+        pairs_failed: integer
+        results: array<object>
+        colorblind_safe: boolean
+        recommendations: array<string>
+
+    - name: remediation_suggestions
+      type: array<object>
+      schema:
+        pair: object
+        issue: string
+        suggested_fix: string
+        accessible_alternative: string
+
+  wcag_requirements:
+    text_normal:
+      level_AA:
+        contrast_ratio: 4.5
+        description: "Normal text (< 18pt or < 14pt bold) requires 4.5:1 contrast ratio"
+      level_AAA:
+        contrast_ratio: 7.0
+        description: "Enhanced contrast for normal text requires 7:1 contrast ratio"
+
+    text_large:
+      level_AA:
+        contrast_ratio: 3.0
+        description: "Large text (>= 18pt or >= 14pt bold) requires 3:1 contrast ratio"
+      level_AAA:
+        contrast_ratio: 4.5
+        description: "Enhanced contrast for large text requires 4.5:1 contrast ratio"
+
+    ui_components:
+      level_AA:
+        contrast_ratio: 3.0
+        description: "UI components and graphical objects require 3:1 contrast against adjacent colors"
+
+    focus_indicators:
+      level_AA:
+        contrast_ratio: 3.0
+        description: "Focus indicators require 3:1 contrast against unfocused state"
+
+  colorblind_simulations:
+    protanopia:
+      description: "Red-blind (no red cones) — affects ~1% of males"
+      impact: "Reds appear dark/brownish, red-green confusion"
+      check: "Ensure red/green pairs are distinguishable by brightness and saturation"
+
+    deuteranopia:
+      description: "Green-blind (no green cones) — affects ~1% of males (most common)"
+      impact: "Greens appear muted, red-green confusion similar to protanopia"
+      check: "Do not rely solely on red/green distinction for meaning"
+
+    tritanopia:
+      description: "Blue-blind (no blue cones) — rare, ~0.001%"
+      impact: "Blue-yellow confusion, difficulty distinguishing blues from greens"
+      check: "Ensure blue/yellow pairs have sufficient luminance difference"
+
+    achromatopsia:
+      description: "Complete colorblindness (no color perception) — very rare"
+      impact: "Everything perceived in grayscale"
+      check: "Design must work in grayscale — luminance contrast is essential"
+
+  validation_checks:
+    contrast_ratio:
+      description: "Calculate WCAG contrast ratio between foreground and background"
+      formula: "(L1 + 0.05) / (L2 + 0.05)" where L1 is lighter relative luminance
+      pass_criteria: "Ratio meets or exceeds threshold for element type and compliance level"
+
+    colorblind_distinguishability:
+      description: "Verify all palette colors remain distinguishable under colorblind simulation"
+      method: "Convert palette to simulated vision, check minimum delta E between pairs"
+      threshold: "Delta E >= 10 under all simulated deficiencies"
+
+    non_color_indicators:
+      description: "Verify color is not the sole means of conveying information"
+      checks:
+        - "Status indicators include icons or text labels"
+        - "Charts use patterns or labels, not just color"
+        - "Links are distinguishable without color (underline or other indicator)"
+        - "Form validation errors use icons + color + text"
+
+    focus_visibility:
+      description: "Verify focus indicators are sufficiently visible"
+      checks:
+        - "Focus ring has 3:1 contrast against unfocused state"
+        - "Focus indicator is at least 2px thick"
+        - "Focus indicator fully surrounds interactive element or follows shape"
+
+  execution:
+    steps:
+      - step: parse_colors
+        action: "Parse all color inputs (hex/rgb/hsl) to normalized format"
+        on_failure: "Return error: invalid color format"
+      - step: calculate_luminance
+        action: "Calculate relative luminance for each color per WCAG 2.1 formula"
+      - step: compute_contrast
+        action: "Calculate contrast ratio for each color pair"
+      - step: check_compliance
+        action: "Validate against WCAG AA or AAA thresholds per element type"
+      - step: simulate_colorblind
+        action: "Run colorblind simulation on palette"
+      - step: check_indistinguishability
+        action: "Verify all colors remain distinguishable under each deficiency"
+      - step: validate_non_color
+        action: "Check for color-only information encoding"
+      - step: generate_report
+        action: "Produce comprehensive accessibility report with pass/fail and suggestions"
+
+  remediation_strategies:
+    insufficient_contrast:
+      - "Darken foreground color for text on light backgrounds"
+      - "Lighten foreground color for text on dark backgrounds"
+      - "Add semi-transparent overlay to increase contrast"
+      - "Increase font size to qualify as large text (lower threshold)"
+      - "Use text-shadow or stroke to improve separation"
+
+    colorblind_issues:
+      - "Add texture or pattern alongside color differentiation"
+      - "Use shape icons instead of color-only status indicators"
+      - "Include text labels (e.g., Success/Error instead of green/red)"
+      - "Adjust hue to increase separation in simulated vision"
+      - "Use saturation/brightness differences, not just hue"
+
+    focus_visibility:
+      - "Use outline-style focus ring (not box-shadow blur)"
+      - "Ensure focus ring is 2-3px minimum thickness"
+      - "Use high-contrast focus color (e.g., blue on white, not light gray on white)"
+      - "Consider custom focus indicator matching brand"
+
+  error_handling:
+    INVALID_COLOR_FORMAT: "One or more colors are not valid hex/rgb/hsl format"
+    MISSING_PAIR: "Color pair missing foreground or background value"
+    UNKNOWN_ELEMENT_TYPE: "Element type must be one of: text-normal, text-large, ui-component, graphical-object, focus-indicator"
+    INSUFFICIENT_COLORS: "At least one color pair is required for testing"
+
+  tags:
+    - accessibility
+    - color-validation
+    - wcag-2.1
+    - contrast-checking
+    - colorblind-simulation
+    - compliance-audit
+    - inclusive-design
+    - aa-compliance
+    - aaa-compliance

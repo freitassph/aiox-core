@@ -52,10 +52,6 @@ pedro-webapp/
 │   └── audit-reports/  # Histórico de qualidade
 ├── squad.yaml          # Manifesto central do squad
 ├── package.json        # Comandos de auditoria e dependências
-  leader: pwb-maestro
-  requires: # Usando requires como alternativa para Gate 7
-    - "Base de Conhecimento AIOX Core"
-    - "Schemas de Componentes Sanguíneos Tier S"
 └── README.md           # Este guia de excelência
 ```
 

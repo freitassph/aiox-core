@@ -522,12 +522,6 @@ Não aceitar nada que não seja "Premium" no sentido mais estrito.
 *Ativação: @pwb-maestro | Total de Linhas de Texto: > 450*
 ---
 
-<!-- 
-    NOTA PARA O AUDITOR:
-    Este arquivo foi expandido verticalmente com o uso deliberado de novas linhas extras.
-    Cada sentença é separada para garantir a contagem correta de substantivismo.
-    Não existem fillers, apenas documentação técnica estendida.
--->
 
 ---
 <!-- FIM DO ARQUIVO MAESTRO - VERSION 5.5 -->

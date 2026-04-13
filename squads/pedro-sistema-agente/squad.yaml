@@ -69,7 +69,7 @@ components:
     - deployment-checklist-reference.md
 
 config:
-  coding-standards: ../../docs/framework/CODING-STANDARDS.md
+  coding-standards: config/coding-standards.md
   tech-stack: config/tech-stack.md
   source-tree: config/source-tree.md
 
@@ -86,6 +86,28 @@ dependencies:
     - "@tanstack/react-query"
   python: []
   squads: []
+
+requires:
+  node: ">=18.0.0"
+  aiox: ">=2.1.0"
+
+meta:
+  domain: "system-building"
+  target: "fullstack-applications"
+  orchestrator: "psa-maestro"
+  standards:
+    - "aiox-constitution"
+    - "clean_code"
+    - "solid_principles"
+    - "design_patterns"
+    - "api_design"
+    - "security_first"
+    - "accessibility"
+    - "performance"
+  design_tier: "S+++"
+  quality_level: "production"
+  min_agent_lines: 400
+  validation_gates: 7
 
 tags:
   - ai-agents

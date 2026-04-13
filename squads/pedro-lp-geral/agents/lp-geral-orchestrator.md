@@ -600,7 +600,7 @@ signature:
     workflows_managed: 3
 
   audit_trail:
-    created_by: "Synkra AIOX — pedro-squadcreator"
+    created_by: "Synkra AIOX -- pedro-lp-geral"
     expanded_by: "Agent expansion pipeline — quality gate S+++"
     validated_by: "pending lp-qa-auditor"
     constitution_aligned: true
