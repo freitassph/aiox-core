@@ -1,4 +1,28 @@
 {
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/synapse-wrapper.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/precompact-wrapper.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "Bash(node -e \"\nconst { UnifiedActivationPipeline } = require\\(''./.aiox-core/development/scripts/unified-activation-pipeline.js''\\);\nconst pipeline = new UnifiedActivationPipeline\\(process.cwd\\(\\)\\);\npipeline.activate\\(''devops''\\).then\\(result => {\n  console.log\\(result.greeting\\);\n}\\).catch\\(err => {\n  console.error\\(''Activation error:'', err.message\\);\n}\\);\n\")",
