@@ -129,9 +129,18 @@ function validateManifest() {
   const manifestMap = new Map();
 
   for (const entry of manifest.files) {
-    const normalizedPath = entry.path.replace(/\\/g, '/');
+    // Backward compatibility: older manifests stored files as plain strings.
+    const manifestEntry = typeof entry === 'string' ? { path: entry } : entry;
+
+    if (!manifestEntry || typeof manifestEntry.path !== 'string') {
+      result.valid = false;
+      result.errors.push(`Invalid manifest entry: ${JSON.stringify(entry)}`);
+      continue;
+    }
+
+    const normalizedPath = manifestEntry.path.replace(/\\/g, '/');
     manifestPaths.add(normalizedPath);
-    manifestMap.set(normalizedPath, entry);
+    manifestMap.set(normalizedPath, manifestEntry);
   }
 
   // Check for new files (in filesystem but not in manifest)
